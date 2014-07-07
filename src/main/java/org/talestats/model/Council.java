@@ -10,10 +10,10 @@ import javax.persistence.Table;
 public class Council {
 
 	@Id
-	private Integer key;
+	private int id;
 
 	@Basic
-	private Integer cityId;
+	private int cityId;
 
 	@Basic
 	private String name;
@@ -28,24 +28,24 @@ public class Council {
 	private String skill;
 
 	@Basic
-	private Integer allies;
+	private int allies;
 
 	@Basic
-	private Integer enemies;
+	private int enemies;
 
-	public Integer getKey() {
-		return key;
+	public int getId() {
+		return id;
 	}
 
-	public void setKey(Integer key) {
-		this.key = key;
+	public void setId(int id) {
+		this.id = id;
 	}
 
-	public void setCityId(Integer cityId) {
+	public void setCityId(int cityId) {
 		this.cityId = cityId;
 	}
 
-	public Integer getCityId() {
+	public int getCityId() {
 		return cityId;
 	}
 
@@ -81,24 +81,24 @@ public class Council {
 		this.skill = skill;
 	}
 
-	public Integer getAllies() {
+	public int getAllies() {
 		return allies;
 	}
 
-	public void setAllies(Integer allies) {
+	public void setAllies(int allies) {
 		this.allies = allies;
 	}
 
-	public Integer getEnemies() {
+	public int getEnemies() {
 		return enemies;
 	}
 
-	public void setEnemies(Integer enemies) {
+	public void setEnemies(int enemies) {
 		this.enemies = enemies;
 	}
 
 	@Override
 	public String toString() {
-		return "Council [key=" + key + ", name=" + name + "]";
+		return "Council [id=" + id + ", name=" + name + "]";
 	}
 }

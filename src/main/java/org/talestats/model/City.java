@@ -10,7 +10,7 @@ import javax.persistence.Table;
 public class City {
 
 	@Id
-	private Integer key;
+	private Integer id;
 
 	@Basic
 	private String name;
@@ -18,12 +18,12 @@ public class City {
 	@Basic
 	private int size;
 
-	public Integer getKey() {
-		return key;
+	public Integer getId() {
+		return id;
 	}
 
-	public void setKey(Integer key) {
-		this.key = key;
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	public String getName() {
@@ -44,6 +44,6 @@ public class City {
 
 	@Override
 	public String toString() {
-		return "City [key=" + key + ", name=" + name + "]";
+		return "City [id=" + id + ", name=" + name + "]";
 	}
 }

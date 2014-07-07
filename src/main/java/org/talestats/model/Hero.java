@@ -10,7 +10,7 @@ import javax.persistence.Table;
 public class Hero {
 
 	@Id
-	private Integer key;
+	private Integer id;
 
 	@Basic
 	private String name;
@@ -27,12 +27,12 @@ public class Hero {
 	@Basic
 	private String town;
 
-	public Integer getKey() {
-		return key;
+	public int getId() {
+		return id;
 	}
 
-	public void setKey(Integer key) {
-		this.key = key;
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getName() {
@@ -77,6 +77,6 @@ public class Hero {
 
 	@Override
 	public String toString() {
-		return "City [key=" + key + ", name=" + name + "]";
+		return "Hero [id=" + id + ", name=" + name + "]";
 	}
 }

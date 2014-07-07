@@ -11,6 +11,9 @@ public class Hero {
 
 	@Id
 	private Integer id;
+	
+	@Basic
+	private int cityId;
 
 	@Basic
 	private String name;
@@ -24,15 +27,20 @@ public class Hero {
 	@Basic
 	private int enemy;
 
-	@Basic
-	private String town;
-
 	public int getId() {
 		return id;
 	}
 
 	public void setId(int id) {
 		this.id = id;
+	}
+	
+	public int getCityId() {
+		return cityId;
+	}
+
+	public void setCityId(int cityId) {
+		this.cityId = cityId;
 	}
 
 	public String getName() {
@@ -65,14 +73,6 @@ public class Hero {
 
 	public void setEnemy(int enemy) {
 		this.enemy = enemy;
-	}
-
-	public String getTown() {
-		return town;
-	}
-
-	public void setTown(String town) {
-		this.town = town;
 	}
 
 	@Override

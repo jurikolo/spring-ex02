@@ -28,7 +28,7 @@ public class HeroDAOImpl implements HeroDAO {
 		heroToUpdate.setGuildId(hero.getGuildId());
 		heroToUpdate.setAlly(hero.getAlly());
 		heroToUpdate.setEnemy(hero.getEnemy());
-		heroToUpdate.setTown(hero.getTown());
+		heroToUpdate.setCityId(hero.getCityId());
 		getCurrentSession().update(heroToUpdate);
 	}
 

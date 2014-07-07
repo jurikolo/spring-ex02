@@ -10,13 +10,7 @@ public class City {
 	
 	static final Logger logger = LoggerFactory.getLogger(City.class);
 	
-	/*@Scheduled(cron = "0-59 * * * * *")
-	public void run() {
-		logger.debug("Hello World!!!");
-		System.out.println("Do some task");
-	}*/
-	
-	@Scheduled(fixedRate=5000)
+	@Scheduled(fixedRate=60000)
 	public void run() {
 		logger.debug("Hello World!!!");
 		System.out.println("Do some task");

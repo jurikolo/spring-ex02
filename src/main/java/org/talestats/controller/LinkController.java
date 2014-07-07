@@ -1,4 +1,4 @@
-package com.dtr.oas.controller;
+package org.talestats.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.servlet.ModelAndView;

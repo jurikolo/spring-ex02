@@ -1,4 +1,4 @@
-package com.dtr.oas.model;
+package org.talestats.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

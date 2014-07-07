@@ -1,9 +1,8 @@
-package com.dtr.oas.config;
+package org.talestats.config;
 
 import org.springframework.core.annotation.Order;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
-
-import com.dtr.oas.config.DatabaseConfig;
+import org.talestats.config.DatabaseConfig;
 
 @Order(1)
 public class Initializer extends

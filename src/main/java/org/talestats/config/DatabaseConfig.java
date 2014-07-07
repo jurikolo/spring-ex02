@@ -1,4 +1,4 @@
-package com.dtr.oas.config;
+package org.talestats.config;
 
 import java.util.Properties;
 
@@ -17,7 +17,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
 @EnableTransactionManagement
-@ComponentScan("com.dtr.oas")
+@ComponentScan("org.talestats")
 @PropertySource("classpath:database.properties")
 public class DatabaseConfig {
 

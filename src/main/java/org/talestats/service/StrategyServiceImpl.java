@@ -1,13 +1,12 @@
-package com.dtr.oas.service;
+package org.talestats.service;
 
 import java.util.List;
-
-import com.dtr.oas.dao.StrategyDAO;
-import com.dtr.oas.model.Strategy;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.talestats.dao.StrategyDAO;
+import org.talestats.model.Strategy;
 
 @Service
 @Transactional

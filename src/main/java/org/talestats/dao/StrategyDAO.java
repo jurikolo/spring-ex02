@@ -1,7 +1,8 @@
-package com.dtr.oas.dao;
+package org.talestats.dao;
 
 import java.util.List;
-import com.dtr.oas.model.Strategy;
+
+import org.talestats.model.Strategy;
 
 public interface StrategyDAO {
 

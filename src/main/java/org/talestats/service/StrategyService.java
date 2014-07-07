@@ -1,8 +1,8 @@
-package com.dtr.oas.service;
+package org.talestats.service;
 
 import java.util.List;
 
-import com.dtr.oas.model.Strategy;
+import org.talestats.model.Strategy;
 
 public interface StrategyService {
 

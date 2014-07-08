@@ -40,6 +40,12 @@ public class CityDAOImpl implements CityDAO {
 			getCurrentSession().delete(city);
 	}
 
+	public void addOrUpdateCity(City city) {
+		Session openSession = sessionFactory.openSession();
+		openSession.saveOrUpdate(city);
+		openSession.flush();
+	}
+
 	@SuppressWarnings("unchecked")
 	public List<City> getCities() {
 		return getCurrentSession().createQuery("from City").list();

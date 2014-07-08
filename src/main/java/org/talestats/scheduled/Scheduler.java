@@ -1,18 +1,38 @@
 package org.talestats.scheduled;
 
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.talestats.config.WebAppConfig;
+import java.io.IOException;
+
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
+import org.talestats.config.Constants;
+import org.talestats.scheduled.CityProcess;
 
 public class Scheduler {
-	
-	public static void main(String[] args) {
-		AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext();
-		
-		ctx.register(WebAppConfig.class);
-		ctx.refresh();
-		
-		City city = ctx.getBean(City.class);
-		city.run();
-		
+
+	@Autowired
+	private CityProcess cityProcess;
+
+	static final Logger logger = LoggerFactory.getLogger(Scheduler.class);
+
+	@Scheduled(initialDelay = 5000, fixedRate = 60000)
+	public void run() {
+		logger.info("Scheduler started");
+		Document doc;
+		for (int cityId = 1; cityId <= Constants.CITY_COUNT; cityId++) {
+			String url = "http://the-tale.org/game/map/places/" + cityId;
+			try {
+				doc = Jsoup.parse(Jsoup.connect(url).get().toString(), "UTF-8");
+				String str = Jsoup.connect(url).get().toString();
+				cityProcess.process(cityId, doc, str);
+				
+
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 }

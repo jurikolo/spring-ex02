@@ -19,18 +19,18 @@ public class CityProcess {
 	private CityDAO cityDao;
 
 	public void process(int cityId, Document doc, String str) {
-		logger.info("City processing started!!!");
+		logger.debug("City processing started!!!");
 
 		int citySize = cityExtract.getSize(str);
 		String cityName = cityExtract.getName(doc);
 
 		City city = new City();
 		city.setName(cityName);
-		logger.info("City name: " + cityName);
+		logger.debug("City name: " + cityName);
 		city.setSize(citySize);
-		logger.info("City size: " + citySize);
+		logger.debug("City size: " + citySize);
 		city.setId(cityId);
-		logger.info("City id: " + cityId);
+		logger.debug("City id: " + cityId);
 		cityDao.addOrUpdateCity(city);
 	}
 }

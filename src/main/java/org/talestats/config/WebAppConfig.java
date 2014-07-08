@@ -10,7 +10,7 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.JstlView;
 import org.springframework.web.servlet.view.UrlBasedViewResolver;
-import org.talestats.scheduled.City;
+import org.talestats.scheduled.Scheduler;
 
 @Configuration
 @EnableScheduling
@@ -42,7 +42,7 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
 	}
 
 	@Bean
-	public City city() {
-		return new City();
+	public Scheduler scheduler() {
+		return new Scheduler();
 	}
 }

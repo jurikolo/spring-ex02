@@ -13,7 +13,7 @@
 <table class="table table-striped" border="1px" cellpadding="0" cellspacing="0" >
 <thead>
 <tr>
-<th width="10%">id</th><th width="15%">name</th><th width="10%">type</th><th width="10%">actions</th>
+<th width="10%">id</th><th width="10%">name</th><th width="10%">size</th>
 </tr>
 </thead>
 <tbody>

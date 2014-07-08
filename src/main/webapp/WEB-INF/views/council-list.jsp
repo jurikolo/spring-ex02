@@ -13,7 +13,7 @@
 <table class="table table-striped" border="1px" cellpadding="0" cellspacing="0" >
 <thead>
 <tr>
-<th width="10%">id</th><th width="15%">name</th><th width="10%">type</th><th width="10%">actions</th>
+<th width="10%">id</th><th width="10%">cityId</th><th width="10%">name</th><th width="10%">job</th><th width="10%">race</th><th width="10%">skill</th><th width="10%">allies</th><th width="10%">enemies</th>
 </tr>
 </thead>
 <tbody>

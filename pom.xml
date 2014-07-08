@@ -27,7 +27,7 @@
 		<mysql.connector.version>5.1.31</mysql.connector.version>
 		<commons.dbcp.version>1.4</commons.dbcp.version>
 		<org.jsoup-version>1.7.3</org.jsoup-version>
-
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 
 	<dependencies>
@@ -153,28 +153,33 @@
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
 			<version>${servlet-version}</version>
+            <scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>javax.servlet.jsp</groupId>
 			<artifactId>javax.servlet.jsp-api</artifactId>
 			<version>${jsp-version}</version>
+            <scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>jstl</artifactId>
 			<version>${jstl-version}</version>
+            <scope>provided</scope>
 		</dependency>
 
 		<!-- UNIT TESTING -->
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>4.7</version>
+			<version>4.11</version>
+            <scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-test</artifactId>
 			<version>${spring-version}</version>
+            <scope>test</scope>
 		</dependency>
 
 		<!-- Parse -->
@@ -186,7 +191,16 @@
 
 	</dependencies>
 	<build>
+        <finalName>${project.artifactId}</finalName>
 		<plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>2.4</version>
+                <configuration>
+                    <failOnMissingWebXml>false</failOnMissingWebXml>
+                </configuration>
+            </plugin>
 			<plugin>
 				<artifactId>maven-eclipse-plugin</artifactId>
 				<version>2.9</version>
@@ -204,7 +218,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>2.5.1</version>
+				<version>3.1</version>
 				<configuration>
 					<source>${java-version}</source>
 					<target>${java-version}</target>

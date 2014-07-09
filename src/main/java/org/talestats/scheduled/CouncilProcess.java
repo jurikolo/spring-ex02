@@ -25,24 +25,18 @@ public class CouncilProcess {
 		String councilName = councilExtract.getName(doc, councilCnt);
 		String councilRace = councilExtract.getRace(doc, councilCnt);
 		String councilJob = councilExtract.getJob(doc, councilCnt);
+		String councilSkill = councilExtract.getSkill(doc, councilCnt);
 
 		Council council = new Council();
 		council.setId(councilId);
-		logger.debug("Council id: " + council.getId());
 		council.setCityId(cityId);
-		logger.debug("City id: " + council.getCityId());
 		council.setName(councilName);
-		logger.debug("Council name: " + council.getName());
 		council.setRace(councilRace);
-		logger.debug("Council race: " + council.getRace());
 		council.setJob(councilJob);
-		logger.debug("Council job: " + council.getJob());
-		council.setSkill("stub");
-		logger.debug("Council skill: " + council.getSkill());
+		council.setSkill(councilSkill);
 		council.setAllies(0);
-		logger.debug("Council allies: " + council.getAllies());
 		council.setEnemies(0);
-		logger.debug("Council enemies: " + council.getEnemies());
+		logger.debug(council.toString());
 		councilDao.addOrUpdateCouncil(council);
 	}
 }

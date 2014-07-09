@@ -26,11 +26,9 @@ public class CityProcess {
 
 		City city = new City();
 		city.setName(cityName);
-		logger.debug("City name: " + cityName);
 		city.setSize(citySize);
-		logger.debug("City size: " + citySize);
 		city.setId(cityId);
-		logger.debug("City id: " + cityId);
+		logger.debug(city.toString());
 		cityDao.addOrUpdateCity(city);
 	}
 }

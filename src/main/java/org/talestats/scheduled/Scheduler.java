@@ -22,7 +22,7 @@ public class Scheduler {
 
 	static final Logger logger = LoggerFactory.getLogger(Scheduler.class);
 
-	@Scheduled(initialDelay = 5000, fixedRate = 60000)
+	@Scheduled(initialDelay = 5000, fixedRate = 120000)
 	public void run() {
 		logger.info("Scheduler started");
 		Document doc;

@@ -26,6 +26,8 @@ public class CouncilProcess {
 		String councilRace = councilExtract.getRace(doc, councilCnt);
 		String councilJob = councilExtract.getJob(doc, councilCnt);
 		String councilSkill = councilExtract.getSkill(doc, councilCnt);
+		int councilAllies = councilExtract.getAllies(doc, councilCnt);
+		int councilEnemies = councilExtract.getEnemies(doc, councilCnt);
 
 		Council council = new Council();
 		council.setId(councilId);
@@ -34,8 +36,8 @@ public class CouncilProcess {
 		council.setRace(councilRace);
 		council.setJob(councilJob);
 		council.setSkill(councilSkill);
-		council.setAllies(0);
-		council.setEnemies(0);
+		council.setAllies(councilAllies);
+		council.setEnemies(councilEnemies);
 		logger.debug(council.toString());
 		councilDao.addOrUpdateCouncil(council);
 	}

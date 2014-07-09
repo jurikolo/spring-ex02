@@ -58,4 +58,30 @@ public class CouncilExtract {
 		str = str.substring(0, str.indexOf(","));
 		return str;
 	}
+
+	public int getAllies(Document doc, int cnt) {
+		Elements divs = doc.select("div.accordion-toggle");
+		Element div = divs.get(cnt);
+		String str = div.toString();
+		str = str.substring(str.indexOf("<small>") + 7, str.indexOf("</small") + 7);
+		str = str.substring(str.indexOf("противников") + 13, str.indexOf("</small"));
+		str = str.substring(0, str.indexOf("/"));
+		return Integer.parseInt(str);
+	}
+
+	public int getEnemies(Document doc, int cnt) {
+		Elements divs = doc.select("div.accordion-toggle");
+		Element div = divs.get(cnt);
+		String str = div.toString();
+		String result = "";
+		str = str.substring(str.indexOf("<small>") + 7, str.indexOf("</small") + 7);
+		str = str.substring(str.indexOf("противников"), str.indexOf("</small"));
+		str = str.substring(str.indexOf("/") + 1);
+		for (int i = 0; i < str.length(); i++)
+		{
+			if (str.substring(i, i+1).matches("[0-9]"))
+				result += str.substring(i, i+1);
+		}
+		return Integer.parseInt(result);
+	}
 }

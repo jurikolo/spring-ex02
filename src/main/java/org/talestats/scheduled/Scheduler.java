@@ -19,7 +19,6 @@ public class Scheduler {
 	private CityProcess cityProcess;
 	@Autowired
 	private CouncilProcess councilProcess;
-	private CouncilExtract councilExtract;
 
 	static final Logger logger = LoggerFactory.getLogger(Scheduler.class);
 

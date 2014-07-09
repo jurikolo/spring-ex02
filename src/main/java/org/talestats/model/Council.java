@@ -99,7 +99,9 @@ public class Council {
 
 	@Override
 	public String toString() {
-		return "Council [id=" + id + ", name=" + name + "]";
+		return "Council [id=" + id + ", cityId=" + cityId + ", name=" + name
+				+ ", job=" + job + ", race=" + race + ", skill=" + skill + ", allies="
+				+ allies + ", enemies=" + enemies + "]";
 	}
 
 	@Override
@@ -123,5 +125,4 @@ public class Council {
 			return false;
 		return true;
 	}
-
 }

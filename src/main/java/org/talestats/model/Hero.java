@@ -77,6 +77,6 @@ public class Hero {
 
 	@Override
 	public String toString() {
-		return "Hero [id=" + id + ", name=" + name + "]";
+		return "Hero [id=" + id + ", cityId=" + cityId + ", name=" + name + ", guildId=" + guildId + ", ally=" + ally + ", enemy=" + enemy + "]";
 	}
 }

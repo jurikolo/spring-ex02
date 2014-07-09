@@ -3,15 +3,17 @@ package org.talestats.utils;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import org.springframework.stereotype.Component;
 
+@Component
 public class CouncilExtract {
 
-	public Integer getCount(Document doc) {
+	public int getCount(Document doc) {
 		Elements cnt = doc.select("div.accordion-toggle");
 		return cnt.size();
 	}
 
-	public Integer getId(Document doc, Integer cnt) {
+	public int getId(Document doc, int cnt) {
 		Elements divs = doc.select("div.accordion-toggle");
 		Element div = divs.get(cnt);
 		String str = div.toString();
@@ -19,7 +21,7 @@ public class CouncilExtract {
 		return Integer.parseInt(str);
 	}
 
-	public String getName(Document doc, Integer cnt) {
+	public String getName(Document doc, int cnt) {
 		Elements divs = doc.select("div.accordion-toggle");
 		Element div = divs.get(cnt);
 		String str = div.toString();
@@ -28,7 +30,7 @@ public class CouncilExtract {
 		return str;
 	}
 
-	public String getRace(Document doc, Integer cnt) {
+	public String getRace(Document doc, int cnt) {
 		Elements divs = doc.select("div.accordion-toggle");
 		Element div = divs.get(cnt);
 		String str = div.toString();

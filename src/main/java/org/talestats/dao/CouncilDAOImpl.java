@@ -45,6 +45,12 @@ public class CouncilDAOImpl implements CouncilDAO {
 		if (council != null)
 			getCurrentSession().delete(council);
 	}
+	
+	public void addOrUpdateCouncil(Council council) {
+		Session openSession = sessionFactory.openSession();
+		openSession.saveOrUpdate(council);
+		openSession.flush();
+	}
 
 	@SuppressWarnings("unchecked")
 	public List<Council> getCouncils() {

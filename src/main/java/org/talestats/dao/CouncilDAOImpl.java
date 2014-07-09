@@ -25,7 +25,6 @@ public class CouncilDAOImpl implements CouncilDAO {
 	public void updateCouncil(Council council) {
 		Council councilToUpdate = getCouncil(council.getId());
 		councilToUpdate.setName(council.getName());
-		councilToUpdate.setCityId(council.getCityId());
 		councilToUpdate.setName(council.getName());
 		councilToUpdate.setJob(council.getJob());
 		councilToUpdate.setRace(council.getRace());

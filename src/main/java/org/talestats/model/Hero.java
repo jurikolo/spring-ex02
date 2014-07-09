@@ -1,6 +1,7 @@
 package org.talestats.model;
 
 import javax.persistence.Basic;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -10,21 +11,23 @@ import javax.persistence.Table;
 public class Hero {
 
 	@Id
+	@Column(name="heroid")
 	private Integer id;
 	
 	@Basic
-	private int cityId;
-
-	@Basic
+	@Column(name="name")
 	private String name;
 
 	@Basic
+	@Column(name="guildId")
 	private int guildId;
 
 	@Basic
+	@Column(name="ally")
 	private int ally;
 
 	@Basic
+	@Column(name="enemy")
 	private int enemy;
 
 	public int getId() {
@@ -33,14 +36,6 @@ public class Hero {
 
 	public void setId(int id) {
 		this.id = id;
-	}
-	
-	public int getCityId() {
-		return cityId;
-	}
-
-	public void setCityId(int cityId) {
-		this.cityId = cityId;
 	}
 
 	public String getName() {
@@ -77,6 +72,6 @@ public class Hero {
 
 	@Override
 	public String toString() {
-		return "Hero [id=" + id + ", cityId=" + cityId + ", name=" + name + ", guildId=" + guildId + ", ally=" + ally + ", enemy=" + enemy + "]";
+		return "Hero [id=" + id + ", name=" + name + ", guildId=" + guildId + ", ally=" + ally + ", enemy=" + enemy + "]";
 	}
 }

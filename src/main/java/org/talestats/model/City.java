@@ -1,8 +1,12 @@
 package org.talestats.model;
 
+import java.util.Set;
+
 import javax.persistence.Basic;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -10,13 +14,19 @@ import javax.persistence.Table;
 public class City {
 
 	@Id
+	@Column(name="cityid")
 	private int id;
 
 	@Basic
+	@Column(name="name")
 	private String name;
 
 	@Basic
+	@Column(name="size")
 	private int size;
+	
+	@OneToMany(mappedBy = "city")
+	private Set<Council> councils;
 
 	public Integer getId() {
 		return id;
@@ -40,6 +50,14 @@ public class City {
 
 	public void setSize(int size) {
 		this.size = size;
+	}
+
+	public Set<Council> getCouncils() {
+		return councils;
+	}
+
+	public void setCouncils(Set<Council> councils) {
+		this.councils = councils;
 	}
 
 	@Override

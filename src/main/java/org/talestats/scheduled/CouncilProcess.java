@@ -31,7 +31,6 @@ public class CouncilProcess {
 
 		Council council = new Council();
 		council.setId(councilId);
-		council.setCityId(cityId);
 		council.setName(councilName);
 		council.setRace(councilRace);
 		council.setJob(councilJob);

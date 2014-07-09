@@ -1,8 +1,11 @@
 package org.talestats.model;
 
 import javax.persistence.Basic;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -10,28 +13,38 @@ import javax.persistence.Table;
 public class Council {
 
 	@Id
+	@Column(name="councilid")
 	private int id;
 
 	@Basic
-	private int cityId;
-
-	@Basic
+	@Column(name="name")
 	private String name;
 
 	@Basic
+	@Column(name="job")
 	private String job;
 
 	@Basic
+	@Column(name="race")
 	private String race;
 
 	@Basic
+	@Column(name="skill")
 	private String skill;
 
 	@Basic
+	@Column(name="allies")
 	private int allies;
 
 	@Basic
+	@Column(name="enemies")
 	private int enemies;
+	
+	@ManyToOne
+	@JoinColumn(name="cityid", nullable=false)
+	private City city;
+	
+	public Council() {}
 
 	public int getId() {
 		return id;
@@ -39,14 +52,6 @@ public class Council {
 
 	public void setId(int id) {
 		this.id = id;
-	}
-
-	public void setCityId(int cityId) {
-		this.cityId = cityId;
-	}
-
-	public int getCityId() {
-		return cityId;
 	}
 
 	public String getName() {
@@ -97,9 +102,17 @@ public class Council {
 		this.enemies = enemies;
 	}
 
+	public City getCity() {
+		return city;
+	}
+
+	public void setCity(City city) {
+		this.city = city;
+	}
+
 	@Override
 	public String toString() {
-		return "Council [id=" + id + ", cityId=" + cityId + ", name=" + name
+		return "Council [id=" + id + ", name=" + name
 				+ ", job=" + job + ", race=" + race + ", skill=" + skill + ", allies="
 				+ allies + ", enemies=" + enemies + "]";
 	}

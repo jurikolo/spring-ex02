@@ -24,6 +24,7 @@ public class CouncilProcess {
 		int councilId = councilExtract.getId(doc, councilCnt);
 		String councilName = councilExtract.getName(doc, councilCnt);
 		String councilRace = councilExtract.getRace(doc, councilCnt);
+		String councilJob = councilExtract.getJob(doc, councilCnt);
 
 		Council council = new Council();
 		council.setId(councilId);
@@ -34,7 +35,7 @@ public class CouncilProcess {
 		logger.debug("Council name: " + council.getName());
 		council.setRace(councilRace);
 		logger.debug("Council race: " + council.getRace());
-		council.setJob("stub");
+		council.setJob(councilJob);
 		logger.debug("Council job: " + council.getJob());
 		council.setSkill("stub");
 		logger.debug("Council skill: " + council.getSkill());

@@ -38,4 +38,14 @@ public class CouncilExtract {
 		str = str.substring(0, str.indexOf("-"));
 		return str;
 	}
+
+	public String getJob(Document doc, int cnt) {
+		
+		Elements divs = doc.select("div.accordion-toggle");
+		Element div = divs.get(cnt);
+		String str = div.toString();
+		str = str.substring(str.indexOf("<small>") + 7, str.indexOf("</small"));
+		str = str.substring(str.indexOf("-")+1, str.indexOf(","));
+		return str;
+	}
 }

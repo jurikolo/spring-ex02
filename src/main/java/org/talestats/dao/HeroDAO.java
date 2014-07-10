@@ -12,5 +12,6 @@ public interface HeroDAO {
     public void deleteHero(int id);
     public List<Hero> getHeroes();
     public void addOrUpdateHero(Hero hero);
+    public void deleteAllHeroes();
     
 }

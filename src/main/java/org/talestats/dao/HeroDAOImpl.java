@@ -2,6 +2,7 @@ package org.talestats.dao;
 
 import java.util.List;
 
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,6 +46,13 @@ public class HeroDAOImpl implements HeroDAO {
 	public void addOrUpdateHero(Hero hero) {
 		Session openSession = sessionFactory.openSession();
 		openSession.saveOrUpdate(hero);
+		openSession.flush();
+	}
+	
+	public void deleteAllHeroes() {
+		Session openSession = sessionFactory.openSession();
+		Query query = openSession.createQuery("delete from Hero"); 
+		query.executeUpdate();		
 		openSession.flush();
 	}
 

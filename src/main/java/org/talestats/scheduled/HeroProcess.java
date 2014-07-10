@@ -26,6 +26,7 @@ public class HeroProcess {
 		for (int cnt = 0; cnt < heroCnt; cnt++) {
 			int heroId = heroExtract.getId(doc, councilCnt, cnt);
 			String heroName = heroExtract.getName(doc, councilCnt, cnt);
+			int guildId = heroExtract.getGuildId(doc, councilCnt, cnt);
 
 			if (councilCnt != 0)
 				isAlly = heroExtract.isAlly(doc, councilCnt, cnt);
@@ -33,7 +34,7 @@ public class HeroProcess {
 			Hero hero = new Hero();
 			hero.setId(heroId);
 			hero.setName(heroName);
-			hero.setGuildId(0);
+			hero.setGuildId(guildId);
 			hero.setAlly(0);
 			hero.setEnemy(0);
 			heroDao.addOrUpdateHero(hero);

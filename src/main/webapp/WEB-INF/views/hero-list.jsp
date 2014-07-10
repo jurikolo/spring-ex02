@@ -27,7 +27,7 @@
 				<tr>
 					<td><a href="http://the-tale.org/game/heroes/${hero.id}">${hero.id}</a></td>
 					<td>${hero.name}</td>
-					<td>${hero.guildId}</td>
+					<td><a href="http://the-tale.org/accounts/clans/${hero.guildId}">${hero.guildId}</a></td>
 					<td>${hero.ally}</td>
 					<td>${hero.enemy}</td>
 				</tr>

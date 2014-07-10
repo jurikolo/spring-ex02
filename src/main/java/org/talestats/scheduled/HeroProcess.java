@@ -6,6 +6,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.talestats.dao.HeroDAO;
+import org.talestats.utils.CouncilExtract;
 import org.talestats.utils.HeroExtract;
 import org.talestats.model.Hero;
 
@@ -17,6 +18,8 @@ public class HeroProcess {
 	private HeroExtract heroExtract;
 	@Autowired
 	private HeroDAO heroDao;
+	@Autowired
+	private CouncilExtract councilExtract;
 
 	public void process(int councilCnt, Document doc, int cityId) {
 		logger.debug("Hero processing started!!!");
@@ -26,17 +29,26 @@ public class HeroProcess {
 		for (int cnt = 0; cnt < heroCnt; cnt++) {
 			int heroId = heroExtract.getId(doc, councilCnt, cnt);
 			String heroName = heroExtract.getName(doc, councilCnt, cnt);
-			int guildId = heroExtract.getGuildId(doc, councilCnt, cnt);
+			int heroGuildId = heroExtract.getGuildId(doc, councilCnt, cnt);
+			int heroAlly;
+			int heroEnemy;
 
-			if (councilCnt != 0)
-				isAlly = heroExtract.isAlly(doc, councilCnt, cnt);
-			
 			Hero hero = new Hero();
 			hero.setId(heroId);
 			hero.setName(heroName);
-			hero.setGuildId(guildId);
-			hero.setAlly(0);
-			hero.setEnemy(0);
+			hero.setGuildId(heroGuildId);
+
+			if (councilCnt != 0) {
+				isAlly = heroExtract.isAlly(doc, councilCnt, cnt);
+				if (isAlly) {
+					heroAlly = councilExtract.getId(doc, councilCnt);
+					hero.setAlly(heroAlly);
+				} else {
+					heroEnemy = councilExtract.getId(doc, councilCnt);
+					hero.setEnemy(heroEnemy);
+				}
+			}
+
 			heroDao.addOrUpdateHero(hero);
 		}
 	}

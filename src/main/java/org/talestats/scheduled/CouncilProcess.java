@@ -5,8 +5,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.talestats.dao.CityDAO;
 import org.talestats.dao.CouncilDAO;
 import org.talestats.utils.CouncilExtract;
+import org.talestats.model.City;
 import org.talestats.model.Council;
 
 @Component
@@ -17,6 +19,8 @@ public class CouncilProcess {
 	private CouncilExtract councilExtract;
 	@Autowired
 	private CouncilDAO councilDao;
+	@Autowired
+	CityDAO cityDao;
 
 	public void process(int councilCnt, Document doc, int cityId) {
 		logger.debug("Council processing started!!!");
@@ -29,6 +33,7 @@ public class CouncilProcess {
 		int councilAllies = councilExtract.getAllies(doc, councilCnt);
 		int councilEnemies = councilExtract.getEnemies(doc, councilCnt);
 		int councilInfluence = councilExtract.getInfruence(doc, councilCnt);
+		City city = cityDao.getCity(cityId);
 
 		Council council = new Council();
 		council.setId(councilId);
@@ -39,6 +44,7 @@ public class CouncilProcess {
 		council.setAllies(councilAllies);
 		council.setEnemies(councilEnemies);
 		council.setInfluence(councilInfluence);
+		council.setCity(city);
 		logger.debug(council.toString());
 		councilDao.addOrUpdateCouncil(council);
 	}

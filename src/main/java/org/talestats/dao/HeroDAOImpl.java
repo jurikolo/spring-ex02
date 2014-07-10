@@ -16,7 +16,7 @@ public class HeroDAOImpl implements HeroDAO {
 	private SessionFactory sessionFactory;
 
 	private Session getCurrentSession() {
-		return sessionFactory.getCurrentSession();
+		return sessionFactory.openSession();
 	}
 
 	public void addHero(Hero hero) {
@@ -50,10 +50,9 @@ public class HeroDAOImpl implements HeroDAO {
 	}
 	
 	public void deleteAllHeroes() {
-		Session openSession = sessionFactory.openSession();
-		Query query = openSession.createQuery("delete from Hero"); 
-		query.executeUpdate();		
-		openSession.flush();
+		Query query = getCurrentSession().createQuery("delete from Hero"); 
+		query.executeUpdate();
+		getCurrentSession().flush();
 	}
 
 	@SuppressWarnings("unchecked")

@@ -15,7 +15,7 @@ public class CouncilDAOImpl implements CouncilDAO {
 	private SessionFactory sessionFactory;
 
 	private Session getCurrentSession() {
-		return sessionFactory.getCurrentSession();
+		return sessionFactory.openSession();
 	}
 
 	public void addCouncil(Council council) {
@@ -46,9 +46,8 @@ public class CouncilDAOImpl implements CouncilDAO {
 	}
 	
 	public void addOrUpdateCouncil(Council council) {
-		Session openSession = sessionFactory.openSession();
-		openSession.saveOrUpdate(council);
-		openSession.flush();
+		getCurrentSession().saveOrUpdate(council);
+		getCurrentSession().flush();
 	}
 
 	@SuppressWarnings("unchecked")

@@ -15,7 +15,7 @@ public class CityDAOImpl implements CityDAO {
 	private SessionFactory sessionFactory;
 
 	private Session getCurrentSession() {
-		return sessionFactory.getCurrentSession();
+		return sessionFactory.openSession();
 	}
 
 	public void addCity(City city) {
@@ -41,9 +41,8 @@ public class CityDAOImpl implements CityDAO {
 	}
 
 	public void addOrUpdateCity(City city) {
-		Session openSession = sessionFactory.openSession();
-		openSession.saveOrUpdate(city);
-		openSession.flush();
+		getCurrentSession().saveOrUpdate(city);
+		getCurrentSession().flush();
 	}
 
 	@SuppressWarnings("unchecked")

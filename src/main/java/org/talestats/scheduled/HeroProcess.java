@@ -5,9 +5,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.talestats.dao.CityDAO;
 import org.talestats.dao.HeroDAO;
 import org.talestats.utils.CouncilExtract;
 import org.talestats.utils.HeroExtract;
+import org.talestats.model.City;
 import org.talestats.model.Hero;
 
 @Component
@@ -20,6 +22,8 @@ public class HeroProcess {
 	private HeroDAO heroDao;
 	@Autowired
 	private CouncilExtract councilExtract;
+	@Autowired
+	CityDAO cityDao;
 
 	public void process(int councilCnt, Document doc, int cityId) {
 		logger.debug("Hero processing started!!!");
@@ -32,11 +36,13 @@ public class HeroProcess {
 			int heroGuildId = heroExtract.getGuildId(doc, councilCnt, cnt);
 			int heroAlly;
 			int heroEnemy;
+			City city = cityDao.getCity(cityId);
 
 			Hero hero = new Hero();
 			hero.setId(heroId);
 			hero.setName(heroName);
 			hero.setGuildId(heroGuildId);
+			hero.setCity(city);
 
 			if (councilCnt != 0) {
 				isAlly = heroExtract.isAlly(doc, councilCnt, cnt);

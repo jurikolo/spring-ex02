@@ -18,7 +18,7 @@ public class CouncilProcess {
 	@Autowired
 	private CouncilDAO councilDao;
 
-	public void process(int councilCnt, Document doc, String str, int cityId) {
+	public void process(int councilCnt, Document doc, int cityId) {
 		logger.debug("Council processing started!!!");
 
 		int councilId = councilExtract.getId(doc, councilCnt);

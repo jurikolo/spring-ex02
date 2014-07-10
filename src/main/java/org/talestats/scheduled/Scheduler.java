@@ -12,6 +12,7 @@ import org.talestats.config.Constants;
 import org.talestats.scheduled.CityProcess;
 import org.talestats.scheduled.CouncilProcess;
 import org.talestats.utils.CouncilExtract;
+import org.talestats.dao.HeroDAO;
 
 public class Scheduler {
 
@@ -19,6 +20,10 @@ public class Scheduler {
 	private CityProcess cityProcess;
 	@Autowired
 	private CouncilProcess councilProcess;
+	@Autowired
+	private HeroProcess heroProcess;
+	@Autowired
+	private HeroDAO heroDao;
 
 	static final Logger logger = LoggerFactory.getLogger(Scheduler.class);
 
@@ -27,14 +32,19 @@ public class Scheduler {
 		logger.info("Scheduler started");
 		Document doc;
 		CouncilExtract councilExtract = new CouncilExtract();
+		//Delete all heroes to gather statistics about active accounts only
+		heroDao.deleteAllHeroes();
+		
 		for (int cityId = 1; cityId <= Constants.CITY_COUNT; cityId++) {
 			String url = "http://the-tale.org/game/map/places/" + cityId;
 			try {
 				doc = Jsoup.parse(Jsoup.connect(url).get().toString(), "UTF-8");
 				String str = Jsoup.connect(url).get().toString();
 				cityProcess.process(cityId, doc, str);
-				for (int councilCnt = 1; councilCnt < councilExtract.getCount(doc); councilCnt++) {
-					councilProcess.process(councilCnt, doc, str, cityId);
+				for (int councilCnt = 0; councilCnt < councilExtract.getCount(doc); councilCnt++) {
+					if (councilCnt != 0)
+						councilProcess.process(councilCnt, doc, cityId);
+					heroProcess.process(councilCnt, doc, cityId);
 				}
 
 			} catch (IOException e) {

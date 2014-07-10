@@ -25,7 +25,7 @@
 		<tbody>
 			<c:forEach var="hero" items="${heroes}">
 				<tr>
-					<td>${hero.id}</td>
+					<td><a href="http://the-tale.org/game/heroes/${hero.id}">${hero.id}</a></td>
 					<td>${hero.name}</td>
 					<td>${hero.guildId}</td>
 					<td>${hero.ally}</td>

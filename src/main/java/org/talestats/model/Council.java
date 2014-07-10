@@ -40,6 +40,10 @@ public class Council {
 	@Column(name="enemies")
 	private int enemies;
 	
+	@Basic
+	@Column(name="influence")
+	private int influence;
+	
 	@ManyToOne
 	@JoinColumn(name="cityid", nullable=false)
 	private City city;
@@ -100,6 +104,14 @@ public class Council {
 
 	public void setEnemies(int enemies) {
 		this.enemies = enemies;
+	}
+
+	public int getInfluence() {
+		return influence;
+	}
+
+	public void setInfluence(int influence) {
+		this.influence = influence;
 	}
 
 	public City getCity() {

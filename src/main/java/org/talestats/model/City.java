@@ -27,6 +27,9 @@ public class City {
 	
 	@OneToMany(mappedBy = "city")
 	private Set<Council> councils;
+	
+	@OneToMany(mappedBy = "city")
+	private Set<Hero> heroes;
 
 	public Integer getId() {
 		return id;
@@ -58,6 +61,14 @@ public class City {
 
 	public void setCouncils(Set<Council> councils) {
 		this.councils = councils;
+	}
+	
+	public Set<Hero> getHeroes() {
+		return heroes;
+	}
+
+	public void setHeroes(Set<Hero> heroes) {
+		this.heroes = heroes;
 	}
 
 	@Override

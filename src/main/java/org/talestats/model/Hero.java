@@ -4,6 +4,8 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -30,6 +32,12 @@ public class Hero {
 	@Column(name="enemy")
 	private int enemy;
 
+	@ManyToOne
+	@JoinColumn(name="cityid", nullable=false)
+	private City city;
+	
+	public Hero() {}
+	
 	public int getId() {
 		return id;
 	}
@@ -68,6 +76,14 @@ public class Hero {
 
 	public void setEnemy(int enemy) {
 		this.enemy = enemy;
+	}
+
+	public City getCity() {
+		return city;
+	}
+
+	public void setCity(City city) {
+		this.city = city;
 	}
 
 	@Override

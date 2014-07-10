@@ -41,6 +41,12 @@ public class HeroDAOImpl implements HeroDAO {
 		if (hero != null)
 			getCurrentSession().delete(hero);
 	}
+	
+	public void addOrUpdateHero(Hero hero) {
+		Session openSession = sessionFactory.openSession();
+		openSession.saveOrUpdate(hero);
+		openSession.flush();
+	}
 
 	@SuppressWarnings("unchecked")
 	public List<Hero> getHeroes() {

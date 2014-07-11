@@ -17,7 +17,6 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
 @EnableTransactionManagement
-@ComponentScan("org.talestats")
 @PropertySource("classpath:database.properties")
 public class DatabaseConfig {
 

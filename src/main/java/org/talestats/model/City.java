@@ -14,20 +14,20 @@ import javax.persistence.Table;
 public class City {
 
 	@Id
-	@Column(name="cityid")
+	@Column(name = "cityid")
 	private int id;
 
 	@Basic
-	@Column(name="name")
+	@Column(name = "name")
 	private String name;
 
 	@Basic
-	@Column(name="size")
+	@Column(name = "size")
 	private int size;
-	
+
 	@OneToMany(mappedBy = "city")
 	private Set<Council> councils;
-	
+
 	@OneToMany(mappedBy = "city")
 	private Set<Hero> heroes;
 
@@ -62,7 +62,7 @@ public class City {
 	public void setCouncils(Set<Council> councils) {
 		this.councils = councils;
 	}
-	
+
 	public Set<Hero> getHeroes() {
 		return heroes;
 	}
@@ -73,14 +73,20 @@ public class City {
 
 	@Override
 	public String toString() {
-		return "City [id=" + id + ", name=" + name + ", size=" + size + "]";
+		return "City [id=" + id + ", name=" + name + ", size=" + size
+				+ ", councils=" + councils + ", heroes=" + heroes + "]";
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result
+				+ ((councils == null) ? 0 : councils.hashCode());
+		result = prime * result + ((heroes == null) ? 0 : heroes.hashCode());
 		result = prime * result + id;
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		result = prime * result + size;
 		return result;
 	}
 
@@ -93,9 +99,26 @@ public class City {
 		if (getClass() != obj.getClass())
 			return false;
 		City other = (City) obj;
+		if (councils == null) {
+			if (other.councils != null)
+				return false;
+		} else if (!councils.equals(other.councils))
+			return false;
+		if (heroes == null) {
+			if (other.heroes != null)
+				return false;
+		} else if (!heroes.equals(other.heroes))
+			return false;
 		if (id != other.id)
+			return false;
+		if (name == null) {
+			if (other.name != null)
+				return false;
+		} else if (!name.equals(other.name))
+			return false;
+		if (size != other.size)
 			return false;
 		return true;
 	}
-	 
+
 }

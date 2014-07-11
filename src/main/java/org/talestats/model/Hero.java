@@ -13,35 +13,36 @@ import javax.persistence.Table;
 public class Hero {
 
 	@Id
-	@Column(name="heroid")
+	@Column(name = "heroid")
 	private Integer id;
-	
+
 	@Basic
-	@Column(name="name")
+	@Column(name = "name")
 	private String name;
-	
+
 	@Basic
-	@Column(name="keeper")
+	@Column(name = "keeper")
 	private String keeper;
 
 	@Basic
-	@Column(name="guildId")
+	@Column(name = "guildId")
 	private int guildId;
 
 	@Basic
-	@Column(name="ally")
+	@Column(name = "ally")
 	private int ally;
 
 	@Basic
-	@Column(name="enemy")
+	@Column(name = "enemy")
 	private int enemy;
 
 	@ManyToOne
-	@JoinColumn(name="cityid", nullable=false)
+	@JoinColumn(name = "cityid", nullable = false)
 	private City city;
-	
-	public Hero() {}
-	
+
+	public Hero() {
+	}
+
 	public int getId() {
 		return id;
 	}
@@ -100,6 +101,60 @@ public class Hero {
 
 	@Override
 	public String toString() {
-		return "Hero [id=" + id + ", name=" + name + ", keeper=" + keeper + ", guildId=" + guildId + ", ally=" + ally + ", enemy=" + enemy + "]";
+		return "Hero [id=" + id + ", name=" + name + ", keeper=" + keeper
+				+ ", guildId=" + guildId + ", ally=" + ally + ", enemy="
+				+ enemy + ", city=" + city + "]";
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ally;
+		result = prime * result + ((city == null) ? 0 : city.hashCode());
+		result = prime * result + enemy;
+		result = prime * result + guildId;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((keeper == null) ? 0 : keeper.hashCode());
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Hero other = (Hero) obj;
+		if (ally != other.ally)
+			return false;
+		if (city == null) {
+			if (other.city != null)
+				return false;
+		} else if (!city.equals(other.city))
+			return false;
+		if (enemy != other.enemy)
+			return false;
+		if (guildId != other.guildId)
+			return false;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		if (keeper == null) {
+			if (other.keeper != null)
+				return false;
+		} else if (!keeper.equals(other.keeper))
+			return false;
+		if (name == null) {
+			if (other.name != null)
+				return false;
+		} else if (!name.equals(other.name))
+			return false;
+		return true;
 	}
 }

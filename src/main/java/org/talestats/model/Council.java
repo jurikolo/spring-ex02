@@ -13,42 +13,43 @@ import javax.persistence.Table;
 public class Council {
 
 	@Id
-	@Column(name="councilid")
+	@Column(name = "councilid")
 	private int id;
 
 	@Basic
-	@Column(name="name")
+	@Column(name = "name")
 	private String name;
 
 	@Basic
-	@Column(name="job")
+	@Column(name = "job")
 	private String job;
 
 	@Basic
-	@Column(name="race")
+	@Column(name = "race")
 	private String race;
 
 	@Basic
-	@Column(name="skill")
+	@Column(name = "skill")
 	private String skill;
 
 	@Basic
-	@Column(name="allies")
+	@Column(name = "allies")
 	private int allies;
 
 	@Basic
-	@Column(name="enemies")
+	@Column(name = "enemies")
 	private int enemies;
-	
+
 	@Basic
-	@Column(name="influence")
+	@Column(name = "influence")
 	private int influence;
-	
+
 	@ManyToOne
-	@JoinColumn(name="cityid", nullable=false)
+	@JoinColumn(name = "cityid", nullable = false)
 	private City city;
-	
-	public Council() {}
+
+	public Council() {
+	}
 
 	public int getId() {
 		return id;
@@ -124,9 +125,10 @@ public class Council {
 
 	@Override
 	public String toString() {
-		return "Council [id=" + id + ", name=" + name
-				+ ", job=" + job + ", race=" + race + ", skill=" + skill + ", allies="
-				+ allies + ", enemies=" + enemies + "]";
+		return "Council [id=" + id + ", name=" + name + ", job=" + job
+				+ ", race=" + race + ", skill=" + skill + ", allies=" + allies
+				+ ", enemies=" + enemies + ", influence=" + influence
+				+ ", city=" + city + "]";
 	}
 
 	@Override

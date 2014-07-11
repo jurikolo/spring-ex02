@@ -19,7 +19,7 @@
 <tbody>
 <c:forEach var="city" items="${cities}">
 <tr>
-	<td>${city.id}</td>
+	<td><a href="http://the-tale.org/game/map/places/${city.id}">${city.id}</a></td>
 	<td>${city.name}</td>
 	<td>${city.size}</td>
 </tr>

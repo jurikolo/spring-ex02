@@ -29,7 +29,7 @@ public class Scheduler {
 
 	@Scheduled(initialDelay = Constants.START_DELAY, fixedRate = Constants.REPEAT_DELAY)
 	public void run() {
-		logger.info("Scheduler started");
+		logger.info("Scheduled run started");
 		Document doc;
 		CouncilExtract councilExtract = new CouncilExtract();
 		//Delete all heroes to gather statistics about active accounts only
@@ -51,5 +51,7 @@ public class Scheduler {
 				e.printStackTrace();
 			}
 		}
+		
+		logger.info("Scheduled run completed");
 	}
 }

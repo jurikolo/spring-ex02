@@ -19,6 +19,7 @@ public class HeroDAOImpl implements HeroDAO {
 		Session openSession = sessionFactory.openSession();
 		openSession.save(hero);
 		openSession.flush();
+		openSession.close();
 	}
 
 	public void updateHero(Hero hero) {
@@ -31,11 +32,13 @@ public class HeroDAOImpl implements HeroDAO {
 		heroToUpdate.setKeeper(hero.getKeeper());
 		openSession.update(heroToUpdate);
 		openSession.flush();
+		openSession.close();
 	}
 
 	public Hero getHero(int id) {
 		Session openSession = sessionFactory.openSession();
 		Hero hero = (Hero) openSession.get(Hero.class, id);
+		openSession.close();
 		return hero;
 	}
 
@@ -45,12 +48,14 @@ public class HeroDAOImpl implements HeroDAO {
 		if (hero != null)
 			openSession.delete(hero);
 		openSession.flush();
+		openSession.close();
 	}
 	
 	public void addOrUpdateHero(Hero hero) {
 		Session openSession = sessionFactory.openSession();
 		openSession.saveOrUpdate(hero);
 		openSession.flush();
+		openSession.close();
 	}
 	
 	public void deleteAllHeroes() {
@@ -58,12 +63,15 @@ public class HeroDAOImpl implements HeroDAO {
 		Query query = openSession.createQuery("delete from Hero"); 
 		query.executeUpdate();
 		openSession.flush();
+		openSession.close();
 	}
 
 	@SuppressWarnings("unchecked")
 	public List<Hero> getHeroes() {
 		Session openSession = sessionFactory.openSession();
-		return openSession.createQuery("from Hero").list();
+		List<Hero> heroes = openSession.createQuery("from Hero").list();
+		openSession.close();
+		return heroes;
 	}
 
 }

@@ -18,6 +18,7 @@ public class CouncilDAOImpl implements CouncilDAO {
 		Session openSession = sessionFactory.openSession();
 		openSession.save(council);
 		openSession.flush();
+		openSession.close();
 	}
 
 	public void updateCouncil(Council council) {
@@ -32,12 +33,14 @@ public class CouncilDAOImpl implements CouncilDAO {
 		councilToUpdate.setInfluence(council.getInfluence());
 		openSession.update(councilToUpdate);
 		openSession.flush();
+		openSession.close();
 	}
 
 	public Council getCouncil(int id) {
 		Session openSession = sessionFactory.openSession();
 		Council council = (Council) openSession.get(Council.class, id);
 		openSession.flush();
+		openSession.close();
 		return council;
 	}
 
@@ -47,18 +50,22 @@ public class CouncilDAOImpl implements CouncilDAO {
 		if (council != null)
 			openSession.delete(council);
 		openSession.flush();
+		openSession.close();
 	}
 	
 	public void addOrUpdateCouncil(Council council) {
 		Session openSession = sessionFactory.openSession();
 		openSession.saveOrUpdate(council);
 		openSession.flush();
+		openSession.close();
 	}
 
 	@SuppressWarnings("unchecked")
 	public List<Council> getCouncils() {
 		Session openSession = sessionFactory.openSession();
-		return openSession.createQuery("from Council").list();
+		List<Council> councils = openSession.createQuery("from Council").list();
+		openSession.close();
+		return councils;
 	}
 
 }

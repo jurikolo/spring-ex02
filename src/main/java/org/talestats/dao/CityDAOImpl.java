@@ -18,6 +18,7 @@ public class CityDAOImpl implements CityDAO {
 		Session openSession = sessionFactory.openSession();
 		openSession.save(city);
 		openSession.flush();
+		openSession.close();
 	}
 
 	public void updateCity(City city) {
@@ -33,6 +34,7 @@ public class CityDAOImpl implements CityDAO {
 		Session openSession = sessionFactory.openSession();
 		City city = (City) openSession.get(City.class, id);
 		openSession.flush();
+		openSession.close();
 		return city;
 	}
 
@@ -42,18 +44,23 @@ public class CityDAOImpl implements CityDAO {
 		if (city != null)
 			openSession.delete(city);
 		openSession.flush();
+		openSession.close();
 	}
 
 	public void addOrUpdateCity(City city) {
 		Session openSession = sessionFactory.openSession();
 		openSession.saveOrUpdate(city);
 		openSession.flush();
+		openSession.close();
 	}
 
 	@SuppressWarnings("unchecked")
 	public List<City> getCities() {
 		Session openSession = sessionFactory.openSession();
-		return openSession.createQuery("from City").list();
+		List<City> cities = openSession.createQuery("from City").list();
+		openSession.flush();
+		openSession.close();
+		return cities;
 	}
 
 }

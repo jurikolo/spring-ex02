@@ -14,15 +14,14 @@ public class CouncilDAOImpl implements CouncilDAO {
 	@Autowired
 	private SessionFactory sessionFactory;
 
-	private Session getCurrentSession() {
-		return sessionFactory.openSession();
-	}
-
 	public void addCouncil(Council council) {
-		getCurrentSession().save(council);
+		Session openSession = sessionFactory.openSession();
+		openSession.save(council);
+		openSession.flush();
 	}
 
 	public void updateCouncil(Council council) {
+		Session openSession = sessionFactory.openSession();
 		Council councilToUpdate = getCouncil(council.getId());
 		councilToUpdate.setName(council.getName());
 		councilToUpdate.setJob(council.getJob());
@@ -31,28 +30,35 @@ public class CouncilDAOImpl implements CouncilDAO {
 		councilToUpdate.setAllies(council.getAllies());
 		councilToUpdate.setEnemies(council.getEnemies());
 		councilToUpdate.setInfluence(council.getInfluence());
-		getCurrentSession().update(councilToUpdate);
+		openSession.update(councilToUpdate);
+		openSession.flush();
 	}
 
 	public Council getCouncil(int id) {
-		Council council = (Council) getCurrentSession().get(Council.class, id);
+		Session openSession = sessionFactory.openSession();
+		Council council = (Council) openSession.get(Council.class, id);
+		openSession.flush();
 		return council;
 	}
 
 	public void deleteCouncil(int id) {
+		Session openSession = sessionFactory.openSession();
 		Council council = getCouncil(id);
 		if (council != null)
-			getCurrentSession().delete(council);
+			openSession.delete(council);
+		openSession.flush();
 	}
 	
 	public void addOrUpdateCouncil(Council council) {
-		getCurrentSession().saveOrUpdate(council);
-		getCurrentSession().flush();
+		Session openSession = sessionFactory.openSession();
+		openSession.saveOrUpdate(council);
+		openSession.flush();
 	}
 
 	@SuppressWarnings("unchecked")
 	public List<Council> getCouncils() {
-		return getCurrentSession().createQuery("from Council").list();
+		Session openSession = sessionFactory.openSession();
+		return openSession.createQuery("from Council").list();
 	}
 
 }

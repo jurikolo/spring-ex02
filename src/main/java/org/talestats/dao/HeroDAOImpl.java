@@ -15,33 +15,36 @@ public class HeroDAOImpl implements HeroDAO {
 	@Autowired
 	private SessionFactory sessionFactory;
 
-	private Session getCurrentSession() {
-		return sessionFactory.openSession();
-	}
-
 	public void addHero(Hero hero) {
-		getCurrentSession().save(hero);
+		Session openSession = sessionFactory.openSession();
+		openSession.save(hero);
+		openSession.flush();
 	}
 
 	public void updateHero(Hero hero) {
+		Session openSession = sessionFactory.openSession();
 		Hero heroToUpdate = getHero(hero.getId());
 		heroToUpdate.setName(hero.getName());
 		heroToUpdate.setGuildId(hero.getGuildId());
 		heroToUpdate.setAlly(hero.getAlly());
 		heroToUpdate.setEnemy(hero.getEnemy());
 		heroToUpdate.setKeeper(hero.getKeeper());
-		getCurrentSession().update(heroToUpdate);
+		openSession.update(heroToUpdate);
+		openSession.flush();
 	}
 
 	public Hero getHero(int id) {
-		Hero hero = (Hero) getCurrentSession().get(Hero.class, id);
+		Session openSession = sessionFactory.openSession();
+		Hero hero = (Hero) openSession.get(Hero.class, id);
 		return hero;
 	}
 
 	public void deleteHero(int id) {
+		Session openSession = sessionFactory.openSession();
 		Hero hero = getHero(id);
 		if (hero != null)
-			getCurrentSession().delete(hero);
+			openSession.delete(hero);
+		openSession.flush();
 	}
 	
 	public void addOrUpdateHero(Hero hero) {
@@ -51,14 +54,16 @@ public class HeroDAOImpl implements HeroDAO {
 	}
 	
 	public void deleteAllHeroes() {
-		Query query = getCurrentSession().createQuery("delete from Hero"); 
+		Session openSession = sessionFactory.openSession();
+		Query query = openSession.createQuery("delete from Hero"); 
 		query.executeUpdate();
-		getCurrentSession().flush();
+		openSession.flush();
 	}
 
 	@SuppressWarnings("unchecked")
 	public List<Hero> getHeroes() {
-		return getCurrentSession().createQuery("from Hero").list();
+		Session openSession = sessionFactory.openSession();
+		return openSession.createQuery("from Hero").list();
 	}
 
 }

@@ -14,40 +14,46 @@ public class CityDAOImpl implements CityDAO {
 	@Autowired
 	private SessionFactory sessionFactory;
 
-	private Session getCurrentSession() {
-		return sessionFactory.openSession();
-	}
-
 	public void addCity(City city) {
-		getCurrentSession().save(city);
+		Session openSession = sessionFactory.openSession();
+		openSession.save(city);
+		openSession.flush();
 	}
 
 	public void updateCity(City city) {
+		Session openSession = sessionFactory.openSession();
 		City cityToUpdate = getCity(city.getId());
 		cityToUpdate.setName(city.getName());
 		cityToUpdate.setSize(city.getSize());
-		getCurrentSession().update(cityToUpdate);
+		openSession.update(cityToUpdate);
+		openSession.flush();
 	}
 
 	public City getCity(int id) {
-		City city = (City) getCurrentSession().get(City.class, id);
+		Session openSession = sessionFactory.openSession();
+		City city = (City) openSession.get(City.class, id);
+		openSession.flush();
 		return city;
 	}
 
 	public void deleteCity(int id) {
+		Session openSession = sessionFactory.openSession();
 		City city = getCity(id);
 		if (city != null)
-			getCurrentSession().delete(city);
+			openSession.delete(city);
+		openSession.flush();
 	}
 
 	public void addOrUpdateCity(City city) {
-		getCurrentSession().saveOrUpdate(city);
-		getCurrentSession().flush();
+		Session openSession = sessionFactory.openSession();
+		openSession.saveOrUpdate(city);
+		openSession.flush();
 	}
 
 	@SuppressWarnings("unchecked")
 	public List<City> getCities() {
-		return getCurrentSession().createQuery("from City").list();
+		Session openSession = sessionFactory.openSession();
+		return openSession.createQuery("from City").list();
 	}
 
 }

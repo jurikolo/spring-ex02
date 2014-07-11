@@ -73,8 +73,7 @@ public class City {
 
 	@Override
 	public String toString() {
-		return "City [id=" + id + ", name=" + name + ", size=" + size
-				+ ", councils=" + councils + ", heroes=" + heroes + "]";
+		return "City [id=" + id + ", name=" + name + ", size=" + size + "]";
 	}
 
 	@Override

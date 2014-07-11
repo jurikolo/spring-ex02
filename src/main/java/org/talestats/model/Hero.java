@@ -103,7 +103,7 @@ public class Hero {
 	public String toString() {
 		return "Hero [id=" + id + ", name=" + name + ", keeper=" + keeper
 				+ ", guildId=" + guildId + ", ally=" + ally + ", enemy="
-				+ enemy + ", city=" + city + "]";
+				+ enemy + "]";
 	}
 
 	@Override

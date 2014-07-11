@@ -127,8 +127,7 @@ public class Council {
 	public String toString() {
 		return "Council [id=" + id + ", name=" + name + ", job=" + job
 				+ ", race=" + race + ", skill=" + skill + ", allies=" + allies
-				+ ", enemies=" + enemies + ", influence=" + influence
-				+ ", city=" + city + "]";
+				+ ", enemies=" + enemies + ", influence=" + influence + "]";
 	}
 
 	@Override

@@ -75,6 +75,23 @@ public class HeroExtract {
 		str = str.substring(str.indexOf("\">") + 2, str.indexOf("</a>"));
 		return str;
 	}
+	
+	public String getKeeper(Document doc, int cnt, int heroCnt) {
+		Elements divs = doc.select("div.accordion-group");
+		Element div = divs.get(cnt);
+		String str = div.toString();
+		Pattern p = Pattern.compile("/game/heroes");
+		Matcher m = p.matcher(str);
+		int TmpCnt = 0;
+		while (m.find() && heroCnt != TmpCnt){
+	    	TmpCnt++;
+	    	str = str.substring(str.indexOf("/game/heroes") + 10);
+	    }
+		str = str.substring(str.indexOf("/game/heroes") + 13);
+		str = str.substring(str.indexOf("/accounts/") + 10);
+		str = str.substring(str.indexOf("\">") + 2, str.indexOf("</a>"));
+		return str;
+	}
 
 	public int getGuildId(Document doc, int cnt, int heroCnt) {
 		Elements divs = doc.select("div.accordion-group");

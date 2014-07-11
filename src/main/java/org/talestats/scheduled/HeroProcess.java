@@ -33,6 +33,7 @@ public class HeroProcess {
 		for (int cnt = 0; cnt < heroCnt; cnt++) {
 			int heroId = heroExtract.getId(doc, councilCnt, cnt);
 			String heroName = heroExtract.getName(doc, councilCnt, cnt);
+			String heroKeeper = heroExtract.getKeeper(doc, councilCnt, cnt);
 			int heroGuildId = heroExtract.getGuildId(doc, councilCnt, cnt);
 			int heroAlly;
 			int heroEnemy;
@@ -41,6 +42,7 @@ public class HeroProcess {
 			Hero hero = new Hero();
 			hero.setId(heroId);
 			hero.setName(heroName);
+			hero.setKeeper(heroKeeper);
 			hero.setGuildId(heroGuildId);
 			hero.setCity(city);
 

@@ -17,6 +17,7 @@
 			<tr>
 				<th width="10%">id</th>
 				<th width="10%">name</th>
+				<th width="10%">keeper</th>
 				<th width="10%">guildId</th>
 				<th width="10%">ally</th>
 				<th width="10%">enemy</th>
@@ -27,6 +28,7 @@
 				<tr>
 					<td><a href="http://the-tale.org/game/heroes/${hero.id}">${hero.id}</a></td>
 					<td>${hero.name}</td>
+					<td><a href="http://the-tale.org/accounts/${hero.id}">${hero.keeper}</a></td>
 					<td><a href="http://the-tale.org/accounts/clans/${hero.guildId}">${hero.guildId}</a></td>
 					<td>${hero.ally}</td>
 					<td>${hero.enemy}</td>

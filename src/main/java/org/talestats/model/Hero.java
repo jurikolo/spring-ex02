@@ -19,6 +19,10 @@ public class Hero {
 	@Basic
 	@Column(name="name")
 	private String name;
+	
+	@Basic
+	@Column(name="keeper")
+	private String keeper;
 
 	@Basic
 	@Column(name="guildId")
@@ -52,6 +56,14 @@ public class Hero {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getKeeper() {
+		return keeper;
+	}
+
+	public void setKeeper(String keeper) {
+		this.keeper = keeper;
 	}
 
 	public int getGuildId() {
@@ -88,6 +100,6 @@ public class Hero {
 
 	@Override
 	public String toString() {
-		return "Hero [id=" + id + ", name=" + name + ", guildId=" + guildId + ", ally=" + ally + ", enemy=" + enemy + "]";
+		return "Hero [id=" + id + ", name=" + name + ", keeper=" + keeper + ", guildId=" + guildId + ", ally=" + ally + ", enemy=" + enemy + "]";
 	}
 }

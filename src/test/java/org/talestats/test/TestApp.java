@@ -39,9 +39,9 @@ public class TestApp {
 		city.setSize(10);
 		cityDao.addCity(city);
 		City city2 = new City();
-		assertNotEquals(city, city2);
+		assertNotEquals(city.toString(), city2.toString());
 		city2 = cityDao.getCity(CITYID);
-		assertEquals(city, city2);
+		assertEquals(city.toString(), city2.toString());
 		cityDao.deleteCity(CITYID);
 	}
 	
@@ -65,9 +65,9 @@ public class TestApp {
 		council.setCity(city);
 		councilDao.addCouncil(council);
 		Council council2 = new Council();
-		assertNotEquals(council, council2);
+		assertNotEquals(council.toString(), council2.toString());
 		council2 = councilDao.getCouncil(COUNCILID);
-		assertEquals(council, council2);
+		assertEquals(council.toString(), council2.toString());
 		councilDao.deleteCouncil(COUNCILID);
 		cityDao.deleteCity(COUNCILID);
 	}
@@ -88,9 +88,9 @@ public class TestApp {
 		hero.setCity(city);
 		heroDao.addHero(hero);
 		Hero hero2 = new Hero();
-		assertNotEquals(hero, hero2);
+		assertNotEquals(hero.toString(), hero2.toString());
 		hero2 = heroDao.getHero(HEROID);
-		assertEquals(hero, hero2);
+		assertEquals(hero.toString(), hero2.toString());
 		heroDao.deleteHero(HEROID);
 		cityDao.deleteCity(HEROID);
 	}

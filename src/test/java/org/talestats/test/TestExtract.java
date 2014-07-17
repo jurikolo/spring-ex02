@@ -28,8 +28,16 @@ import org.talestats.utils.HeroExtract;
 public class TestExtract {
 	
 	private final static String CITYURL = "http://the-tale.org/game/map/places/1";
-	private final static Integer CITYSIZE = 7;
+	private final static Integer CITYSIZE = 8; //Needs to be adjusted before execution
 	private final static String CITYNAME = "Красные Дюны";
+	private final static Integer COUNCILCOUNT = 6; //Needs to be adjusted before execution
+	private final static Integer COUNCILID = 1818; //Жирослав
+	private final static Integer COUNCILQUEUECOUNTER = 2; //Needs to be adjusted before execution
+	private final static String COUNCILNAME = "Жирослав";
+	private final static String COUNCILRACE = "человек";
+	private final static String COUNCILJOB = "священник";
+	private final static String COUNCILSKILL = "гений";
+	private final static Integer COUNCILALLIES = 10;
 	
 	@Autowired
 	private CityExtract cityExtract;
@@ -61,12 +69,47 @@ public class TestExtract {
 	
 	@Test
 	public void cityGetSizeTest() {
-		assertEquals(Integer.valueOf(7), cityExtract.getSize(getStr(getDoc())));
+		assertEquals(Integer.valueOf(CITYSIZE), Integer.valueOf(cityExtract.getSize(getStr(getDoc()))));
 	}
 	
 	@Test
 	public void cityGetNameTest() {
 		assertEquals(CITYNAME, cityExtract.getName(getDoc()));
+	}
+	
+	@Test
+	public void councilGetCountTest() {
+		assertEquals(Integer.valueOf(COUNCILCOUNT), Integer.valueOf(councilExtract.getCount(getDoc())));
+	}
+	
+	@Test
+	public void councilGetIdTest() {
+		assertEquals(Integer.valueOf(COUNCILID), Integer.valueOf(councilExtract.getId(getDoc(), Integer.valueOf(COUNCILQUEUECOUNTER))));
+	}
+	
+	@Test
+	public void councilGetNameTest() {
+		assertEquals(COUNCILNAME.trim(), councilExtract.getName(getDoc(), COUNCILQUEUECOUNTER).trim());
+	}
+	
+	@Test
+	public void councilGetRaceTest() {
+		assertEquals(COUNCILRACE.trim(), councilExtract.getRace(getDoc(), COUNCILQUEUECOUNTER).trim());
+	}
+	
+	@Test
+	public void councilGetJobTest() {
+		assertEquals(COUNCILJOB.trim(), councilExtract.getJob(getDoc(), COUNCILQUEUECOUNTER).trim());
+	}
+	
+	@Test
+	public void councilGetSkillTest() {
+		assertEquals(COUNCILSKILL.trim(), councilExtract.getSkill(getDoc(), COUNCILQUEUECOUNTER).trim());
+	}
+	
+	@Test
+	public void councilGetAlliesTest() {
+		assertEquals(Integer.valueOf(COUNCILALLIES), Integer.valueOf(councilExtract.getAllies(getDoc(), COUNCILQUEUECOUNTER)));
 	}
 	
 }

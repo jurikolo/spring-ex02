@@ -32,7 +32,7 @@ public class CouncilProcess {
 		String councilSkill = councilExtract.getSkill(doc, councilCnt);
 		int councilAllies = councilExtract.getAllies(doc, councilCnt);
 		int councilEnemies = councilExtract.getEnemies(doc, councilCnt);
-		int councilInfluence = councilExtract.getInfruence(doc, councilCnt);
+		int councilInfluence = councilExtract.getInfluence(doc, councilCnt);
 		City city = cityDao.getCity(cityId);
 
 		Council council = new Council();

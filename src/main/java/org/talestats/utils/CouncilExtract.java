@@ -86,7 +86,7 @@ public class CouncilExtract {
 		return Integer.parseInt(result);
 	}
 
-	public int getInfruence(Document doc, int cnt) {
+	public int getInfluence(Document doc, int cnt) {
 		Elements divs = doc.select("div.accordion-toggle");
 		Element div = divs.get(cnt);
 		String str = div.toString();

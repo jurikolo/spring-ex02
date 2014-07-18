@@ -45,6 +45,9 @@ public class TestExtract {
 	private final static Integer HEROCOUNT = 20;
 	private final static Integer HEROID = 10745;
 	private final static Integer HEROQUEUECOUNTER = 0;
+	private final static String HERONAME = "Иван";
+	private final static String HEROKEEPER = "jurikolo";
+	private final static Integer HEROGUILDID = 30;
 	
 	@Autowired
 	private CityExtract cityExtract;
@@ -137,5 +140,23 @@ public class TestExtract {
 		assertEquals(Integer.valueOf(HEROID), Integer.valueOf(heroExtract.getId(doc, COUNCILQUEUECOUNTER, HEROQUEUECOUNTER)));
 	}
 	
+	@Test
+	public void heroIsAllyTest() {
+		assertEquals(true, heroExtract.isAlly(doc, COUNCILQUEUECOUNTER, HEROQUEUECOUNTER));
+	}
 	
+	@Test
+	public void heroGetNameTest() {
+		assertEquals(HERONAME.trim(), heroExtract.getName(doc, COUNCILQUEUECOUNTER, HEROQUEUECOUNTER).trim());
+	}
+	
+	@Test
+	public void heroGetKeeperTest() {
+		assertEquals(HEROKEEPER.trim(), heroExtract.getKeeper(doc, COUNCILQUEUECOUNTER, HEROQUEUECOUNTER).trim());
+	}
+	
+	@Test
+	public void heroGetGuildId() {
+		assertEquals(Integer.valueOf(HEROGUILDID), Integer.valueOf(heroExtract.getGuildId(doc, COUNCILQUEUECOUNTER, HEROQUEUECOUNTER)));
+	}
 }

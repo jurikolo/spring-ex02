@@ -59,9 +59,9 @@ public class TestDao {
 		assertEquals(CITYSIZE, Integer.valueOf(cityDao.getCity(CITYID).getSize()));
 		
 		City city2 = new City();
-		assertNotEquals(city.toString(), city2.toString());
+		assertNotEquals(city, city2);
 		city2 = cityDao.getCity(CITYID);
-		assertEquals(city.toString(), city2.toString());
+		assertEquals(city, city2);
 		
 		cityDao.deleteCity(CITYID);
 	}
@@ -114,9 +114,9 @@ public class TestDao {
 		assertEquals(Integer.valueOf(COUNCILINFLUENCE), Integer.valueOf(councilDao.getCouncil(COUNCILID).getInfluence()));
 		
 		Council council2 = new Council();
-		assertNotEquals(council.toString(), council2.toString());
+		assertNotEquals(council, council2);
 		council2 = councilDao.getCouncil(COUNCILID);
-		assertEquals(council.toString(), council2.toString());
+		assertEquals(council, council2);
 		
 		councilDao.deleteCouncil(COUNCILID);
 		cityDao.deleteCity(COUNCILID);
@@ -189,9 +189,9 @@ public class TestDao {
 		assertEquals(Integer.valueOf(HEROENEMY), Integer.valueOf(heroDao.getHero(HEROID).getEnemy()));
 		
 		Hero hero2 = new Hero();
-		assertNotEquals(hero.toString(), hero2.toString());
+		assertNotEquals(hero, hero2);
 		hero2 = heroDao.getHero(HEROID);
-		assertEquals(hero.toString(), hero2.toString());
+		assertEquals(hero, hero2);
 		
 		heroDao.deleteHero(HEROID);
 		cityDao.deleteCity(HEROID);

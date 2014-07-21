@@ -98,16 +98,6 @@ public class City {
 		if (getClass() != obj.getClass())
 			return false;
 		City other = (City) obj;
-		if (councils == null) {
-			if (other.councils != null)
-				return false;
-		} else if (!councils.equals(other.councils))
-			return false;
-		if (heroes == null) {
-			if (other.heroes != null)
-				return false;
-		} else if (!heroes.equals(other.heroes))
-			return false;
 		if (id != other.id)
 			return false;
 		if (name == null) {

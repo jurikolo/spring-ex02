@@ -12,6 +12,7 @@ import org.talestats.config.Constants;
 import org.talestats.scheduled.CityProcess;
 import org.talestats.scheduled.CouncilProcess;
 import org.talestats.utils.CouncilExtract;
+import org.talestats.dao.GuildDAO;
 import org.talestats.dao.HeroDAO;
 
 public class Scheduler {
@@ -24,6 +25,8 @@ public class Scheduler {
 	private HeroProcess heroProcess;
 	@Autowired
 	private HeroDAO heroDao;
+	@Autowired
+	private GuildDAO guildDao;
 
 	static final Logger logger = LoggerFactory.getLogger(Scheduler.class);
 
@@ -34,6 +37,8 @@ public class Scheduler {
 		CouncilExtract councilExtract = new CouncilExtract();
 		//Delete all heroes to gather statistics about active accounts only
 		heroDao.deleteAllHeroes();
+		//Delete all guilds to gather statistics about existing guilds only
+		guildDao.deleteAllGuilds();
 		
 		for (int cityId = 1; cityId <= Constants.CITY_COUNT; cityId++) {
 			String url = "http://the-tale.org/game/map/places/" + cityId;

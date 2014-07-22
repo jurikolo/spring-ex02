@@ -13,14 +13,9 @@ import org.jsoup.nodes.Document;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.web.WebAppConfiguration;
-import org.talestats.dao.CityDAO;
-import org.talestats.dao.CouncilDAO;
-import org.talestats.dao.HeroDAO;
-import org.talestats.model.City;
-import org.talestats.model.Council;
-import org.talestats.model.Hero;
 import org.talestats.utils.CityExtract;
 import org.talestats.utils.CouncilExtract;
+import org.talestats.utils.GuildExtract;
 import org.talestats.utils.HeroExtract;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -28,8 +23,7 @@ import org.talestats.utils.HeroExtract;
 @ContextConfiguration(classes = org.talestats.config.WebAppConfig.class)
 public class TestExtract {
 	
-	private final static String CITYURL = "http://the-tale.org/game/map/places/1";
-	private final static String CITYLOCALURL = "/Users/jurikolo/git/talestats_spring4/src/test/resources/TestExtract.html";
+	private final static String CITYLOCALURL = "C:\\jk\\git\\talestats_spring4\\src\\test\\resources\\TestExtract.html";
 	private final static Integer CITYSIZE = 8; //Needs to be adjusted before execution
 	private final static String CITYNAME = "Красные Дюны";
 	private final static Integer COUNCILCOUNT = 6; //Needs to be adjusted before execution
@@ -47,7 +41,8 @@ public class TestExtract {
 	private final static Integer HEROQUEUECOUNTER = 0;
 	private final static String HERONAME = "Иван";
 	private final static String HEROKEEPER = "jurikolo";
-	private final static Integer HEROGUILDID = 30;
+	private final static Integer GUILDID = 30;
+	private final static String GUILDNAME = "[ОРДЕН]";
 	
 	@Autowired
 	private CityExtract cityExtract;
@@ -55,6 +50,8 @@ public class TestExtract {
 	private CouncilExtract councilExtract;
 	@Autowired
 	private HeroExtract heroExtract;
+	@Autowired
+	private GuildExtract guildExtract;
 	
 	private final Document doc = getDoc();
 	private final String str = getStr();
@@ -156,7 +153,12 @@ public class TestExtract {
 	}
 	
 	@Test
-	public void heroGetGuildId() {
-		assertEquals(Integer.valueOf(HEROGUILDID), Integer.valueOf(heroExtract.getGuildId(doc, COUNCILQUEUECOUNTER, HEROQUEUECOUNTER)));
+	public void guildGetIdTest() {
+		assertEquals(Integer.valueOf(GUILDID), Integer.valueOf(guildExtract.getId(doc, COUNCILQUEUECOUNTER, HEROQUEUECOUNTER)));
+	}
+	
+	@Test
+	public void guildGetNameTest() {
+		assertEquals(GUILDNAME.trim(), guildExtract.getName(doc, COUNCILQUEUECOUNTER, HEROQUEUECOUNTER).trim());
 	}
 }

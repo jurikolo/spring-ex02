@@ -26,7 +26,6 @@ public class HeroDAOImpl implements HeroDAO {
 		Session openSession = sessionFactory.openSession();
 		Hero heroToUpdate = getHero(hero.getId());
 		heroToUpdate.setName(hero.getName());
-		heroToUpdate.setGuildId(hero.getGuildId());
 		heroToUpdate.setAlly(hero.getAlly());
 		heroToUpdate.setEnemy(hero.getEnemy());
 		heroToUpdate.setKeeper(hero.getKeeper());

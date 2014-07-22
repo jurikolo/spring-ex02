@@ -6,10 +6,13 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.talestats.dao.CityDAO;
+import org.talestats.dao.GuildDAO;
 import org.talestats.dao.HeroDAO;
 import org.talestats.utils.CouncilExtract;
+import org.talestats.utils.GuildExtract;
 import org.talestats.utils.HeroExtract;
 import org.talestats.model.City;
+import org.talestats.model.Guild;
 import org.talestats.model.Hero;
 
 @Component
@@ -23,7 +26,11 @@ public class HeroProcess {
 	@Autowired
 	private CouncilExtract councilExtract;
 	@Autowired
+	private GuildExtract guildExtract;
+	@Autowired
 	CityDAO cityDao;
+	@Autowired
+	GuildDAO guildDao;
 
 	public void process(int councilCnt, Document doc, int cityId) {
 		logger.debug("Hero processing started!!!");
@@ -34,17 +41,24 @@ public class HeroProcess {
 			int heroId = heroExtract.getId(doc, councilCnt, cnt);
 			String heroName = heroExtract.getName(doc, councilCnt, cnt);
 			String heroKeeper = heroExtract.getKeeper(doc, councilCnt, cnt);
-			int heroGuildId = heroExtract.getGuildId(doc, councilCnt, cnt);
 			int heroAlly;
 			int heroEnemy;
 			City city = cityDao.getCity(cityId);
+			
+			//Might need to add guild first
+			Guild guild = new Guild();
+			int guildId = guildExtract.getId(doc, councilCnt, cnt);;
+			String guildName = guildExtract.getName(doc, councilCnt, cnt);
+			guild.setId(guildId);
+			guild.setName(guildName);
+			guildDao.addOrUpdateGuild(guild);
 
 			Hero hero = new Hero();
 			hero.setId(heroId);
 			hero.setName(heroName);
 			hero.setKeeper(heroKeeper);
-			hero.setGuildId(heroGuildId);
 			hero.setCity(city);
+			hero.setGuild(guild);
 
 			if (councilCnt != 0) {
 				isAlly = heroExtract.isAlly(doc, councilCnt, cnt);

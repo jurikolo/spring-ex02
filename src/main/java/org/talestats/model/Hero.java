@@ -25,10 +25,6 @@ public class Hero {
 	private String keeper;
 
 	@Basic
-	@Column(name = "guildId")
-	private int guildId;
-
-	@Basic
 	@Column(name = "ally")
 	private int ally;
 
@@ -39,6 +35,10 @@ public class Hero {
 	@ManyToOne
 	@JoinColumn(name = "cityid", nullable = false)
 	private City city;
+	
+	@ManyToOne
+	@JoinColumn(name = "guildid", nullable = false)
+	private Guild guild;
 
 	public Hero() {
 	}
@@ -67,14 +67,6 @@ public class Hero {
 		this.keeper = keeper;
 	}
 
-	public int getGuildId() {
-		return guildId;
-	}
-
-	public void setGuildId(int guildId) {
-		this.guildId = guildId;
-	}
-
 	public int getAlly() {
 		return ally;
 	}
@@ -98,11 +90,19 @@ public class Hero {
 	public void setCity(City city) {
 		this.city = city;
 	}
+	
+	public Guild getGuild() {
+		return guild;
+	}
+
+	public void setGuild(Guild guild) {
+		this.guild = guild;
+	}
 
 	@Override
 	public String toString() {
 		return "Hero [id=" + id + ", name=" + name + ", keeper=" + keeper
-				+ ", guildId=" + guildId + ", ally=" + ally + ", enemy="
+				+ ", ally=" + ally + ", enemy="
 				+ enemy + "]";
 	}
 
@@ -113,7 +113,6 @@ public class Hero {
 		result = prime * result + ally;
 		result = prime * result + ((city == null) ? 0 : city.hashCode());
 		result = prime * result + enemy;
-		result = prime * result + guildId;
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((keeper == null) ? 0 : keeper.hashCode());
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
@@ -137,8 +136,6 @@ public class Hero {
 		} else if (!city.equals(other.city))
 			return false;
 		if (enemy != other.enemy)
-			return false;
-		if (guildId != other.guildId)
 			return false;
 		if (id == null) {
 			if (other.id != null)

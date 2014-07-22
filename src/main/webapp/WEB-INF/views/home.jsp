@@ -21,5 +21,9 @@
 		<a href="${pageContext.request.contextPath}/hero/list.html">Hero
 			list</a><br />
 	</p>
+	<p>
+		<a href="${pageContext.request.contextPath}/guild/list.html">Guild
+			list</a><br />
+	</p>
 </body>
 </html>

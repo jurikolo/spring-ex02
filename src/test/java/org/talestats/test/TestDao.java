@@ -10,9 +10,11 @@ import org.junit.runner.RunWith;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.talestats.dao.CityDAO;
 import org.talestats.dao.CouncilDAO;
+import org.talestats.dao.GuildDAO;
 import org.talestats.dao.HeroDAO;
 import org.talestats.model.City;
 import org.talestats.model.Council;
+import org.talestats.model.Guild;
 import org.talestats.model.Hero;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -34,9 +36,10 @@ public class TestDao {
 	private final static Integer HEROID = Integer.valueOf(979);
 	private final static String HERONAME = "testName";
 	private final static String HEROKEEPER = "testKeeper";
-	private final static Integer HEROGUILDID = 42;
 	private final static Integer HEROALLY = 400;
 	private final static Integer HEROENEMY = 500;
+	private final static Integer GUILDID = 30;
+	private final static String GUILDNAME = "testName";
 
 
 	@Autowired
@@ -45,6 +48,8 @@ public class TestDao {
 	private CouncilDAO councilDao;
 	@Autowired
 	private HeroDAO heroDao;
+	@Autowired
+	private GuildDAO guildDao;
 
 	@Test
 	public void createCityTest() {
@@ -172,19 +177,23 @@ public class TestDao {
 		city.setSize(CITYSIZE);
 		cityDao.addCity(city);
 		
+		Guild guild = new Guild();
+		guild.setId(GUILDID);
+		guild.setName(GUILDNAME);
+		guildDao.addGuild(guild);
+		
 		hero.setId(HEROID);
 		hero.setName(HERONAME);
 		hero.setKeeper(HEROKEEPER);
-		hero.setGuildId(HEROGUILDID);
 		hero.setAlly(HEROALLY);
 		hero.setEnemy(HEROENEMY);
 		hero.setCity(city);
+		hero.setGuild(guild);
 		heroDao.addHero(hero);
 		
 		assertEquals(HEROID, Integer.valueOf(heroDao.getHero(HEROID).getId()));
 		assertEquals(HERONAME, heroDao.getHero(HEROID).getName());
 		assertEquals(HEROKEEPER, heroDao.getHero(HEROID).getKeeper());
-		assertEquals(Integer.valueOf(HEROGUILDID), Integer.valueOf(heroDao.getHero(HEROID).getGuildId()));
 		assertEquals(Integer.valueOf(HEROALLY), Integer.valueOf(heroDao.getHero(HEROID).getAlly()));
 		assertEquals(Integer.valueOf(HEROENEMY), Integer.valueOf(heroDao.getHero(HEROID).getEnemy()));
 		
@@ -194,6 +203,7 @@ public class TestDao {
 		assertEquals(hero, hero2);
 		
 		heroDao.deleteHero(HEROID);
+		guildDao.deleteGuild(GUILDID);
 		cityDao.deleteCity(HEROID);
 	}
 	
@@ -206,30 +216,66 @@ public class TestDao {
 		city.setSize(CITYSIZE);
 		cityDao.addCity(city);
 		
+		Guild guild = new Guild();
+		guild.setId(GUILDID);
+		guild.setName(GUILDNAME);
+		guildDao.addGuild(guild);
+		
 		hero.setId(HEROID);
 		hero.setName(HERONAME);
 		hero.setKeeper(HEROKEEPER);
-		hero.setGuildId(HEROGUILDID);
 		hero.setAlly(HEROALLY);
 		hero.setEnemy(HEROENEMY);
 		hero.setCity(city);
+		hero.setGuild(guild);
 		heroDao.addHero(hero);
 		
 		hero.setName("testName2");
 		hero.setKeeper("testKeeper2");
-		hero.setGuildId(43);
 		hero.setAlly(401);
 		hero.setEnemy(501);
 		heroDao.updateHero(hero);
 		
 		assertEquals("testName2", heroDao.getHero(HEROID).getName());
 		assertEquals("testKeeper2", heroDao.getHero(HEROID).getKeeper());
-		assertEquals(Integer.valueOf(43), Integer.valueOf(heroDao.getHero(HEROID).getGuildId()));
 		assertEquals(Integer.valueOf(401), Integer.valueOf(heroDao.getHero(HEROID).getAlly()));
 		assertEquals(Integer.valueOf(501), Integer.valueOf(heroDao.getHero(HEROID).getEnemy()));
 		
 		heroDao.deleteHero(HEROID);
+		guildDao.deleteGuild(GUILDID);
 		cityDao.deleteCity(HEROID);
 	}
 	
+	@Test
+	public void createGuildTest() {
+		Guild guild = new Guild();
+		guild.setId(GUILDID);
+		guild.setName(GUILDNAME);
+		guildDao.addGuild(guild);
+		
+		assertEquals(GUILDID, Integer.valueOf(guildDao.getGuild(GUILDID).getId()));
+		assertEquals(GUILDNAME, guildDao.getGuild(GUILDID).getName());
+		
+		Guild guild2 = new Guild();
+		assertNotEquals(guild, guild2);
+		guild2 = guildDao.getGuild(GUILDID);
+		assertEquals(guild, guild2);
+		
+		guildDao.deleteGuild(GUILDID);
+	}
+	
+	@Test
+	public void updateGuildTest() {
+		Guild guild = new Guild();
+		guild.setId(GUILDID);
+		guild.setName(GUILDNAME);
+		guildDao.addGuild(guild);
+		
+		guild.setName("testName2");
+		guildDao.updateGuild(guild);
+		
+		assertEquals("testName2", guildDao.getGuild(GUILDID).getName());
+		
+		guildDao.deleteGuild(GUILDID);
+	}	
 }

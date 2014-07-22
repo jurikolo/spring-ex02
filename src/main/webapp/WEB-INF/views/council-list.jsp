@@ -27,6 +27,7 @@
 				<th width="10%">allies</th>
 				<th width="10%">enemies</th>
 				<th width="10%">influence</th>
+				<th width="10%">city</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -40,6 +41,7 @@
 					<td>${council.allies}</td>
 					<td>${council.enemies}</td>
 					<td>${council.influence}</td>
+					<td>${council.city.name}</td>
 				</tr>
 			</c:forEach>
 		</tbody>

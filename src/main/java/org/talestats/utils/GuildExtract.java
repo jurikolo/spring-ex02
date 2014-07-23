@@ -53,7 +53,7 @@ public class GuildExtract {
 		} else {
 			str = str.substring(str.indexOf("clans") + 6);
 			str = str.substring(str.indexOf(">") + 1, str.indexOf("<"));
-			return str;
+			return str.trim();
 		}
 	}
 }

@@ -73,7 +73,7 @@ public class HeroExtract {
 	    }
 		str = str.substring(str.indexOf("/game/heroes") + 13);
 		str = str.substring(str.indexOf("\">") + 2, str.indexOf("</a>"));
-		return str;
+		return str.trim();
 	}
 	
 	public String getKeeper(Document doc, int cnt, int heroCnt) {
@@ -90,7 +90,7 @@ public class HeroExtract {
 		str = str.substring(str.indexOf("/game/heroes") + 13);
 		str = str.substring(str.indexOf("/accounts/") + 10);
 		str = str.substring(str.indexOf("\">") + 2, str.indexOf("</a>"));
-		return str;
+		return str.trim();
 	}
 
 	public int getGuildId(Document doc, int cnt, int heroCnt) {

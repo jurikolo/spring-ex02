@@ -18,6 +18,6 @@ public class CityExtract {
 	public String getName(Document doc) {
 		String description = doc.select("meta[name=description]").get(0).attr("content");
 		String name = description.substring(description.indexOf("«")+1, description.indexOf("»"));
-		return name;
+		return name.trim();
 	}
 }

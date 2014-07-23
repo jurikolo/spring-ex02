@@ -28,7 +28,7 @@ public class CouncilExtract {
 		String str = div.toString();
 		str = str.substring(str.indexOf("<a href=\"#\">") + 12,
 				str.indexOf("<small>"));
-		return str;
+		return str.trim();
 	}
 
 	public String getRace(Document doc, int cnt) {
@@ -37,7 +37,7 @@ public class CouncilExtract {
 		String str = div.toString();
 		str = str.substring(str.indexOf("<small>") + 7, str.indexOf("</small"));
 		str = str.substring(0, str.indexOf("-"));
-		return str;
+		return str.trim();
 	}
 
 	public String getJob(Document doc, int cnt) {
@@ -47,7 +47,7 @@ public class CouncilExtract {
 		String str = div.toString();
 		str = str.substring(str.indexOf("<small>") + 7, str.indexOf("</small"));
 		str = str.substring(str.indexOf("-") + 1, str.indexOf(","));
-		return str;
+		return str.trim();
 	}
 
 	public String getSkill(Document doc, int cnt) {
@@ -57,7 +57,7 @@ public class CouncilExtract {
 		str = str.substring(str.indexOf("<small>") + 7, str.indexOf("</small") + 7);
 		str = str.substring(str.indexOf(",") + 1, str.indexOf("</small"));
 		str = str.substring(0, str.indexOf(","));
-		return str;
+		return str.trim();
 	}
 
 	public int getAllies(Document doc, int cnt) {

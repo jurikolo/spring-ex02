@@ -64,7 +64,7 @@ public class Council {
 	}
 
 	public void setName(String name) {
-		this.name = name;
+		this.name = name.trim();
 	}
 
 	public String getJob() {
@@ -72,7 +72,7 @@ public class Council {
 	}
 
 	public void setJob(String job) {
-		this.job = job;
+		this.job = job.trim();
 	}
 
 	public String getRace() {
@@ -80,7 +80,7 @@ public class Council {
 	}
 
 	public void setRace(String race) {
-		this.race = race;
+		this.race = race.trim();
 	}
 
 	public String getSkill() {
@@ -88,7 +88,7 @@ public class Council {
 	}
 
 	public void setSkill(String skill) {
-		this.skill = skill;
+		this.skill = skill.trim();
 	}
 
 	public int getAllies() {

@@ -6,6 +6,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.talestats.dao.CityDAO;
+import org.talestats.dao.CouncilDAO;
 import org.talestats.dao.GuildDAO;
 import org.talestats.dao.HeroDAO;
 import org.talestats.utils.CouncilExtract;
@@ -31,6 +32,8 @@ public class HeroProcess {
 	CityDAO cityDao;
 	@Autowired
 	GuildDAO guildDao;
+	@Autowired
+	CouncilDAO councilDao;
 
 	public void process(int councilCnt, Document doc, int cityId) {
 		logger.debug("Hero processing started!!!");
@@ -64,10 +67,10 @@ public class HeroProcess {
 				isAlly = heroExtract.isAlly(doc, councilCnt, cnt);
 				if (isAlly) {
 					heroAlly = councilExtract.getId(doc, councilCnt);
-					hero.setAlly(heroAlly);
+					hero.setAlly(councilDao.getCouncil(heroAlly));
 				} else {
 					heroEnemy = councilExtract.getId(doc, councilCnt);
-					hero.setEnemy(heroEnemy);
+					hero.setEnemy(councilDao.getCouncil(heroEnemy));
 				}
 			}
 

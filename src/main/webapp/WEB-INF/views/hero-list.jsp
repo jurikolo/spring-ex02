@@ -23,8 +23,8 @@
 				<th width="10%">name</th>
 				<th width="10%">keeper</th>
 				<th width="10%">guild</th>
-				<th width="10%">ally</th>
-				<th width="10%">enemy</th>
+				<th width="30%">ally</th>
+				<th width="30%">enemy</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -34,8 +34,8 @@
 					<td>${hero.name}</td>
 					<td><a href="http://the-tale.org/accounts/${hero.id}">${hero.keeper}</a></td>
 					<td><a href="http://the-tale.org/accounts/clans/${hero.guild.id}">${hero.guild.name}</a></td>
-					<td>${hero.ally}</td>
-					<td>${hero.enemy}</td>
+					<td>${hero.ally.name}, ${hero.ally.race} ${hero.ally.job} - ${hero.ally.skill}, ${hero.ally.city.name}</td>
+					<td>${hero.enemy.name}, ${hero.enemy.race} ${hero.enemy.job} - ${hero.enemy.skill}, ${hero.enemy.city.name}</td>
 				</tr>
 			</c:forEach>
 		</tbody>

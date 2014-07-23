@@ -26,6 +26,7 @@ public class TestDao {
 	private final static String CITYNAME = "testName";
 	private final static Integer CITYSIZE = Integer.valueOf(10);	
 	private final static Integer COUNCILID = Integer.valueOf(989);
+	private final static Integer COUNCILID2 = Integer.valueOf(988);
 	private final static String COUNCILNAME = "testName";
 	private final static String COUNCILRACE = "testRace";
 	private final static String COUNCILJOB = "testJob";
@@ -182,11 +183,35 @@ public class TestDao {
 		guild.setName(GUILDNAME);
 		guildDao.addGuild(guild);
 		
+		Council ally = new Council();
+		ally.setId(COUNCILID);
+		ally.setName(COUNCILNAME);
+		ally.setRace(COUNCILRACE);
+		ally.setJob(COUNCILJOB);
+		ally.setSkill(COUNCILSKILL);
+		ally.setAllies(COUNCILALLIES);
+		ally.setEnemies(COUNCILENEMIES);
+		ally.setInfluence(COUNCILINFLUENCE);
+		ally.setCity(city);
+		councilDao.addCouncil(ally);
+		
+		Council enemy = new Council();
+		enemy.setId(COUNCILID2);
+		enemy.setName(COUNCILNAME);
+		enemy.setRace(COUNCILRACE);
+		enemy.setJob(COUNCILJOB);
+		enemy.setSkill(COUNCILSKILL);
+		enemy.setAllies(COUNCILALLIES);
+		enemy.setEnemies(COUNCILENEMIES);
+		enemy.setInfluence(COUNCILINFLUENCE);
+		enemy.setCity(city);
+		councilDao.addCouncil(enemy);
+		
 		hero.setId(HEROID);
 		hero.setName(HERONAME);
 		hero.setKeeper(HEROKEEPER);
-		hero.setAlly(HEROALLY);
-		hero.setEnemy(HEROENEMY);
+		hero.setAlly(ally);
+		hero.setEnemy(enemy);
 		hero.setCity(city);
 		hero.setGuild(guild);
 		heroDao.addHero(hero);
@@ -194,8 +219,6 @@ public class TestDao {
 		assertEquals(HEROID, Integer.valueOf(heroDao.getHero(HEROID).getId()));
 		assertEquals(HERONAME, heroDao.getHero(HEROID).getName());
 		assertEquals(HEROKEEPER, heroDao.getHero(HEROID).getKeeper());
-		assertEquals(Integer.valueOf(HEROALLY), Integer.valueOf(heroDao.getHero(HEROID).getAlly()));
-		assertEquals(Integer.valueOf(HEROENEMY), Integer.valueOf(heroDao.getHero(HEROID).getEnemy()));
 		
 		Hero hero2 = new Hero();
 		assertNotEquals(hero, hero2);
@@ -203,6 +226,8 @@ public class TestDao {
 		assertEquals(hero, hero2);
 		
 		heroDao.deleteHero(HEROID);
+		councilDao.deleteCouncil(COUNCILID2);
+		councilDao.deleteCouncil(COUNCILID);
 		guildDao.deleteGuild(GUILDID);
 		cityDao.deleteCity(HEROID);
 	}
@@ -221,27 +246,49 @@ public class TestDao {
 		guild.setName(GUILDNAME);
 		guildDao.addGuild(guild);
 		
+		Council ally = new Council();
+		ally.setId(COUNCILID);
+		ally.setName(COUNCILNAME);
+		ally.setRace(COUNCILRACE);
+		ally.setJob(COUNCILJOB);
+		ally.setSkill(COUNCILSKILL);
+		ally.setAllies(COUNCILALLIES);
+		ally.setEnemies(COUNCILENEMIES);
+		ally.setInfluence(COUNCILINFLUENCE);
+		ally.setCity(city);
+		councilDao.addCouncil(ally);
+		
+		Council enemy = new Council();
+		enemy.setId(COUNCILID2);
+		enemy.setName(COUNCILNAME);
+		enemy.setRace(COUNCILRACE);
+		enemy.setJob(COUNCILJOB);
+		enemy.setSkill(COUNCILSKILL);
+		enemy.setAllies(COUNCILALLIES);
+		enemy.setEnemies(COUNCILENEMIES);
+		enemy.setInfluence(COUNCILINFLUENCE);
+		enemy.setCity(city);
+		councilDao.addCouncil(enemy);
+		
 		hero.setId(HEROID);
 		hero.setName(HERONAME);
 		hero.setKeeper(HEROKEEPER);
-		hero.setAlly(HEROALLY);
-		hero.setEnemy(HEROENEMY);
+		hero.setAlly(ally);
+		hero.setEnemy(enemy);
 		hero.setCity(city);
 		hero.setGuild(guild);
 		heroDao.addHero(hero);
 		
 		hero.setName("testName2");
 		hero.setKeeper("testKeeper2");
-		hero.setAlly(401);
-		hero.setEnemy(501);
 		heroDao.updateHero(hero);
 		
 		assertEquals("testName2", heroDao.getHero(HEROID).getName());
 		assertEquals("testKeeper2", heroDao.getHero(HEROID).getKeeper());
-		assertEquals(Integer.valueOf(401), Integer.valueOf(heroDao.getHero(HEROID).getAlly()));
-		assertEquals(Integer.valueOf(501), Integer.valueOf(heroDao.getHero(HEROID).getEnemy()));
 		
 		heroDao.deleteHero(HEROID);
+		councilDao.deleteCouncil(COUNCILID2);
+		councilDao.deleteCouncil(COUNCILID);
 		guildDao.deleteGuild(GUILDID);
 		cityDao.deleteCity(HEROID);
 	}

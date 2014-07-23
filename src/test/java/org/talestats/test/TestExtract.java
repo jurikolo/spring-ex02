@@ -94,22 +94,22 @@ public class TestExtract {
 	
 	@Test
 	public void councilGetNameTest() {
-		assertEquals(COUNCILNAME.trim(), councilExtract.getName(doc, COUNCILQUEUECOUNTER).trim());
+		assertEquals(COUNCILNAME, councilExtract.getName(doc, COUNCILQUEUECOUNTER));
 	}
 	
 	@Test
 	public void councilGetRaceTest() {
-		assertEquals(COUNCILRACE.trim(), councilExtract.getRace(doc, COUNCILQUEUECOUNTER).trim());
+		assertEquals(COUNCILRACE, councilExtract.getRace(doc, COUNCILQUEUECOUNTER));
 	}
 	
 	@Test
 	public void councilGetJobTest() {
-		assertEquals(COUNCILJOB.trim(), councilExtract.getJob(doc, COUNCILQUEUECOUNTER).trim());
+		assertEquals(COUNCILJOB, councilExtract.getJob(doc, COUNCILQUEUECOUNTER));
 	}
 	
 	@Test
 	public void councilGetSkillTest() {
-		assertEquals(COUNCILSKILL.trim(), councilExtract.getSkill(doc, COUNCILQUEUECOUNTER).trim());
+		assertEquals(COUNCILSKILL, councilExtract.getSkill(doc, COUNCILQUEUECOUNTER));
 	}
 	
 	@Test
@@ -144,12 +144,12 @@ public class TestExtract {
 	
 	@Test
 	public void heroGetNameTest() {
-		assertEquals(HERONAME.trim(), heroExtract.getName(doc, COUNCILQUEUECOUNTER, HEROQUEUECOUNTER).trim());
+		assertEquals(HERONAME, heroExtract.getName(doc, COUNCILQUEUECOUNTER, HEROQUEUECOUNTER));
 	}
 	
 	@Test
 	public void heroGetKeeperTest() {
-		assertEquals(HEROKEEPER.trim(), heroExtract.getKeeper(doc, COUNCILQUEUECOUNTER, HEROQUEUECOUNTER).trim());
+		assertEquals(HEROKEEPER, heroExtract.getKeeper(doc, COUNCILQUEUECOUNTER, HEROQUEUECOUNTER));
 	}
 	
 	@Test
@@ -159,6 +159,6 @@ public class TestExtract {
 	
 	@Test
 	public void guildGetNameTest() {
-		assertEquals(GUILDNAME.trim(), guildExtract.getName(doc, COUNCILQUEUECOUNTER, HEROQUEUECOUNTER).trim());
+		assertEquals(GUILDNAME, guildExtract.getName(doc, COUNCILQUEUECOUNTER, HEROQUEUECOUNTER));
 	}
 }

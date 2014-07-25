@@ -2,11 +2,15 @@ package org.talestats.dao;
 
 import java.util.List;
 
+import org.hibernate.Criteria;
+import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.talestats.model.City;
 import org.talestats.model.Hero;
 
 @Repository
@@ -32,11 +36,16 @@ public class HeroDAOImpl implements HeroDAO {
 		openSession.close();
 	}
 
+	//TODO fix method to execute correct request to DB instead of looping over hero list
 	public Hero getHero(int id) {
 		Session openSession = sessionFactory.openSession();
-		Hero hero = (Hero) openSession.get(Hero.class, id);
+		List<Hero> heroes = openSession.createQuery("from Hero").list();
 		openSession.close();
-		return hero;
+		for (Hero hero: heroes) {
+			if (hero.getId() == id)
+				return hero;
+		}
+		return null;
 	}
 
 	public void deleteHero(int id) {
@@ -50,8 +59,13 @@ public class HeroDAOImpl implements HeroDAO {
 	
 	public void addOrUpdateHero(Hero hero) {
 		Session openSession = sessionFactory.openSession();
-		openSession.saveOrUpdate(hero);
-		openSession.flush();
+		try {
+			openSession.beginTransaction();
+		//Hero hero = (Hero) criteria.uniqueResult();
+		
+			openSession.saveOrUpdate(hero);
+			openSession.getTransaction().commit();
+		} catch (HibernateException e) { }
 		openSession.close();
 	}
 	

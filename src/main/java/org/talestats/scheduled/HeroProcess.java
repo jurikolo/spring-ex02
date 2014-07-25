@@ -42,35 +42,38 @@ public class HeroProcess {
 		boolean isAlly = false;
 		for (int cnt = 0; cnt < heroCnt; cnt++) {
 			int heroId = heroExtract.getId(doc, councilCnt, cnt);
-			String heroName = heroExtract.getName(doc, councilCnt, cnt);
-			String heroKeeper = heroExtract.getKeeper(doc, councilCnt, cnt);
-			int heroAlly;
-			int heroEnemy;
-			City city = cityDao.getCity(cityId);
 			
-			//Might need to add guild first
-			Guild guild = new Guild();
-			int guildId = guildExtract.getId(doc, councilCnt, cnt);;
-			String guildName = guildExtract.getName(doc, councilCnt, cnt);
-			guild.setId(guildId);
-			guild.setName(guildName);
-			guildDao.addOrUpdateGuild(guild);
-
 			Hero hero = new Hero();
-			hero.setId(heroId);
-			hero.setName(heroName);
-			hero.setKeeper(heroKeeper);
-			hero.setCity(city);
-			hero.setGuild(guild);
+			if (null != heroDao.getHero(heroId)) {
+				hero = heroDao.getHero(heroId);
+			} else {
+				String heroName = heroExtract.getName(doc, councilCnt, cnt);
+				String heroKeeper = heroExtract.getKeeper(doc, councilCnt, cnt);
+				City city = cityDao.getCity(cityId);
+				
+				// Might need to add guild first
+				Guild guild = new Guild();
+				int guildId = guildExtract.getId(doc, councilCnt, cnt);
+				String guildName = guildExtract.getName(doc, councilCnt, cnt);
+				guild.setId(guildId);
+				guild.setName(guildName);
+				guildDao.addOrUpdateGuild(guild);
+				
+				hero.setId(heroId);
+				hero.setName(heroName);
+				hero.setKeeper(heroKeeper);
+				hero.setCity(city);
+				hero.setGuild(guild);
+			}
 
 			if (councilCnt != 0) {
 				isAlly = heroExtract.isAlly(doc, councilCnt, cnt);
 				if (isAlly) {
-					heroAlly = councilExtract.getId(doc, councilCnt);
-					hero.setAlly(councilDao.getCouncil(heroAlly));
+					int heroAllyId = councilExtract.getId(doc, councilCnt);
+					hero.setAlly(councilDao.getCouncil(heroAllyId));
 				} else {
-					heroEnemy = councilExtract.getId(doc, councilCnt);
-					hero.setEnemy(councilDao.getCouncil(heroEnemy));
+					int heroEnemyId = councilExtract.getId(doc, councilCnt);
+					hero.setEnemy(councilDao.getCouncil(heroEnemyId));
 				}
 			}
 

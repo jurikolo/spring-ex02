@@ -23,6 +23,8 @@ public class HeroController {
 		List<Hero> heroes = heroService.getHeroes();
 		modelAndView.addObject("heroes", heroes);
 		
+		modelAndView.addObject("heroesCount", heroes.size());
+		
 		return modelAndView;
 	}
 

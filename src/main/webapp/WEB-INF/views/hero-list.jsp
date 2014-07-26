@@ -52,6 +52,10 @@
 			</c:forEach>
 		</tbody>
 	</table>
+	
+	<p>
+		Total count of paid subscriptions: ${heroesCount}
+	</p>
 
 	<p>
 		<a href="${pageContext.request.contextPath}/index.html">Home page</a>

@@ -20,7 +20,11 @@ public class Guild {
 	@Basic
 	@Column(name = "name")
 	private String name;
-	
+
+	@Basic
+	@Column(name = "size")
+	private int size;
+
 	@OneToMany(mappedBy = "guild")
 	private Set<Hero> heroes;
 
@@ -40,6 +44,14 @@ public class Guild {
 		this.name = name.trim();
 	}
 
+	public int getSize() {
+		return size;
+	}
+
+	public void setSize(int size) {
+		this.size = size;
+	}
+
 	public Set<Hero> getHeroes() {
 		return heroes;
 	}
@@ -50,7 +62,7 @@ public class Guild {
 
 	@Override
 	public String toString() {
-		return "Guild [id=" + id + ", name=" + name + "]";
+		return "Guild [id=" + id + ", name=" + name + ", size=" + size + "]";
 	}
 
 	@Override
@@ -59,6 +71,7 @@ public class Guild {
 		int result = 1;
 		result = prime * result + id;
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		result = prime * result + size;
 		return result;
 	}
 
@@ -77,6 +90,8 @@ public class Guild {
 			if (other.name != null)
 				return false;
 		} else if (!name.equals(other.name))
+			return false;
+		if (size != other.size)
 			return false;
 		return true;
 	}

@@ -41,6 +41,7 @@ public class TestDao {
 	private final static Integer HEROENEMY = 500;
 	private final static Integer GUILDID = 30;
 	private final static String GUILDNAME = "testName";
+	private final static Integer GUILDSIZE = 1; //Has to be 1 as DAO counts guild members from DB
 
 
 	@Autowired
@@ -298,10 +299,12 @@ public class TestDao {
 		Guild guild = new Guild();
 		guild.setId(GUILDID);
 		guild.setName(GUILDNAME);
+		guild.setSize(GUILDSIZE);
 		guildDao.addGuild(guild);
 		
 		assertEquals(GUILDID, Integer.valueOf(guildDao.getGuild(GUILDID).getId()));
 		assertEquals(GUILDNAME, guildDao.getGuild(GUILDID).getName());
+		assertEquals(GUILDSIZE, Integer.valueOf(guildDao.getGuildSize(GUILDID)));
 		
 		Guild guild2 = new Guild();
 		assertNotEquals(guild, guild2);
@@ -316,12 +319,15 @@ public class TestDao {
 		Guild guild = new Guild();
 		guild.setId(GUILDID);
 		guild.setName(GUILDNAME);
+		guild.setSize(GUILDSIZE);
 		guildDao.addGuild(guild);
 		
 		guild.setName("testName2");
+		guild.setSize(13);
 		guildDao.updateGuild(guild);
 		
 		assertEquals("testName2", guildDao.getGuild(GUILDID).getName());
+		assertEquals(Integer.valueOf(13), Integer.valueOf(guildDao.getGuild(GUILDID).getSize()));
 		
 		guildDao.deleteGuild(GUILDID);
 	}	

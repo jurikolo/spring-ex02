@@ -17,7 +17,7 @@
 <table class="table table-striped sortable" border="1px" cellpadding="0" cellspacing="0" >
 <thead>
 <tr>
-<th width="10%">id</th><th width="10%">name</th>
+<th width="10%">id</th><th width="10%">name</th><th width="10%">active members</th>
 </tr>
 </thead>
 <tbody>
@@ -25,6 +25,7 @@
 <tr>
 	<td><a href="http://the-tale.org/accounts/clans/${guild.id}">${guild.id}</a></td>
 	<td>${guild.name}</td>
+	<td>${guild.size}</td>
 </tr>
 </c:forEach>
 </tbody>

@@ -40,4 +40,9 @@ public class GuildServiceImpl implements GuildService {
 		return guildDAO.getGuilds();
 	}
 
+	@Override
+	public int getGuildSize(int guildId) {
+		return guildDAO.getGuildSize(guildId);
+	}
+
 }

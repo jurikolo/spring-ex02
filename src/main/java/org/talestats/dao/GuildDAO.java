@@ -13,4 +13,5 @@ public interface GuildDAO {
     public List<Guild> getGuilds();
     public void addOrUpdateGuild(Guild guild);
     public void deleteAllGuilds();
+	public int getGuildSize(int guildId);
 }

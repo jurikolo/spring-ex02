@@ -26,6 +26,7 @@ public class GuildDAOImpl implements GuildDAO {
 		Session openSession = sessionFactory.openSession();
 		Guild guildToUpdate = getGuild(guild.getId());
 		guildToUpdate.setName(guild.getName());
+		guildToUpdate.setSize(guild.getSize());
 		openSession.update(guildToUpdate);
 		openSession.flush();
 	}
@@ -71,5 +72,14 @@ public class GuildDAOImpl implements GuildDAO {
 		openSession.flush();
 		openSession.close();
 	}
+
+	@Override
+	public int getGuildSize(int guildId) {
+		Session openSession = sessionFactory.openSession();
+		int size = openSession.createQuery("from Hero where guildid = " + guildId).list().size() + 1; 
+		openSession.flush();
+		openSession.close();
+		return size; 
+		}
 
 }

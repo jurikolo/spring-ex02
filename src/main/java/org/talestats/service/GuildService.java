@@ -11,5 +11,5 @@ public interface GuildService {
     public void updateGuild(Guild guild);
     public void deleteGuild(int id);
     public List<Guild> getGuilds();
-
+    public int getGuildSize(int guildId);
 }

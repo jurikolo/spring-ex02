@@ -55,8 +55,10 @@ public class HeroProcess {
 				Guild guild = new Guild();
 				int guildId = guildExtract.getId(doc, councilCnt, cnt);
 				String guildName = guildExtract.getName(doc, councilCnt, cnt);
+				int guildSize = guildDao.getGuildSize(guildId);
 				guild.setId(guildId);
 				guild.setName(guildName);
+				guild.setSize(guildSize);
 				guildDao.addOrUpdateGuild(guild);
 				
 				hero.setId(heroId);

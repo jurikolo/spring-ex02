@@ -5,25 +5,21 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>Home page</title>
+<title>Статистика "Сказки"</title>
 </head>
 <body>
-	<h1>Home page</h1>
+	<h1>Статистика "Сказки"</h1>
 	<p>
-		<a href="${pageContext.request.contextPath}/city/list.html">City
-			list</a><br />
+		<a href="${pageContext.request.contextPath}/city/list.html">Таблица городов Пандоры</a><br />
 	</p>
 	<p>
-		<a href="${pageContext.request.contextPath}/council/list.html">Council
-			list</a><br />
+		<a href="${pageContext.request.contextPath}/council/list.html">Таблица советников</a><br />
 	</p>
 	<p>
-		<a href="${pageContext.request.contextPath}/hero/list.html">Hero
-			list</a><br />
+		<a href="${pageContext.request.contextPath}/hero/list.html">Таблица героев - подписчиков</a><br />
 	</p>
 	<p>
-		<a href="${pageContext.request.contextPath}/guild/list.html">Guild
-			list</a><br />
+		<a href="${pageContext.request.contextPath}/guild/list.html">Таблица гильдий</a><br />
 	</p>
 </body>
 </html>

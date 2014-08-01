@@ -5,33 +5,32 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<title>List of Guilds</title>
+	<title>Таблица гильдий</title>
 	<script type="text/javascript" src="<c:url value="/resources/sorttable.js" />"></script>
 </head>
 <body>
-<h1>List of guilds</h1>
-<p>Here you can see the list of the guilds. Click on a header to sort data.</p>
+<h1>Таблица гильдий</h1>
+<p>Ниже приведена таблица гильдий. Нажмите на заголовок колонки для сортировки данных.</p>
 <p>
-	<a href="${pageContext.request.contextPath}/index.html">Home page</a>
+	<a href="${pageContext.request.contextPath}/index.html">На главную</a>
 </p>
 <table class="table table-striped sortable" border="1px" cellpadding="0" cellspacing="0" >
 <thead>
 <tr>
-<th width="10%">id</th><th width="10%">name</th><th width="10%">active members</th>
+	<th width="10%">Название</th><th width="10%">Число подписчиков</th>
 </tr>
 </thead>
 <tbody>
 <c:forEach var="guild" items="${guilds}">
 <tr>
-	<td><a href="http://the-tale.org/accounts/clans/${guild.id}">${guild.id}</a></td>
-	<td>${guild.name}</td>
+	<td><a href="http://the-tale.org/accounts/clans/${guild.id}">${guild.name}</a></td>
 	<td>${guild.size}</td>
 </tr>
 </c:forEach>
 </tbody>
 </table>
 
-<p><a href="${pageContext.request.contextPath}/index.html">Home page</a></p>
+<p><a href="${pageContext.request.contextPath}/index.html">На главную</a></p>
 
 </body>
 </html>

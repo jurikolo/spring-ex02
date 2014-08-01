@@ -6,34 +6,32 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<title>List of Councils</title>
+	<title>Таблица советников Пандоры</title>
 	<script type="text/javascript" src="<c:url value="/resources/sorttable.js" />"></script>
 </head>
 <body>
-	<h1>List of councils</h1>
-	<p>Here you can see the list of the councils. Click on a header to sort data.</p>
+	<h1>Таблица советников Пандоры</h1>
+	<p>Ниже приведена таблица советников Пандоры. Нажмите на заголовок колонки для сортировки данных.</p>
 	<p>
-		<a href="${pageContext.request.contextPath}/index.html">Home page</a>
+		<a href="${pageContext.request.contextPath}/index.html">На главную</a>
 	</p>
 	<table class="table table-striped sortable" border="1px" cellpadding="0"
 		cellspacing="0">
 		<thead>
 			<tr>
-				<th width="10%">id</th>
-				<th width="10%">name</th>
-				<th width="10%">job</th>
-				<th width="10%">race</th>
-				<th width="10%">skill</th>
-				<th width="10%">allies</th>
-				<th width="10%">enemies</th>
-				<th width="10%">influence</th>
-				<th width="10%">city</th>
+				<th width="11%">Имя</th>
+				<th width="9%">Профессия</th>
+				<th width="8%">Раса</th>
+				<th width="9%">Навык</th>
+				<th width="10%">Число соратников</th>
+				<th width="10%">Число врагов</th>
+				<th width="10%">Влиятельность</th>
+				<th width="10%">Город</th>
 			</tr>
 		</thead>
 		<tbody>
 			<c:forEach var="council" items="${councils}">
 				<tr>
-					<td>${council.id}</td>
 					<td>${council.name}</td>
 					<td>${council.job}</td>
 					<td>${council.race}</td>
@@ -48,7 +46,7 @@
 	</table>
 
 	<p>
-		<a href="${pageContext.request.contextPath}/index.html">Home page</a>
+		<a href="${pageContext.request.contextPath}/index.html">На главную</a>
 	</p>
 
 </body>

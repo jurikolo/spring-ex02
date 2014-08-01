@@ -6,34 +6,31 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>List of Heroes</title>
+<title>Таблица героев - подписчиков</title>
 <script type="text/javascript"
 	src="<c:url value="/resources/sorttable.js" />"></script>
 </head>
 <body>
-	<h1>List of heroes</h1>
-	<p>Here you can see the list of the heroes. Click on a header to
-		sort data.</p>
+	<h1>Таблица героев - подписчиков</h1>
+	<p>Ниже приведена таблица героев - подписчиков. Нажмите на заголовок колонки для сортировки данных.</p>
 	<p>
-		<a href="${pageContext.request.contextPath}/index.html">Home page</a>
+		<a href="${pageContext.request.contextPath}/index.html">На главную</a>
 	</p>
 	<table class="table table-striped sortable" border="1px"
 		cellpadding="0" cellspacing="0">
 		<thead>
 			<tr>
-				<th width="10%">id</th>
-				<th width="10%">name</th>
-				<th width="10%">keeper</th>
-				<th width="10%">guild</th>
-				<th width="30%">ally</th>
-				<th width="30%">enemy</th>
+				<th width="10%">Имя</th>
+				<th width="10%">Хранитель</th>
+				<th width="10%">Гильдия</th>
+				<th width="30%">Соратник</th>
+				<th width="30%">Враг</th>
 			</tr>
 		</thead>
 		<tbody>
 			<c:forEach var="hero" items="${heroes}">
 				<tr>
-					<td><a href="http://the-tale.org/game/heroes/${hero.id}">${hero.id}</a></td>
-					<td>${hero.name}</td>
+					<td><a href="http://the-tale.org/game/heroes/${hero.id}">${hero.name}</a></td>
 					<td><a href="http://the-tale.org/accounts/${hero.id}">${hero.keeper}</a></td>
 					<td><a
 						href="http://the-tale.org/accounts/clans/${hero.guild.id}">${hero.guild.name}</a></td>
@@ -54,11 +51,11 @@
 	</table>
 	
 	<p>
-		Total count of paid subscriptions: ${heroesCount}
+		Общее число подписчиков: ${heroesCount}
 	</p>
 
 	<p>
-		<a href="${pageContext.request.contextPath}/index.html">Home page</a>
+		<a href="${pageContext.request.contextPath}/index.html">На главную</a>
 	</p>
 
 </body>

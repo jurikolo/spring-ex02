@@ -42,7 +42,7 @@
 					<td>
 						<c:choose>
 							<c:when test="${empty hero.enemy.name}"></c:when>
-							<c:otherwise>${hero.enemy.name},${hero.enemy.race}${hero.enemy.job} - ${hero.enemy.skill}, ${hero.enemy.city.name}</c:otherwise>
+							<c:otherwise>${hero.enemy.name}, ${hero.enemy.race} ${hero.enemy.job} - ${hero.enemy.skill}, ${hero.enemy.city.name}</c:otherwise>
 						</c:choose>
 					</td>
 				</tr>

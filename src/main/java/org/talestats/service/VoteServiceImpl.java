@@ -39,5 +39,10 @@ public class VoteServiceImpl implements VoteService {
 	public List<Vote> getVotes() {
 		return voteDAO.getVotes();
 	}
+	
+	@Override
+	public List<Vote> getVotesByCityId(int cityId) {
+		return voteDAO.getVotesByCityId(cityId);
+	}
 
 }

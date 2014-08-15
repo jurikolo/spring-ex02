@@ -13,31 +13,31 @@ import org.talestats.model.City;
 public class CityServiceImpl implements CityService {
 
 	@Autowired
-	private CityDAO cityDAO;
+	private CityDAO cityDao;
 
 	@Override
 	public void addCity(City city) {
-		cityDAO.addCity(city);
+		cityDao.addCity(city);
 	}
 
 	@Override
 	public void updateCity(City city) {
-		cityDAO.updateCity(city);
+		cityDao.updateCity(city);
 	}
 
 	@Override
 	public City getCity(int id) {
-		return cityDAO.getCity(id);
+		return cityDao.getCity(id);
 	}
 
 	@Override
 	public void deleteCity(int id) {
-		cityDAO.deleteCity(id);
+		cityDao.deleteCity(id);
 	}
 
 	@Override
 	public List<City> getCities() {
-		return cityDAO.getCities();
+		return cityDao.getCities();
 	}
 
 }

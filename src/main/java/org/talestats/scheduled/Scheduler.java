@@ -14,6 +14,7 @@ import org.talestats.scheduled.CouncilProcess;
 import org.talestats.utils.CouncilExtract;
 import org.talestats.dao.GuildDAO;
 import org.talestats.dao.HeroDAO;
+import org.talestats.dao.SchedulerDAO;
 import org.talestats.dao.VoteDAO;
 
 public class Scheduler {
@@ -32,12 +33,15 @@ public class Scheduler {
 	private GuildDAO guildDao;
 	@Autowired
 	private VoteDAO voteDao;
+	@Autowired
+	private SchedulerDAO schedulerDao;
 
 	static final Logger logger = LoggerFactory.getLogger(Scheduler.class);
 
 	@Scheduled(initialDelay = Constants.START_DELAY, fixedRate = Constants.REPEAT_DELAY)
 	public void run() {
 		logger.info("Scheduled run started");
+		schedulerDao.addScheduler();
 		Document doc;
 		CouncilExtract councilExtract = new CouncilExtract();
 		//Delete all voting to gather statistics about active accounts only
@@ -48,7 +52,7 @@ public class Scheduler {
 		guildDao.deleteAllGuilds();
 		
 		for (int cityId = 1; cityId <= Constants.CITY_COUNT; cityId++) {
-			logger.info("Progress: " + cityId + "/" + Constants.CITY_COUNT);
+			logger.info("Scheduler progress: " + cityId + "/" + Constants.CITY_COUNT);
 			String url = "http://the-tale.org/game/map/places/" + cityId;
 			try {
 				doc = Jsoup.parse(Jsoup.connect(url).timeout(Constants.TIMEOUT).get().toString(), "UTF-8");
@@ -66,6 +70,7 @@ public class Scheduler {
 			}
 		}
 		
+		schedulerDao.deleteScheduler();
 		logger.info("Scheduled run completed");
 	}
 }

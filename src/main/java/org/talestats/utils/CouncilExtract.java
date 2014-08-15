@@ -10,8 +10,7 @@ public class CouncilExtract {
 
 	//Returns result + 1 as first div shows heroes who set current city as home city.
 	public int getCount(Document doc) {
-		Elements cnt = doc.select("div.accordion-toggle");
-		return cnt.size();
+		return doc.select("div.accordion-toggle").size();
 	}
 
 	public int getId(Document doc, int cnt) {

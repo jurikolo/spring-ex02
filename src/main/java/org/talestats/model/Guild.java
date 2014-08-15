@@ -1,12 +1,9 @@
 package org.talestats.model;
 
-import java.util.Set;
-
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -24,9 +21,6 @@ public class Guild {
 	@Basic
 	@Column(name = "size")
 	private int size;
-
-	@OneToMany(mappedBy = "guild")
-	private Set<Hero> heroes;
 
 	public int getId() {
 		return id;
@@ -50,14 +44,6 @@ public class Guild {
 
 	public void setSize(int size) {
 		this.size = size;
-	}
-
-	public Set<Hero> getHeroes() {
-		return heroes;
-	}
-
-	public void setHeroes(Set<Hero> heroes) {
-		this.heroes = heroes;
 	}
 
 	@Override

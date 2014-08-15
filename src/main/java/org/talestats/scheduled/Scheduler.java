@@ -14,6 +14,7 @@ import org.talestats.scheduled.CouncilProcess;
 import org.talestats.utils.CouncilExtract;
 import org.talestats.dao.GuildDAO;
 import org.talestats.dao.HeroDAO;
+import org.talestats.dao.VoteDAO;
 
 public class Scheduler {
 
@@ -24,9 +25,13 @@ public class Scheduler {
 	@Autowired
 	private HeroProcess heroProcess;
 	@Autowired
+	private VoteProcess voteProcess;
+	@Autowired
 	private HeroDAO heroDao;
 	@Autowired
 	private GuildDAO guildDao;
+	@Autowired
+	private VoteDAO voteDao;
 
 	static final Logger logger = LoggerFactory.getLogger(Scheduler.class);
 
@@ -35,22 +40,26 @@ public class Scheduler {
 		logger.info("Scheduled run started");
 		Document doc;
 		CouncilExtract councilExtract = new CouncilExtract();
+		//Delete all voting to gather statistics about active accounts only
+		voteDao.deleteAllVotes();
 		//Delete all heroes to gather statistics about active accounts only
 		heroDao.deleteAllHeroes();
 		//Delete all guilds to gather statistics about existing guilds only
 		guildDao.deleteAllGuilds();
 		
 		for (int cityId = 1; cityId <= Constants.CITY_COUNT; cityId++) {
+			logger.info("Progress: " + cityId + "/" + Constants.CITY_COUNT);
 			String url = "http://the-tale.org/game/map/places/" + cityId;
 			try {
-				doc = Jsoup.parse(Jsoup.connect(url).get().toString(), "UTF-8");
-				String str = Jsoup.connect(url).get().toString();
-				cityProcess.process(cityId, doc, str);
+				doc = Jsoup.parse(Jsoup.connect(url).timeout(Constants.TIMEOUT).get().toString(), "UTF-8");
+				cityProcess.process(cityId, doc);
 				for (int councilCnt = 0; councilCnt < councilExtract.getCount(doc); councilCnt++) {
 					if (councilCnt != 0)
 						councilProcess.process(councilCnt, doc, cityId);
 					heroProcess.process(councilCnt, doc, cityId);
 				}
+				voteProcess.process();
+				
 
 			} catch (IOException e) {
 				e.printStackTrace();

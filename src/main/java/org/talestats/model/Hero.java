@@ -4,8 +4,6 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -24,21 +22,21 @@ public class Hero {
 	@Column(name = "keeper")
 	private String keeper;
 
-	@ManyToOne
-	@JoinColumn(name = "ally", nullable = false)
-	private Council ally;
-
-	@ManyToOne
-	@JoinColumn(name = "enemy", nullable = false)
-	private Council enemy;
-
-	@ManyToOne
-	@JoinColumn(name = "cityid", nullable = false)
-	private City city;
-
-	@ManyToOne
-	@JoinColumn(name = "guildid", nullable = false)
-	private Guild guild;
+	@Basic
+	@Column(name = "ally")
+	private int allyId;
+	
+	@Basic
+	@Column(name = "enemy")
+	private int enemyId;
+	
+	@Basic
+	@Column(name = "cityid")
+	private int cityId;
+	
+	@Basic
+	@Column(name = "guildid")
+	private int guildId;
 
 	public Hero() {
 	}
@@ -66,49 +64,58 @@ public class Hero {
 	public void setKeeper(String keeper) {
 		this.keeper = keeper.trim();
 	}
-
-	public Council getAlly() {
-		return ally;
+	
+	public int getAllyId() {
+		return allyId;
 	}
 
-	public void setAlly(Council ally) {
-		this.ally = ally;
+	public void setAllyId(int allyId) {
+		this.allyId = allyId;
 	}
 
-	public Council getEnemy() {
-		return enemy;
+	public int getEnemyId() {
+		return enemyId;
 	}
 
-	public void setEnemy(Council enemy) {
-		this.enemy = enemy;
+	public void setEnemyId(int enemyId) {
+		this.enemyId = enemyId;
 	}
 
-	public City getCity() {
-		return city;
+	public int getCityId() {
+		return cityId;
 	}
 
-	public void setCity(City city) {
-		this.city = city;
+	public void setCityId(int cityId) {
+		this.cityId = cityId;
 	}
 
-	public Guild getGuild() {
-		return guild;
+	public int getGuildId() {
+		return guildId;
 	}
 
-	public void setGuild(Guild guild) {
-		this.guild = guild;
+	public void setGuildId(int guildId) {
+		this.guildId = guildId;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	@Override
 	public String toString() {
-		return "Hero [id=" + id + ", name=" + name + ", keeper=" + keeper + "]";
+		return "Hero [id=" + id + ", name=" + name + ", keeper=" + keeper
+				+ ", allyId=" + allyId + ", enemyId=" + enemyId + ", cityId="
+				+ cityId + ", guildId=" + guildId + "]";
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((city == null) ? 0 : city.hashCode());
+		result = prime * result + allyId;
+		result = prime * result + cityId;
+		result = prime * result + enemyId;
+		result = prime * result + guildId;
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((keeper == null) ? 0 : keeper.hashCode());
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
@@ -124,10 +131,13 @@ public class Hero {
 		if (getClass() != obj.getClass())
 			return false;
 		Hero other = (Hero) obj;
-		if (city == null) {
-			if (other.city != null)
-				return false;
-		} else if (!city.equals(other.city))
+		if (allyId != other.allyId)
+			return false;
+		if (cityId != other.cityId)
+			return false;
+		if (enemyId != other.enemyId)
+			return false;
+		if (guildId != other.guildId)
 			return false;
 		if (id == null) {
 			if (other.id != null)

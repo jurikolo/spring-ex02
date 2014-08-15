@@ -63,7 +63,7 @@ public class CouncilDAOImpl implements CouncilDAO {
 	@SuppressWarnings("unchecked")
 	public List<Council> getCouncils() {
 		Session openSession = sessionFactory.openSession();
-		List<Council> councils = openSession.createQuery("from Council").list();
+		List<Council> councils = openSession.createQuery("FROM Council WHERE councilid > 0").list();
 		openSession.close();
 		return councils;
 	}

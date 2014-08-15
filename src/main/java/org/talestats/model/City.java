@@ -1,12 +1,9 @@
 package org.talestats.model;
 
-import java.util.Set;
-
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -24,12 +21,6 @@ public class City {
 	@Basic
 	@Column(name = "size")
 	private int size;
-
-	@OneToMany(mappedBy = "city")
-	private Set<Council> councils;
-
-	@OneToMany(mappedBy = "city")
-	private Set<Hero> heroes;
 
 	public Integer getId() {
 		return id;
@@ -55,22 +46,6 @@ public class City {
 		this.size = size;
 	}
 
-	public Set<Council> getCouncils() {
-		return councils;
-	}
-
-	public void setCouncils(Set<Council> councils) {
-		this.councils = councils;
-	}
-
-	public Set<Hero> getHeroes() {
-		return heroes;
-	}
-
-	public void setHeroes(Set<Hero> heroes) {
-		this.heroes = heroes;
-	}
-
 	@Override
 	public String toString() {
 		return "City [id=" + id + ", name=" + name + ", size=" + size + "]";
@@ -80,9 +55,6 @@ public class City {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result
-				+ ((councils == null) ? 0 : councils.hashCode());
-		result = prime * result + ((heroes == null) ? 0 : heroes.hashCode());
 		result = prime * result + id;
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		result = prime * result + size;

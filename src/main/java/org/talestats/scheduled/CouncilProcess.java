@@ -33,7 +33,6 @@ public class CouncilProcess {
 		int councilAllies = councilExtract.getAllies(doc, councilCnt);
 		int councilEnemies = councilExtract.getEnemies(doc, councilCnt);
 		int councilInfluence = councilExtract.getInfluence(doc, councilCnt);
-		City city = cityDao.getCity(cityId);
 
 		Council council = new Council();
 		council.setId(councilId);
@@ -44,7 +43,7 @@ public class CouncilProcess {
 		council.setAllies(councilAllies);
 		council.setEnemies(councilEnemies);
 		council.setInfluence(councilInfluence);
-		council.setCity(city);
+		council.setCityId(cityId);
 		logger.debug(council.toString());
 		councilDao.addOrUpdateCouncil(council);
 	}

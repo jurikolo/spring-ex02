@@ -2,6 +2,7 @@ package org.talestats.dao;
 
 import java.util.List;
 
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,11 +29,23 @@ public class CityDAOImpl implements CityDAO {
 		cityToUpdate.setSize(city.getSize());
 		openSession.update(cityToUpdate);
 		openSession.flush();
+		openSession.close();
 	}
 
 	public City getCity(int id) {
 		Session openSession = sessionFactory.openSession();
 		City city = (City) openSession.get(City.class, id);
+		openSession.flush();
+		openSession.close();
+		return city;
+	}
+	
+	public City getCityByName(String name) {
+		Session openSession = sessionFactory.openSession();
+		Query query = openSession.createQuery("from City where name = :name");
+		query.setString("name", name);
+		City city = (City) query.uniqueResult();
+		
 		openSession.flush();
 		openSession.close();
 		return city;
@@ -57,7 +70,7 @@ public class CityDAOImpl implements CityDAO {
 	@SuppressWarnings("unchecked")
 	public List<City> getCities() {
 		Session openSession = sessionFactory.openSession();
-		List<City> cities = openSession.createQuery("from City").list();
+		List<City> cities = openSession.createQuery("FROM City WHERE cityid > 0 ORDER BY cityid").list();
 		openSession.flush();
 		openSession.close();
 		return cities;

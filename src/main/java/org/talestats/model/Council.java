@@ -4,8 +4,6 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -44,9 +42,9 @@ public class Council {
 	@Column(name = "influence")
 	private int influence;
 
-	@ManyToOne
-	@JoinColumn(name = "cityid", nullable = false)
-	private City city;
+	@Basic
+	@Column(name = "cityid", nullable = false)
+	private int cityId;
 
 	public Council() {
 	}
@@ -115,26 +113,35 @@ public class Council {
 		this.influence = influence;
 	}
 
-	public City getCity() {
-		return city;
+	public int getCityId() {
+		return cityId;
 	}
 
-	public void setCity(City city) {
-		this.city = city;
+	public void setCityId(int cityId) {
+		this.cityId = cityId;
 	}
 
 	@Override
 	public String toString() {
 		return "Council [id=" + id + ", name=" + name + ", job=" + job
 				+ ", race=" + race + ", skill=" + skill + ", allies=" + allies
-				+ ", enemies=" + enemies + ", influence=" + influence + "]";
+				+ ", enemies=" + enemies + ", influence=" + influence
+				+ ", cityId=" + cityId + "]";
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + allies;
+		result = prime * result + cityId;
+		result = prime * result + enemies;
 		result = prime * result + id;
+		result = prime * result + influence;
+		result = prime * result + ((job == null) ? 0 : job.hashCode());
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		result = prime * result + ((race == null) ? 0 : race.hashCode());
+		result = prime * result + ((skill == null) ? 0 : skill.hashCode());
 		return result;
 	}
 
@@ -147,7 +154,35 @@ public class Council {
 		if (getClass() != obj.getClass())
 			return false;
 		Council other = (Council) obj;
+		if (allies != other.allies)
+			return false;
+		if (cityId != other.cityId)
+			return false;
+		if (enemies != other.enemies)
+			return false;
 		if (id != other.id)
+			return false;
+		if (influence != other.influence)
+			return false;
+		if (job == null) {
+			if (other.job != null)
+				return false;
+		} else if (!job.equals(other.job))
+			return false;
+		if (name == null) {
+			if (other.name != null)
+				return false;
+		} else if (!name.equals(other.name))
+			return false;
+		if (race == null) {
+			if (other.race != null)
+				return false;
+		} else if (!race.equals(other.race))
+			return false;
+		if (skill == null) {
+			if (other.skill != null)
+				return false;
+		} else if (!skill.equals(other.skill))
 			return false;
 		return true;
 	}

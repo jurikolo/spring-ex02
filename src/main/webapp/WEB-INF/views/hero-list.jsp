@@ -28,21 +28,21 @@
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach var="hero" items="${heroes}">
+			<c:forEach var="heroToHeroExtraMap" items="${heroToHeroExtraMap}">
 				<tr>
-					<td><a href="http://the-tale.org/game/heroes/${hero.id}">${hero.name}</a></td>
-					<td><a href="http://the-tale.org/accounts/${hero.id}">${hero.keeper}</a></td>
+					<td><a href="http://the-tale.org/game/heroes/${heroToHeroExtraMap.key.id}">${heroToHeroExtraMap.key.name}</a></td>
+					<td><a href="http://the-tale.org/accounts/${heroToHeroExtraMap.key.id}">${heroToHeroExtraMap.key.keeper}</a></td>
 					<td><a
-						href="http://the-tale.org/accounts/clans/${hero.guild.id}">${hero.guild.name}</a></td>
+						href="http://the-tale.org/accounts/clans/${heroToHeroExtraMap.value.guild.id}">${heroToHeroExtraMap.value.guild.name}</a></td>
 					<td>
 						<c:choose>
-							<c:when test="${empty hero.ally.name}"></c:when>
-							<c:otherwise>${hero.ally.name}, ${hero.ally.race} ${hero.ally.job} - ${hero.ally.skill}, ${hero.ally.city.name}</c:otherwise>
+							<c:when test="${empty heroToHeroExtraMap.value.ally.name}"></c:when>
+							<c:otherwise>${heroToHeroExtraMap.value.ally.name}, ${heroToHeroExtraMap.value.ally.race} ${heroToHeroExtraMap.value.ally.job} - ${heroToHeroExtraMap.value.ally.skill}, ${heroToHeroExtraMap.value.allyCity.name}</c:otherwise>
 						</c:choose></td>
 					<td>
 						<c:choose>
-							<c:when test="${empty hero.enemy.name}"></c:when>
-							<c:otherwise>${hero.enemy.name}, ${hero.enemy.race} ${hero.enemy.job} - ${hero.enemy.skill}, ${hero.enemy.city.name}</c:otherwise>
+							<c:when test="${empty heroToHeroExtraMap.value.enemy.name}"></c:when>
+							<c:otherwise>${heroToHeroExtraMap.value.enemy.name}, ${heroToHeroExtraMap.value.enemy.race} ${heroToHeroExtraMap.value.enemy.job} - ${heroToHeroExtraMap.value.enemy.skill}, ${heroToHeroExtraMap.value.enemyCity.name}</c:otherwise>
 						</c:choose>
 					</td>
 				</tr>

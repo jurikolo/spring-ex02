@@ -30,16 +30,16 @@
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach var="council" items="${councils}">
+			<c:forEach var="councilToCityMap" items="${councilToCityMap}">
 				<tr>
-					<td>${council.name}</td>
-					<td>${council.job}</td>
-					<td>${council.race}</td>
-					<td>${council.skill}</td>
-					<td>${council.allies}</td>
-					<td>${council.enemies}</td>
-					<td>${council.influence}</td>
-					<td>${council.city.name}</td>
+					<td>${councilToCityMap.key.name}</td>
+					<td>${councilToCityMap.key.job}</td>
+					<td>${councilToCityMap.key.race}</td>
+					<td>${councilToCityMap.key.skill}</td>
+					<td>${councilToCityMap.key.allies}</td>
+					<td>${councilToCityMap.key.enemies}</td>
+					<td>${councilToCityMap.key.influence}</td>
+					<td>${councilToCityMap.value.name}</td>
 				</tr>
 			</c:forEach>
 		</tbody>

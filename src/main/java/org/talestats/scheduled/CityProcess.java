@@ -18,10 +18,10 @@ public class CityProcess {
 	@Autowired
 	private CityDAO cityDao;
 
-	public void process(int cityId, Document doc, String str) {
+	public void process(int cityId, Document doc) {
 		logger.debug("City processing started!!!");
 
-		int citySize = cityExtract.getSize(str);
+		int citySize = cityExtract.getSize(doc.toString());
 		String cityName = cityExtract.getName(doc);
 
 		City city = new City();

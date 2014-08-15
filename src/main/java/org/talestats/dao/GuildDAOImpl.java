@@ -29,6 +29,7 @@ public class GuildDAOImpl implements GuildDAO {
 		guildToUpdate.setSize(guild.getSize());
 		openSession.update(guildToUpdate);
 		openSession.flush();
+		openSession.close();
 	}
 
 	public Guild getGuild(int id) {

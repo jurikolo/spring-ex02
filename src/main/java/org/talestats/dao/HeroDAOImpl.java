@@ -2,15 +2,12 @@ package org.talestats.dao;
 
 import java.util.List;
 
-import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.talestats.model.City;
 import org.talestats.model.Hero;
 
 @Repository
@@ -61,10 +58,9 @@ public class HeroDAOImpl implements HeroDAO {
 		Session openSession = sessionFactory.openSession();
 		try {
 			openSession.beginTransaction();
-		//Hero hero = (Hero) criteria.uniqueResult();
-		
 			openSession.saveOrUpdate(hero);
 			openSession.getTransaction().commit();
+			openSession.flush();
 		} catch (HibernateException e) { }
 		openSession.close();
 	}

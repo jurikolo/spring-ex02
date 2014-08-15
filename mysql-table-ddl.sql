@@ -11,6 +11,8 @@ CREATE TABLE `city` (
 COLLATE='utf8_general_ci'
 ENGINE=InnoDB;
 
+insert into city (cityid, name, size) values (0, "", 0);
+
 CREATE TABLE `council` (
     `COUNCILID` INT(6) UNSIGNED NOT NULL,
     `CITYID` INT(6) UNSIGNED,
@@ -29,6 +31,8 @@ CREATE TABLE `council` (
 COLLATE='utf8_general_ci'
 ENGINE=InnoDB;
 
+insert into council (councilid, cityid, name, keeper, job, race, skill, allies, enemies, influence) values (0, 0, "", "", "", "", "", 0, 0, 0);
+
 CREATE TABLE `guild` (
     `GUILDID` INT(6) UNSIGNED NOT NULL,
     `NAME` VARCHAR(99),
@@ -44,14 +48,25 @@ CREATE TABLE `hero` (
     `NAME` VARCHAR(99),
     `KEEPER` VARCHAR(99),
     `GUILDID` INT(6) UNSIGNED,
-    `ALLY` INT(6) UNSIGNED NULL DEFAULT 0,
-    `ENEMY` INT(6) UNSIGNED NULL DEFAULT 0,
+    `ALLY` INT(6) UNSIGNED NULL,
+    `ENEMY` INT(6) UNSIGNED NULL,
     PRIMARY KEY (`HEROID`),
     KEY `CITYID` (`CITYID`),
     CONSTRAINT `hero_fk1` FOREIGN KEY (`CITYID`) REFERENCES `city` (`CITYID`),
     CONSTRAINT `hero_fk2` FOREIGN KEY (`GUILDID`) REFERENCES `guild` (`GUILDID`),
     CONSTRAINT `hero_fk3` FOREIGN KEY (`ALLY`) REFERENCES `council` (`COUNCILID`),
     CONSTRAINT `hero_fk4` FOREIGN KEY (`ENEMY`) REFERENCES `council` (`COUNCILID`)
+)
+COLLATE='utf8_general_ci'
+ENGINE=InnoDB;
+
+CREATE TABLE `vote` (
+    `VOTEID` INT(6) UNSIGNED NOT NULL AUTO_INCREMENT,
+    `CITYID` INT(6) UNSIGNED NOT NULL,
+    `HEROID` INT(6) UNSIGNED NOT NULL,
+    PRIMARY KEY (`VOTEID`),
+    CONSTRAINT `vote_fk1` FOREIGN KEY (`CITYID`) REFERENCES `city` (`CITYID`),
+    CONSTRAINT `vote_fk2` FOREIGN KEY (`HEROID`) REFERENCES `hero` (`HEROID`)
 )
 COLLATE='utf8_general_ci'
 ENGINE=InnoDB;

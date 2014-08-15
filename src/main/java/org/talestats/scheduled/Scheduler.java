@@ -62,13 +62,13 @@ public class Scheduler {
 						councilProcess.process(councilCnt, doc, cityId);
 					heroProcess.process(councilCnt, doc, cityId);
 				}
-				voteProcess.process();
 				
 
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
 		}
+		voteProcess.process();
 		
 		schedulerDao.deleteScheduler();
 		logger.info("Scheduled run completed");

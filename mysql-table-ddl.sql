@@ -70,3 +70,8 @@ CREATE TABLE `vote` (
 )
 COLLATE='utf8_general_ci'
 ENGINE=InnoDB;
+
+CREATE TABLE `scheduler` (
+	`RUNNING` INT(6) UNSIGNED NOT NULL)
+COLLATE='utf8_general_ci'
+ENGINE=InnoDB;

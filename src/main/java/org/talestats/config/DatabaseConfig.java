@@ -29,6 +29,13 @@ public class DatabaseConfig {
     private static final String PROPERTY_NAME_HIBERNATE_SHOW_SQL = "hibernate.show_sql";
     private static final String PROPERTY_NAME_ENTITYMANAGER_PACKAGES_TO_SCAN = "entitymanager.packages.to.scan";
     
+    private static final String PROPERTY_NAME_c3P0_MAX_SIZE = "hibernate.c3p0.max_size";
+    private static final String PROPERTY_NAME_c3P0_MIN_SIZE = "hibernate.c3p0.min_size";
+    private static final String PROPERTY_NAME_c3P0_TIMEOUT = "hibernate.c3p0.timeout";
+    private static final String PROPERTY_NAME_c3P0_MAX_STATEMENTS = "hibernate.c3p0.max_statements";
+    private static final String PROPERTY_NAME_c3P0_IDLE_TEST_PERIOD = "hibernate.c3p0.idle_test_period";
+    private static final String PROPERTY_NAME_c3P0_ACQUIRE_INCREMENT = "hibernate.c3p0.acquire_increment";
+    
 	@Resource
 	private Environment env;
 	
@@ -48,6 +55,12 @@ public class DatabaseConfig {
 		Properties properties = new Properties();
 		properties.put(PROPERTY_NAME_HIBERNATE_DIALECT, env.getRequiredProperty(PROPERTY_NAME_HIBERNATE_DIALECT));
 		properties.put(PROPERTY_NAME_HIBERNATE_SHOW_SQL, env.getRequiredProperty(PROPERTY_NAME_HIBERNATE_SHOW_SQL));
+		properties.put(PROPERTY_NAME_c3P0_MAX_SIZE, env.getRequiredProperty(PROPERTY_NAME_c3P0_MAX_SIZE));
+		properties.put(PROPERTY_NAME_c3P0_MIN_SIZE, env.getRequiredProperty(PROPERTY_NAME_c3P0_MIN_SIZE));
+		properties.put(PROPERTY_NAME_c3P0_TIMEOUT, env.getRequiredProperty(PROPERTY_NAME_c3P0_TIMEOUT));
+		properties.put(PROPERTY_NAME_c3P0_MAX_STATEMENTS, env.getRequiredProperty(PROPERTY_NAME_c3P0_MAX_STATEMENTS));
+		properties.put(PROPERTY_NAME_c3P0_IDLE_TEST_PERIOD, env.getRequiredProperty(PROPERTY_NAME_c3P0_IDLE_TEST_PERIOD));
+		properties.put(PROPERTY_NAME_c3P0_ACQUIRE_INCREMENT, env.getRequiredProperty(PROPERTY_NAME_c3P0_ACQUIRE_INCREMENT));
 		return properties;	
 	}
 	

@@ -5,8 +5,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>Список хранителей с правом голоса</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Список хранителей с правом голоса</title>
+	<script type="text/javascript" src="<c:url value="/resources/sorttable.js" />"></script>
 </head>
 <body>
 	<h1>Список хранителей с правом голоса</h1>
@@ -14,14 +15,20 @@
 
 	<c:forEach var="cityToHeroMap" items="${cityToHeroMap}">
 		<b><a href="http://the-tale.org/game/map/places/${cityToHeroMap.key.id}">${cityToHeroMap.key.name}</a></b>
-		<ol>
+		
+		<table class="table table-striped sortable" border="1px" cellpadding="0" cellspacing="0" >
+		<thead><tr>
+			<th width="10%">Хранитель</th><th width="10%">Гильдия</th>
+		</tr></thead>
+		<tbody>
 			<c:forEach var="heroGuild" items="${cityToHeroMap.value}">
-				<li><a href="http://the-tale.org/accounts/${heroGuild.hero.id}">${heroGuild.hero.name}</a>
-					<c:choose>
+				<tr><td><a href="http://the-tale.org/accounts/${heroGuild.hero.id}">${heroGuild.hero.name}</a></td>
+					<td><c:choose>
 						<c:when test="${not empty heroGuild.guild}"><a href="http://the-tale.org/accounts/clans/${heroGuild.guild.id}">${heroGuild.guild.name}</a></c:when>
-					</c:choose></li>
+					</c:choose></td></tr>
 			</c:forEach>
-		</ol>
+		</tbody>
+		</table>
 	</c:forEach>
 
 	<p>

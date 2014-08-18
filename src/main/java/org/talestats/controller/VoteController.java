@@ -2,23 +2,19 @@ package org.talestats.controller;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
-import org.talestats.config.Constants;
 import org.talestats.model.City;
 import org.talestats.model.HeroGuild;
 import org.talestats.model.Vote;
-import org.talestats.scheduled.Scheduler;
 import org.talestats.service.CityService;
 import org.talestats.service.GuildService;
 import org.talestats.service.HeroService;
@@ -42,7 +38,7 @@ public class VoteController {
 		ModelAndView modelAndView = new ModelAndView("vote-list");
 		
 		List<City> cities = cityService.getCities();
-		Map <City, Integer> mapCityVotes = new HashMap<>();
+		Map <City, Integer> mapCityVotes = new LinkedHashMap<>();
 		Integer count = 0;
 		for (City city : cities) {
 			count = voteService.getVotesByCityId(city.getId()).size();

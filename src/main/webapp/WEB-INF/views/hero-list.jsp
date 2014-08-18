@@ -25,6 +25,7 @@
 				<th width="10%">Гильдия</th>
 				<th width="30%">Соратник</th>
 				<th width="30%">Враг</th>
+				<th width="10%">Родной город</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -45,6 +46,10 @@
 							<c:otherwise>${heroToHeroExtraMap.value.enemy.name}, ${heroToHeroExtraMap.value.enemy.race} ${heroToHeroExtraMap.value.enemy.job} - ${heroToHeroExtraMap.value.enemy.skill}, ${heroToHeroExtraMap.value.enemyCity.name}</c:otherwise>
 						</c:choose>
 					</td>
+					<td><c:choose>
+							<c:when test="${empty heroToHeroExtraMap.value.city.id}"></c:when>
+							<c:otherwise>${heroToHeroExtraMap.value.city.name}</c:otherwise>
+						</c:choose></td>
 				</tr>
 			</c:forEach>
 		</tbody>

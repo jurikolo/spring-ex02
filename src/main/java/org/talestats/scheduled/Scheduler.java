@@ -51,7 +51,27 @@ public class Scheduler {
 		//Delete all guilds to gather statistics about existing guilds only
 		guildDao.deleteAllGuilds();
 		
-		for (int cityId = 1; cityId <= Constants.CITY_COUNT; cityId++) {
+		//Gather civil cities stats
+		for (int cityId = 1; cityId <= Constants.CIVIL_CITY_COUNT; cityId++) {
+			logger.info("Scheduler progress: " + cityId + "/" + Constants.CITY_COUNT);
+			String url = "http://the-tale.org/game/map/places/" + cityId;
+			try {
+				doc = Jsoup.parse(Jsoup.connect(url).timeout(Constants.TIMEOUT).get().toString(), "UTF-8");
+				cityProcess.process(cityId, doc);
+				for (int councilCnt = 0; councilCnt < councilExtract.getCount(doc); councilCnt++) {
+					if (councilCnt != 0)
+						councilProcess.process(councilCnt, doc, cityId);
+					heroProcess.process(councilCnt, doc, cityId);
+				}
+				
+
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		//Gather frontier cities stats
+		for (int cityId = Constants.CIVIL_CITY_COUNT; cityId + 1 <= Constants.CITY_COUNT; cityId++) {
 			logger.info("Scheduler progress: " + cityId + "/" + Constants.CITY_COUNT);
 			String url = "http://the-tale.org/game/map/places/" + cityId;
 			try {

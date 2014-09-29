@@ -5,6 +5,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.talestats.config.Constants;
 import org.talestats.dao.CityDAO;
 import org.talestats.dao.GuildDAO;
 import org.talestats.dao.HeroDAO;
@@ -38,14 +39,14 @@ public class HeroProcess {
 		boolean isAlly = false;
 		for (int cnt = 0; cnt < heroCnt; cnt++) {
 			int heroId = heroExtract.getId(doc, councilCnt, cnt);
-			
+
 			Hero hero = new Hero();
 			if (null != heroDao.getHero(heroId)) {
 				hero = heroDao.getHero(heroId);
 			} else {
 				String heroName = heroExtract.getName(doc, councilCnt, cnt);
 				String heroKeeper = heroExtract.getKeeper(doc, councilCnt, cnt);
-				
+
 				// Might need to add guild first
 				Guild guild = new Guild();
 				int guildId = guildExtract.getId(doc, councilCnt, cnt);
@@ -55,7 +56,7 @@ public class HeroProcess {
 				guild.setName(guildName);
 				guild.setSize(guildSize);
 				guildDao.addOrUpdateGuild(guild);
-				
+
 				hero.setId(heroId);
 				hero.setName(heroName);
 				hero.setKeeper(heroKeeper);
@@ -71,8 +72,12 @@ public class HeroProcess {
 					hero.setEnemyId(councilExtract.getId(doc, councilCnt));
 				}
 			}
-
-			heroDao.addOrUpdateHero(hero);
+			if (null == heroDao.getHero(heroId)
+					&& (cityId > Constants.CIVIL_CITY_COUNT)) {
+				logger.debug("Hero has no subscription");
+			} else {
+				heroDao.addOrUpdateHero(hero);
+			}
 		}
 	}
 }

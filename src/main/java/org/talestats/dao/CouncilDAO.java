@@ -12,5 +12,6 @@ public interface CouncilDAO {
     public void deleteCouncil(int id);
     public List<Council> getCouncils();
     public void addOrUpdateCouncil(Council council);
+	public void deleteAllCouncils();
     
 }

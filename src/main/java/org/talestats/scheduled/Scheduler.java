@@ -12,6 +12,7 @@ import org.talestats.config.Constants;
 import org.talestats.scheduled.CityProcess;
 import org.talestats.scheduled.CouncilProcess;
 import org.talestats.utils.CouncilExtract;
+import org.talestats.dao.CouncilDAO;
 import org.talestats.dao.GuildDAO;
 import org.talestats.dao.HeroDAO;
 import org.talestats.dao.SchedulerDAO;
@@ -34,6 +35,8 @@ public class Scheduler {
 	@Autowired
 	private VoteDAO voteDao;
 	@Autowired
+	private CouncilDAO councilDao;
+	@Autowired
 	private SchedulerDAO schedulerDao;
 
 	static final Logger logger = LoggerFactory.getLogger(Scheduler.class);
@@ -50,6 +53,8 @@ public class Scheduler {
 		heroDao.deleteAllHeroes();
 		//Delete all guilds to gather statistics about existing guilds only
 		guildDao.deleteAllGuilds();
+		//Delete all councils to gather statistics about existing councils only
+		councilDao.deleteAllCouncils();
 		
 		//Gather civil cities stats
 		for (int cityId = 1; cityId <= Constants.CIVIL_CITY_COUNT; cityId++) {

@@ -2,6 +2,7 @@ package org.talestats.dao;
 
 import java.util.List;
 
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,6 +57,15 @@ public class CouncilDAOImpl implements CouncilDAO {
 	public void addOrUpdateCouncil(Council council) {
 		Session openSession = sessionFactory.openSession();
 		openSession.saveOrUpdate(council);
+		openSession.flush();
+		openSession.close();
+	}
+	
+	@Override
+	public void deleteAllCouncils() {
+		Session openSession = sessionFactory.openSession();
+		Query query = openSession.createQuery("delete from Council"); 
+		query.executeUpdate();
 		openSession.flush();
 		openSession.close();
 	}

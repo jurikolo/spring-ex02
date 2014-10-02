@@ -64,7 +64,7 @@ public class CouncilDAOImpl implements CouncilDAO {
 	@Override
 	public void deleteAllCouncils() {
 		Session openSession = sessionFactory.openSession();
-		Query query = openSession.createQuery("delete from Council"); 
+		Query query = openSession.createQuery("delete from Council councilid > 0"); 
 		query.executeUpdate();
 		openSession.flush();
 		openSession.close();

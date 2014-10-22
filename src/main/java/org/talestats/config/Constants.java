@@ -3,7 +3,7 @@ package org.talestats.config;
 public class Constants {
 
 	//Amount of Pandora cities
-	public final static Integer CITY_COUNT = Integer.valueOf(43);
+	public final static Integer CITY_COUNT = Integer.valueOf(44);
 	//Amount of Pandora civil cities
 	public final static Integer CIVIL_CITY_COUNT = Integer.valueOf(27);
 	//City extract delay after application is started

@@ -93,6 +93,26 @@ public class Scheduler {
 				e.printStackTrace();
 			}
 		}
+		
+		//Gather stats for a temporary city Targard
+		int cityId = 44;
+		logger.info("Gather Targard stats");
+		String url = "http://the-tale.org/game/map/places/" + cityId;
+		try {
+			doc = Jsoup.parse(Jsoup.connect(url).timeout(Constants.TIMEOUT).get().toString(), "UTF-8");
+			cityProcess.process(cityId, doc);
+			for (int councilCnt = 0; councilCnt < councilExtract.getCount(doc); councilCnt++) {
+				if (councilCnt != 0)
+					councilProcess.process(councilCnt, doc, cityId);
+				heroProcess.process(councilCnt, doc, cityId);
+			}
+			
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		//Stop stats gathering
+		
 		voteProcess.process();
 		
 		schedulerDao.deleteScheduler();

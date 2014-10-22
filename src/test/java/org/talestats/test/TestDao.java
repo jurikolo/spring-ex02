@@ -108,7 +108,7 @@ public class TestDao {
 		council.setAllies(COUNCILALLIES);
 		council.setEnemies(COUNCILENEMIES);
 		council.setInfluence(COUNCILINFLUENCE);
-		council.setCity(city);
+		council.setCityId(city.getId());
 		councilDao.addCouncil(council);
 		
 		assertEquals(Integer.valueOf(COUNCILID), Integer.valueOf(councilDao.getCouncil(COUNCILID).getId()));
@@ -146,7 +146,7 @@ public class TestDao {
 		council.setAllies(COUNCILALLIES);
 		council.setEnemies(COUNCILENEMIES);
 		council.setInfluence(COUNCILINFLUENCE);
-		council.setCity(city);
+		council.setCityId(city.getId());
 		councilDao.addCouncil(council);
 		
 		council.setName("testName2");
@@ -193,7 +193,7 @@ public class TestDao {
 		ally.setAllies(COUNCILALLIES);
 		ally.setEnemies(COUNCILENEMIES);
 		ally.setInfluence(COUNCILINFLUENCE);
-		ally.setCity(city);
+		ally.setCityId(city.getId());
 		councilDao.addCouncil(ally);
 		
 		Council enemy = new Council();
@@ -205,16 +205,16 @@ public class TestDao {
 		enemy.setAllies(COUNCILALLIES);
 		enemy.setEnemies(COUNCILENEMIES);
 		enemy.setInfluence(COUNCILINFLUENCE);
-		enemy.setCity(city);
+		enemy.setCityId(city.getId());
 		councilDao.addCouncil(enemy);
 		
 		hero.setId(HEROID);
 		hero.setName(HERONAME);
 		hero.setKeeper(HEROKEEPER);
-		hero.setAlly(ally);
-		hero.setEnemy(enemy);
-		hero.setCity(city);
-		hero.setGuild(guild);
+		hero.setAllyId(ally.getId());
+		hero.setEnemyId(enemy.getId());
+		hero.setCityId(city.getId());
+		hero.setGuildId(guild.getId());
 		heroDao.addHero(hero);
 		
 		assertEquals(HEROID, Integer.valueOf(heroDao.getHero(HEROID).getId()));
@@ -256,7 +256,7 @@ public class TestDao {
 		ally.setAllies(COUNCILALLIES);
 		ally.setEnemies(COUNCILENEMIES);
 		ally.setInfluence(COUNCILINFLUENCE);
-		ally.setCity(city);
+		ally.setCityId(city.getId());
 		councilDao.addCouncil(ally);
 		
 		Council enemy = new Council();
@@ -268,16 +268,16 @@ public class TestDao {
 		enemy.setAllies(COUNCILALLIES);
 		enemy.setEnemies(COUNCILENEMIES);
 		enemy.setInfluence(COUNCILINFLUENCE);
-		enemy.setCity(city);
+		enemy.setCityId(city.getId());
 		councilDao.addCouncil(enemy);
 		
 		hero.setId(HEROID);
 		hero.setName(HERONAME);
 		hero.setKeeper(HEROKEEPER);
-		hero.setAlly(ally);
-		hero.setEnemy(enemy);
-		hero.setCity(city);
-		hero.setGuild(guild);
+		hero.setAllyId(ally.getId());
+		hero.setEnemyId(enemy.getId());
+		hero.setCityId(city.getId());
+		hero.setGuildId(guild.getId());
 		heroDao.addHero(hero);
 		
 		hero.setName("testName2");

@@ -75,44 +75,6 @@ public class Scheduler {
 			}
 		}
 		
-		//Gather frontier cities stats
-		for (int cityId = Constants.CIVIL_CITY_COUNT; cityId + 1 <= Constants.CITY_COUNT; cityId++) {
-			logger.info("Scheduler progress: " + cityId + "/" + Constants.CITY_COUNT);
-			String url = "http://the-tale.org/game/map/places/" + cityId;
-			try {
-				doc = Jsoup.parse(Jsoup.connect(url).timeout(Constants.TIMEOUT).get().toString(), "UTF-8");
-				cityProcess.process(cityId, doc);
-				for (int councilCnt = 0; councilCnt < councilExtract.getCount(doc); councilCnt++) {
-					if (councilCnt != 0)
-						councilProcess.process(councilCnt, doc, cityId);
-					heroProcess.process(councilCnt, doc, cityId);
-				}
-				
-
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
-		
-		//Gather stats for a temporary city Targard
-		int cityId = 44;
-		logger.info("Gather Targard stats");
-		String url = "http://the-tale.org/game/map/places/" + cityId;
-		try {
-			doc = Jsoup.parse(Jsoup.connect(url).timeout(Constants.TIMEOUT).get().toString(), "UTF-8");
-			cityProcess.process(cityId, doc);
-			for (int councilCnt = 0; councilCnt < councilExtract.getCount(doc); councilCnt++) {
-				if (councilCnt != 0)
-					councilProcess.process(councilCnt, doc, cityId);
-				heroProcess.process(councilCnt, doc, cityId);
-			}
-			
-
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		//Stop stats gathering
-		
 		voteProcess.process();
 		
 		schedulerDao.deleteScheduler();

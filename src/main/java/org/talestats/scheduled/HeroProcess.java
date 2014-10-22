@@ -72,8 +72,10 @@ public class HeroProcess {
 					hero.setEnemyId(councilExtract.getId(doc, councilCnt));
 				}
 			}
+			//TODO
+			//Added temporary check for last city id (Targard)
 			if (null == heroDao.getHero(heroId)
-					&& (cityId > Constants.CIVIL_CITY_COUNT)) {
+					&& (cityId > Constants.CIVIL_CITY_COUNT) && (cityId < Constants.CITY_COUNT)) {
 				logger.debug("Hero has no subscription");
 			} else {
 				heroDao.addOrUpdateHero(hero);

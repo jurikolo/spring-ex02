@@ -8,7 +8,6 @@ import org.springframework.stereotype.Component;
 import org.talestats.dao.CityDAO;
 import org.talestats.dao.CouncilDAO;
 import org.talestats.utils.CouncilExtract;
-import org.talestats.model.City;
 import org.talestats.model.Council;
 
 @Component

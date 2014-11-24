@@ -211,3 +211,5 @@ pip-log.txt
 
 #Mr Developer
 .mr.developer.cfg
+/build-prod.properties
+/build-test.properties

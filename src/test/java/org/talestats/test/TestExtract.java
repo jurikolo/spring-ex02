@@ -23,7 +23,7 @@ import org.talestats.utils.HeroExtract;
 @ContextConfiguration(classes = org.talestats.config.WebAppConfig.class)
 public class TestExtract {
 	
-	private final static String CITYLOCALURL = "C:\\jk\\git\\talestats_spring4\\src\\test\\resources\\TestExtract.html";
+	private final static String CITYLOCALURL = "/home/jurikolo/git/talestats_spring4/src/test/resources/TestExtract.html";
 	private final static Integer CITYSIZE = 8; //Needs to be adjusted before execution
 	private final static String CITYNAME = "Красные Дюны";
 	private final static Integer COUNCILCOUNT = 6; //Needs to be adjusted before execution

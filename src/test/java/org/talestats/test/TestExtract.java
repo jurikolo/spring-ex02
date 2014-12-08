@@ -144,7 +144,7 @@ public class TestExtract {
 	
 	@Test
 	public void heroGetNameTest() {
-		assertEquals(HERONAME, heroExtract.getName(doc, COUNCILQUEUECOUNTER, HEROQUEUECOUNTER));
+		assertEquals(HERONAME, heroExtract.getNameByDoc(doc, COUNCILQUEUECOUNTER, HEROQUEUECOUNTER));
 	}
 	
 	@Test

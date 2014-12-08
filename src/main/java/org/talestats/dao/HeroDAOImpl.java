@@ -33,12 +33,12 @@ public class HeroDAOImpl implements HeroDAO {
 		openSession.close();
 	}
 
-	//TODO fix method to execute correct request to DB instead of looping over hero list
+	// hero list
 	public Hero getHero(int id) {
 		Session openSession = sessionFactory.openSession();
-		List<Hero> heroes = openSession.createQuery("from Hero").list();
+		List<Hero> heroes = openSession.createQuery("from Hero where heroid =  " + id).list();
 		openSession.close();
-		for (Hero hero: heroes) {
+		for (Hero hero : heroes) {
 			if (hero.getId() == id)
 				return hero;
 		}
@@ -53,7 +53,7 @@ public class HeroDAOImpl implements HeroDAO {
 		openSession.flush();
 		openSession.close();
 	}
-	
+
 	public void addOrUpdateHero(Hero hero) {
 		Session openSession = sessionFactory.openSession();
 		try {
@@ -61,13 +61,14 @@ public class HeroDAOImpl implements HeroDAO {
 			openSession.saveOrUpdate(hero);
 			openSession.getTransaction().commit();
 			openSession.flush();
-		} catch (HibernateException e) { }
+		} catch (HibernateException e) {
+		}
 		openSession.close();
 	}
-	
+
 	public void deleteAllHeroes() {
 		Session openSession = sessionFactory.openSession();
-		Query query = openSession.createQuery("delete from Hero"); 
+		Query query = openSession.createQuery("delete from Hero");
 		query.executeUpdate();
 		openSession.flush();
 		openSession.close();
@@ -81,4 +82,29 @@ public class HeroDAOImpl implements HeroDAO {
 		return heroes;
 	}
 
+	@SuppressWarnings("unchecked")
+	public List<Hero> getSubscribedHeroes() {
+		Session openSession = sessionFactory.openSession();
+		List<Hero> heroes = openSession.createQuery(
+				"from Hero where SUBSCRIBER = 1").list();
+		openSession.close();
+		return heroes;
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<Hero> getNotSubscribedHeroes() {
+		Session openSession = sessionFactory.openSession();
+		List<Hero> heroes = openSession.createQuery(
+				"from Hero where SUBSCRIBER = 0").list();
+		openSession.close();
+		return heroes;
+	}
+	
+	public void unknownToNotSubscribed() {
+		Session openSession = sessionFactory.openSession();
+		Query query = openSession.createQuery("update Hero set SUBSCRIBER = 0 where SUBSCRIBED = 2");
+		query.executeUpdate();
+		openSession.flush();
+		openSession.close();
+	}
 }

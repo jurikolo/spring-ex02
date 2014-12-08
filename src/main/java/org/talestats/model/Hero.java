@@ -1,5 +1,9 @@
 package org.talestats.model;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.TimeZone;
+
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -37,6 +41,24 @@ public class Hero {
 	@Basic
 	@Column(name = "guildid")
 	private int guildId;
+	
+	@Basic
+	@Column(name = "subscriber")
+	private int subscribed;
+	
+	// Timestamp from 01.01.1970 in seconds for the last visit of the game
+	@Basic
+	@Column(name = "lastvisittimestamp")
+	public int lastVisitTimeStamp;
+	
+	// Checks achievement of politics different from Zero.
+	@Basic
+	@Column(name = "ispoliticallyactive")
+	public int politicallyActive;
+	
+	@Basic
+	@Column(name = "level")
+	public int level;
 
 	public Hero() {
 	}
@@ -46,6 +68,10 @@ public class Hero {
 	}
 
 	public void setId(int id) {
+		this.id = id;
+	}
+	
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -96,29 +122,73 @@ public class Hero {
 	public void setGuildId(int guildId) {
 		this.guildId = guildId;
 	}
+	
+	public int getSubscribed() {
+		return subscribed;
+	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public void setSubscribed(int subscribed) {
+		this.subscribed = subscribed;
+	}
+	
+	//Unix timestamp in milliseconds
+	public int getLastVisitTimeStamp() {
+		return lastVisitTimeStamp;
+	}
+	
+	//Formatted timestamp: year - month - day
+	public String getLastVisitTimeStampFormatted() {
+		Date date = new Date(lastVisitTimeStamp*1000L); // *1000 is to convert seconds to milliseconds
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd"); // the format of your date
+		sdf.setTimeZone(TimeZone.getTimeZone("GMT-4")); // give a timezone reference for formating (see comment at the bottom
+		return sdf.format(date);
+	}
+
+	public void setLastVisitTimeStamp(int lastVisitTimeStamp) {
+		this.lastVisitTimeStamp = lastVisitTimeStamp;
+	}
+
+	public int getPoliticallyActive() {
+		return politicallyActive;
+	}
+
+	public void setPoliticallyActive(int PoliticallyActive) {
+		this.politicallyActive = PoliticallyActive;
+	}	
+
+	public int getLevel() {
+		return level;
+	}
+
+	public void setLevel(int level) {
+		this.level = level;
 	}
 
 	@Override
 	public String toString() {
 		return "Hero [id=" + id + ", name=" + name + ", keeper=" + keeper
 				+ ", allyId=" + allyId + ", enemyId=" + enemyId + ", cityId="
-				+ cityId + ", guildId=" + guildId + "]";
+				+ cityId + ", guildId=" + guildId + ", subscribed="
+				+ subscribed + ", lastVisitTimeStamp=" + lastVisitTimeStamp
+				+ ", politicallyActive=" + politicallyActive + ", level="
+				+ level + "]";
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + politicallyActive;
+		result = prime * result + lastVisitTimeStamp;
 		result = prime * result + allyId;
 		result = prime * result + cityId;
 		result = prime * result + enemyId;
 		result = prime * result + guildId;
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((keeper == null) ? 0 : keeper.hashCode());
+		result = prime * result + level;
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		result = prime * result + subscribed;
 		return result;
 	}
 
@@ -131,6 +201,10 @@ public class Hero {
 		if (getClass() != obj.getClass())
 			return false;
 		Hero other = (Hero) obj;
+		if (politicallyActive != other.politicallyActive)
+			return false;
+		if (lastVisitTimeStamp != other.lastVisitTimeStamp)
+			return false;
 		if (allyId != other.allyId)
 			return false;
 		if (cityId != other.cityId)
@@ -149,10 +223,14 @@ public class Hero {
 				return false;
 		} else if (!keeper.equals(other.keeper))
 			return false;
+		if (level != other.level)
+			return false;
 		if (name == null) {
 			if (other.name != null)
 				return false;
 		} else if (!name.equals(other.name))
+			return false;
+		if (subscribed != other.subscribed)
 			return false;
 		return true;
 	}

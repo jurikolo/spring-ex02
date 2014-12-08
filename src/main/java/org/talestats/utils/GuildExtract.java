@@ -18,10 +18,10 @@ public class GuildExtract {
 		Pattern p = Pattern.compile("/game/heroes");
 		Matcher m = p.matcher(str);
 		int TmpCnt = 0;
-		while (m.find() && heroCnt != TmpCnt){
-	    	TmpCnt++;
-	    	str = str.substring(str.indexOf("/game/heroes") + 10);
-	    }
+		while (m.find() && heroCnt != TmpCnt) {
+			TmpCnt++;
+			str = str.substring(str.indexOf("/game/heroes") + 10);
+		}
 		str = str.substring(str.indexOf("/game/heroes") + 13);
 		int clan = str.indexOf("clans");
 		int noClan = str.indexOf("</td>");
@@ -33,7 +33,7 @@ public class GuildExtract {
 			return Integer.parseInt(str);
 		}
 	}
-	
+
 	public String getName(Document doc, int cnt, int heroCnt) {
 		Elements divs = doc.select("div.accordion-group");
 		Element div = divs.get(cnt);
@@ -41,10 +41,10 @@ public class GuildExtract {
 		Pattern p = Pattern.compile("/game/heroes");
 		Matcher m = p.matcher(str);
 		int TmpCnt = 0;
-		while (m.find() && heroCnt != TmpCnt){
-	    	TmpCnt++;
-	    	str = str.substring(str.indexOf("/game/heroes") + 10);
-	    }
+		while (m.find() && heroCnt != TmpCnt) {
+			TmpCnt++;
+			str = str.substring(str.indexOf("/game/heroes") + 10);
+		}
 		str = str.substring(str.indexOf("/game/heroes") + 13);
 		int clan = str.indexOf("clans");
 		int noClan = str.indexOf("</td>");

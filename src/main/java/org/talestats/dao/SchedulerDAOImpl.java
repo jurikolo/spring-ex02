@@ -41,4 +41,6 @@ public class SchedulerDAOImpl implements SchedulerDAO {
 		openSession.close();
 		return scheduler;
 	}
+	
+	// TODO add a method to delete all schedulers instead of one 
 }

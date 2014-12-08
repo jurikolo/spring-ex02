@@ -6,13 +6,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>Таблица героев</title>
+<title>Таблица героев - подписчиков</title>
 <script type="text/javascript"
 	src="<c:url value="/resources/sorttable.js" />"></script>
 </head>
 <body>
-	<h1>Таблица героев</h1>
-	<p>Ниже приведена таблица героев. Нажмите на заголовок колонки для сортировки данных.</p>
+	<h1>Таблица героев - подписчиков</h1>
+	<p>Ниже приведена таблица героев - подписчиков. Нажмите на заголовок колонки для сортировки данных.</p>
 	<p>
 		<a href="${pageContext.request.contextPath}/index.html">На главную</a>
 	</p>
@@ -29,7 +29,6 @@
 				<th width="10%">Родной город</th>
 				<th width="10%">Полит. акт.</th>
 				<th width="10%">Последнее посещение</th>
-				<th width="10%">Подписчик</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -60,17 +59,13 @@
 							<c:otherwise>Да</c:otherwise>
 						</c:choose></td>
 					<td>${heroToHeroExtraMap.key.lastVisitTimeStampFormatted}</td>
-					<td><c:choose>
-							<c:when test="${heroToHeroExtraMap.key.subscribed == '0'}">Нет</c:when>
-							<c:otherwise>Да</c:otherwise>
-						</c:choose></td>
 				</tr>
 			</c:forEach>
 		</tbody>
 	</table>
 	
 	<p>
-		Общее число героев: ${heroesCount}
+		Общее число подписчиков: ${heroesCount}
 	</p>
 
 	<p>

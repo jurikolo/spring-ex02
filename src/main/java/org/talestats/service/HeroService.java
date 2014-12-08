@@ -11,5 +11,7 @@ public interface HeroService {
     public void updateHero(Hero hero);
     public void deleteHero(int id);
     public List<Hero> getHeroes();
+    public List<Hero> getSubscribedHeroes();
+    public List<Hero> getNotSubscribedHeroes();
 
 }

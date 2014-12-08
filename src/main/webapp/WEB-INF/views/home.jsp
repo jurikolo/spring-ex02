@@ -16,7 +16,13 @@
 		<a href="${pageContext.request.contextPath}/council/list.html">Таблица советников</a><br />
 	</p>
 	<p>
-		<a href="${pageContext.request.contextPath}/hero/list.html">Таблица героев - подписчиков</a><br />
+		<a href="${pageContext.request.contextPath}/hero/list.html">Таблица героев</a><br />
+	</p>
+	<p>
+		<a href="${pageContext.request.contextPath}/heroSubscribed/list.html">Таблица героев - подписчиков</a><br />
+	</p>
+	<p>
+		<a href="${pageContext.request.contextPath}/heroNotSubscribed/list.html">Таблица героев - не подписчиков</a><br />
 	</p>
 	<p>
 		<a href="${pageContext.request.contextPath}/guild/list.html">Таблица гильдий</a><br />

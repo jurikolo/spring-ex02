@@ -35,11 +35,10 @@ public class VoteDAOImpl implements VoteDAO {
 		openSession.close();
 	}
 
-	// TODO fix method to execute correct request to DB instead of looping over
 	// vote list
 	public Vote getVote(int id) {
 		Session openSession = sessionFactory.openSession();
-		List<Vote> votes = openSession.createQuery("from Vote").list();
+		List<Vote> votes = openSession.createQuery("from Vote where voteid = " + id).list();
 		openSession.close();
 		for (Vote vote : votes) {
 			if (vote.getId() == id)

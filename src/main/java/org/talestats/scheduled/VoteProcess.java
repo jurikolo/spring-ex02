@@ -31,14 +31,19 @@ public class VoteProcess {
 	private VoteExtract voteExtract;
 
 	public void process() {
-		logger.debug("Vote processing started!!!");
+		logger.info("Vote processing...");
 
 		Vote vote = new Vote();
 		City city = new City();
-		List<Hero> heroes = heroDao.getHeroes();
+		List<Hero> heroes = heroDao.getSubscribedHeroes();
 		String cityName = "";
+		int heroCount = 0;
 		for (Hero hero : heroes)
 		{
+			heroCount++;
+			if (heroCount % 100 == 0) {
+				logger.info("Vote processing: " + heroCount + " / " + heroes.size());
+			}
 			Document doc = JSoup.getDoc("http://the-tale.org/accounts/" + hero.getId());
 			Element voteElement = doc.select("div.row-fluid").first();
 			voteElement = voteElement.select("div.span6").last();
@@ -52,5 +57,6 @@ public class VoteProcess {
 			}
 			
 		}
+		logger.info("Vote processed!");
 	}
 }

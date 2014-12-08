@@ -68,7 +68,7 @@ public class GuildDAOImpl implements GuildDAO {
 	@Override
 	public void deleteAllGuilds() {
 		Session openSession = sessionFactory.openSession();
-		Query query = openSession.createQuery("delete from Guild"); 
+		Query query = openSession.createQuery("delete from Guild WHERE guildid > 0"); 
 		query.executeUpdate();
 		openSession.flush();
 		openSession.close();
@@ -82,5 +82,4 @@ public class GuildDAOImpl implements GuildDAO {
 		openSession.close();
 		return size; 
 		}
-
 }

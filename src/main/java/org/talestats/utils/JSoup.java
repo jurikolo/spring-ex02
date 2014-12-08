@@ -20,5 +20,4 @@ public class JSoup {
 		}
 		return doc;
 	}
-	
 }

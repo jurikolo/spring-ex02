@@ -12,7 +12,8 @@ public class VoteExtract {
 			int result = 11;
 			Element ten = element.select("tr").get(11);
 			Element last = element.select("tr").get(12);
-			while ((result < size - 2) && (ten.select("td").last().toString().compareTo(last.select("td").last().toString()) == 0)) {
+			while ((result < size - 2)
+					&& (ten.select("td").last().toString().compareTo(last.select("td").last().toString()) == 0)) {
 				result++;
 				ten = element.select("tr").get(result);
 				last = element.select("tr").get(result + 1);

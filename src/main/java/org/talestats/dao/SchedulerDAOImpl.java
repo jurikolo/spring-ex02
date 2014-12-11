@@ -25,7 +25,7 @@ public class SchedulerDAOImpl implements SchedulerDAO {
 		}
 		openSession.close();
 	}
-	
+
 	public void deleteScheduler() {
 		Session openSession = sessionFactory.openSession();
 		openSession.delete(getScheduler());
@@ -41,6 +41,6 @@ public class SchedulerDAOImpl implements SchedulerDAO {
 		openSession.close();
 		return scheduler;
 	}
-	
-	// TODO add a method to delete all schedulers instead of one 
+
+	// TODO add a method to delete all schedulers instead of one
 }

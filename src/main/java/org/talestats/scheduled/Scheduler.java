@@ -44,11 +44,12 @@ public class Scheduler {
 
 	static final Logger logger = LoggerFactory.getLogger(Scheduler.class);
 
-	//for tests
+	// for tests
 	//@Scheduled(initialDelay = Constants.START_DELAY, fixedDelay = Constants.REPEAT_DELAY)
-	
-	//for prod
+
+	// for prod
 	@Scheduled(cron = "0 0 2 * * *")
+	
 	public void run() throws Exception {
 		logger.info("Scheduled run started");
 		schedulerDao.addScheduler();
@@ -67,18 +68,15 @@ public class Scheduler {
 
 		// Get all heroes
 		heroExtract.setHeroes();
-		
+
 		// Gather cities stats
 		for (int cityId = 1; cityId <= Constants.CITY_COUNT; cityId++) {
-			logger.info("City progress: " + cityId + "/"
-					+ Constants.CITY_COUNT);
+			logger.info("City progress: " + cityId + "/" + Constants.CITY_COUNT);
 			String url = "http://the-tale.org/game/map/places/" + cityId;
 			try {
-				doc = Jsoup.parse(Jsoup.connect(url).timeout(Constants.TIMEOUT)
-						.get().toString(), "UTF-8");
+				doc = Jsoup.parse(Jsoup.connect(url).timeout(Constants.TIMEOUT).get().toString(), "UTF-8");
 				cityProcess.process(cityId, doc);
-				for (int councilCnt = 0; councilCnt < councilExtract
-						.getCount(doc); councilCnt++) {
+				for (int councilCnt = 0; councilCnt < councilExtract.getCount(doc); councilCnt++) {
 					if (councilCnt != 0)
 						councilProcess.process(councilCnt, doc, cityId);
 					heroProcess.process(councilCnt, doc, cityId);
@@ -88,7 +86,7 @@ public class Scheduler {
 				e.printStackTrace();
 			}
 		}
-		
+
 		voteProcess.process();
 
 		schedulerDao.deleteScheduler();

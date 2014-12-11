@@ -38,8 +38,7 @@ public class VoteProcess {
 		List<Hero> heroes = heroDao.getSubscribedHeroes();
 		String cityName = "";
 		int heroCount = 0;
-		for (Hero hero : heroes)
-		{
+		for (Hero hero : heroes) {
 			heroCount++;
 			if (heroCount % 100 == 0) {
 				logger.info("Vote processing: " + heroCount + " / " + heroes.size());
@@ -55,7 +54,7 @@ public class VoteProcess {
 				vote.setHeroId(hero.getId());
 				voteDao.addVote(vote);
 			}
-			
+
 		}
 		logger.info("Vote processed!");
 	}

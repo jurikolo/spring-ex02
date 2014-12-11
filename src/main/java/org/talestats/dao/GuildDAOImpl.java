@@ -68,7 +68,7 @@ public class GuildDAOImpl implements GuildDAO {
 	@Override
 	public void deleteAllGuilds() {
 		Session openSession = sessionFactory.openSession();
-		Query query = openSession.createQuery("delete from Guild WHERE guildid > 0"); 
+		Query query = openSession.createQuery("delete from Guild WHERE guildid > 0");
 		query.executeUpdate();
 		openSession.flush();
 		openSession.close();
@@ -77,9 +77,9 @@ public class GuildDAOImpl implements GuildDAO {
 	@Override
 	public int getGuildSize(int guildId) {
 		Session openSession = sessionFactory.openSession();
-		int size = openSession.createQuery("from Hero where guildid = " + guildId).list().size() + 1; 
+		int size = openSession.createQuery("from Hero where guildid = " + guildId).list().size() + 1;
 		openSession.flush();
 		openSession.close();
-		return size; 
-		}
+		return size;
+	}
 }

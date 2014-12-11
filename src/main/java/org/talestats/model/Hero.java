@@ -29,33 +29,33 @@ public class Hero {
 	@Basic
 	@Column(name = "ally")
 	private int allyId;
-	
+
 	@Basic
 	@Column(name = "enemy")
 	private int enemyId;
-	
+
 	@Basic
 	@Column(name = "cityid")
 	private int cityId;
-	
+
 	@Basic
 	@Column(name = "guildid")
 	private int guildId;
-	
+
 	@Basic
 	@Column(name = "subscriber")
 	private int subscribed;
-	
+
 	// Timestamp from 01.01.1970 in seconds for the last visit of the game
 	@Basic
 	@Column(name = "lastvisittimestamp")
 	public int lastVisitTimeStamp;
-	
+
 	// Checks achievement of politics different from Zero.
 	@Basic
 	@Column(name = "ispoliticallyactive")
 	public int politicallyActive;
-	
+
 	@Basic
 	@Column(name = "level")
 	public int level;
@@ -70,7 +70,7 @@ public class Hero {
 	public void setId(int id) {
 		this.id = id;
 	}
-	
+
 	public void setId(Integer id) {
 		this.id = id;
 	}
@@ -90,7 +90,7 @@ public class Hero {
 	public void setKeeper(String keeper) {
 		this.keeper = keeper.trim();
 	}
-	
+
 	public int getAllyId() {
 		return allyId;
 	}
@@ -122,7 +122,7 @@ public class Hero {
 	public void setGuildId(int guildId) {
 		this.guildId = guildId;
 	}
-	
+
 	public int getSubscribed() {
 		return subscribed;
 	}
@@ -130,17 +130,24 @@ public class Hero {
 	public void setSubscribed(int subscribed) {
 		this.subscribed = subscribed;
 	}
-	
-	//Unix timestamp in milliseconds
+
+	// Unix timestamp in milliseconds
 	public int getLastVisitTimeStamp() {
 		return lastVisitTimeStamp;
 	}
-	
-	//Formatted timestamp: year - month - day
+
+	// Formatted timestamp: year - month - day
 	public String getLastVisitTimeStampFormatted() {
-		Date date = new Date(lastVisitTimeStamp*1000L); // *1000 is to convert seconds to milliseconds
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd"); // the format of your date
-		sdf.setTimeZone(TimeZone.getTimeZone("GMT-4")); // give a timezone reference for formating (see comment at the bottom
+		Date date = new Date(lastVisitTimeStamp * 1000L); // *1000 is to convert
+															// seconds to
+															// milliseconds
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd"); // the format
+																	// of your
+																	// date
+		sdf.setTimeZone(TimeZone.getTimeZone("GMT-4")); // give a timezone
+														// reference for
+														// formating (see
+														// comment at the bottom
 		return sdf.format(date);
 	}
 
@@ -154,7 +161,7 @@ public class Hero {
 
 	public void setPoliticallyActive(int PoliticallyActive) {
 		this.politicallyActive = PoliticallyActive;
-	}	
+	}
 
 	public int getLevel() {
 		return level;
@@ -166,12 +173,10 @@ public class Hero {
 
 	@Override
 	public String toString() {
-		return "Hero [id=" + id + ", name=" + name + ", keeper=" + keeper
-				+ ", allyId=" + allyId + ", enemyId=" + enemyId + ", cityId="
-				+ cityId + ", guildId=" + guildId + ", subscribed="
-				+ subscribed + ", lastVisitTimeStamp=" + lastVisitTimeStamp
-				+ ", politicallyActive=" + politicallyActive + ", level="
-				+ level + "]";
+		return "Hero [id=" + id + ", name=" + name + ", keeper=" + keeper + ", allyId=" + allyId + ", enemyId="
+				+ enemyId + ", cityId=" + cityId + ", guildId=" + guildId + ", subscribed=" + subscribed
+				+ ", lastVisitTimeStamp=" + lastVisitTimeStamp + ", politicallyActive=" + politicallyActive
+				+ ", level=" + level + "]";
 	}
 
 	@Override

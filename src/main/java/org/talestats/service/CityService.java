@@ -6,10 +6,14 @@ import org.talestats.model.City;
 
 public interface CityService {
 
-    public void addCity(City city);
-    public City getCity(int id);
-    public void updateCity(City city);
-    public void deleteCity(int id);
-    public List<City> getCities();
+	public void addCity(City city);
+
+	public City getCity(int id);
+
+	public void updateCity(City city);
+
+	public void deleteCity(int id);
+
+	public List<City> getCities();
 
 }

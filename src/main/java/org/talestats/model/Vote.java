@@ -16,7 +16,7 @@ public class Vote {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "voteid")
 	private Integer id;
-	
+
 	@Basic
 	@Column(name = "cityid")
 	private int cityId;
@@ -85,8 +85,7 @@ public class Vote {
 
 	@Override
 	public String toString() {
-		return "Vote [id=" + id + ", cityId=" + cityId + ", heroId=" + heroId
-				+ "]";
+		return "Vote [id=" + id + ", cityId=" + cityId + ", heroId=" + heroId + "]";
 	}
 
 }

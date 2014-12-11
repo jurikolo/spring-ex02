@@ -85,8 +85,7 @@ public class HeroDAOImpl implements HeroDAO {
 	@SuppressWarnings("unchecked")
 	public List<Hero> getSubscribedHeroes() {
 		Session openSession = sessionFactory.openSession();
-		List<Hero> heroes = openSession.createQuery(
-				"from Hero where SUBSCRIBER = 1").list();
+		List<Hero> heroes = openSession.createQuery("from Hero where SUBSCRIBER = 1").list();
 		openSession.close();
 		return heroes;
 	}
@@ -94,12 +93,11 @@ public class HeroDAOImpl implements HeroDAO {
 	@SuppressWarnings("unchecked")
 	public List<Hero> getNotSubscribedHeroes() {
 		Session openSession = sessionFactory.openSession();
-		List<Hero> heroes = openSession.createQuery(
-				"from Hero where SUBSCRIBER = 0").list();
+		List<Hero> heroes = openSession.createQuery("from Hero where SUBSCRIBER = 0").list();
 		openSession.close();
 		return heroes;
 	}
-	
+
 	public void unknownToNotSubscribed() {
 		Session openSession = sessionFactory.openSession();
 		Query query = openSession.createQuery("update Hero set SUBSCRIBER = 0 where SUBSCRIBED = 2");

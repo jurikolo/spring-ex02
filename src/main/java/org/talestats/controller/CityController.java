@@ -10,19 +10,19 @@ import org.talestats.model.City;
 import org.talestats.service.CityService;
 
 @Controller
-@RequestMapping(value="/city")
+@RequestMapping(value = "/city")
 public class CityController {
 
 	@Autowired
 	private CityService cityService;
-	
-	@RequestMapping(value="/list")
+
+	@RequestMapping(value = "/list")
 	public ModelAndView listOfCities() {
 		ModelAndView modelAndView = new ModelAndView("city-list");
-		
+
 		List<City> cities = cityService.getCities();
 		modelAndView.addObject("cities", cities);
-		
+
 		return modelAndView;
 	}
 

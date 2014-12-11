@@ -19,7 +19,7 @@ import org.talestats.service.GuildService;
 import org.talestats.service.HeroService;
 
 @Controller
-@RequestMapping(value="/hero")
+@RequestMapping(value = "/hero")
 public class HeroController {
 
 	@Autowired
@@ -30,18 +30,18 @@ public class HeroController {
 	private CouncilService councilService;
 	@Autowired
 	private GuildService guildService;
-	
-	@RequestMapping(value="/list")
+
+	@RequestMapping(value = "/list")
 	public ModelAndView listOfHeroes() {
 		ModelAndView modelAndView = new ModelAndView("hero-list");
-		
+
 		List<Hero> heroes = heroService.getHeroes();
 		List<City> cities = cityService.getCities();
 		List<Council> councils = councilService.getCouncils();
 		List<Guild> guilds = guildService.getGuilds();
 		HeroExtra heroExtra = new HeroExtra();
-		Map <Hero, HeroExtra> heroToHeroExtraMap = new HashMap<>();
-		
+		Map<Hero, HeroExtra> heroToHeroExtraMap = new HashMap<>();
+
 		for (Hero hero : heroes) {
 			heroExtra = new HeroExtra();
 			for (City city : cities) {
@@ -68,11 +68,11 @@ public class HeroController {
 			}
 			heroToHeroExtraMap.put(hero, heroExtra);
 		}
-		
+
 		modelAndView.addObject("heroToHeroExtraMap", heroToHeroExtraMap);
-		
+
 		modelAndView.addObject("heroesCount", heroes.size());
-		
+
 		return modelAndView;
 	}
 

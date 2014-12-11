@@ -87,8 +87,7 @@ public class VoteDAOImpl implements VoteDAO {
 	@SuppressWarnings("unchecked")
 	public List<Vote> getVotesByCityId(int cityId) {
 		Session openSession = sessionFactory.openSession();
-		Query query = openSession
-				.createQuery("from Vote where cityid = :cityid");
+		Query query = openSession.createQuery("from Vote where cityid = :cityid");
 		query.setInteger("cityid", cityId);
 		List<Vote> votes = query.list();
 		openSession.close();

@@ -207,8 +207,12 @@ public class HeroExtract {
 	}
 
 	public String getNameByJson(String json) {
-		// return json.replaceFirst(Constants.heroNamePattern, "$1");
-		return "-";
+		String nameByJson = json.replaceFirst(Constants.heroNamePattern, "$1");
+		if (nameByJson.length() > 99) {
+			return "-";
+		} else {
+			return nameByJson;
+		}
 	}
 
 	public boolean isAlly(Document doc, int cnt, int heroCnt) {

@@ -14,21 +14,21 @@ import org.talestats.service.CityService;
 import org.talestats.service.CouncilService;
 
 @Controller
-@RequestMapping(value="/council")
+@RequestMapping(value = "/council")
 public class CouncilController {
 
 	@Autowired
 	private CouncilService councilService;
 	@Autowired
 	private CityService cityService;
-	
-	@RequestMapping(value="/list")
+
+	@RequestMapping(value = "/list")
 	public ModelAndView listOfCouncils() {
 		ModelAndView modelAndView = new ModelAndView("council-list");
-		
+
 		List<Council> councils = councilService.getCouncils();
 		List<City> cities = cityService.getCities();
-		Map <Council, City> councilToCityMap = new HashMap<>();
+		Map<Council, City> councilToCityMap = new HashMap<>();
 		for (Council council : councils) {
 			for (City city : cities) {
 				if (city.getId() == council.getCityId()) {

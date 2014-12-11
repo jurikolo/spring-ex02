@@ -21,7 +21,7 @@ import org.talestats.service.HeroService;
 import org.talestats.service.VoteService;
 
 @Controller
-@RequestMapping(value="/vote")
+@RequestMapping(value = "/vote")
 public class VoteController {
 
 	@Autowired
@@ -32,31 +32,31 @@ public class VoteController {
 	private HeroService heroService;
 	@Autowired
 	private GuildService guildService;
-		
-	@RequestMapping(value="/list")
+
+	@RequestMapping(value = "/list")
 	public ModelAndView listOfVoteCities() {
 		ModelAndView modelAndView = new ModelAndView("vote-list");
-		
+
 		List<City> cities = cityService.getCities();
-		Map <City, Integer> mapCityVotes = new LinkedHashMap<>();
+		Map<City, Integer> mapCityVotes = new LinkedHashMap<>();
 		Integer count = 0;
 		for (City city : cities) {
 			count = voteService.getVotesByCityId(city.getId()).size();
 			mapCityVotes.put(city, count);
 		}
 		modelAndView.addObject("mapCityVotes", mapCityVotes);
-		
+
 		return modelAndView;
 	}
-	
-	@RequestMapping(value="/citylist")
+
+	@RequestMapping(value = "/citylist")
 	public @ResponseBody ModelAndView byParameter(@RequestParam("id") int id) {
 		ModelAndView modelAndView = new ModelAndView("vote-citylist");
 		City city = cityService.getCity(id);
-		Map <City, List<HeroGuild>> cityToHeroMap = new HashMap<>();
-		List <HeroGuild> heroesForCity = new ArrayList<>();
+		Map<City, List<HeroGuild>> cityToHeroMap = new HashMap<>();
+		List<HeroGuild> heroesForCity = new ArrayList<>();
 		HeroGuild heroForCity = new HeroGuild();
-		
+
 		for (Vote vote : voteService.getVotesByCityId(city.getId())) {
 			heroForCity = new HeroGuild();
 			if (vote.getCityId() == city.getId()) {
@@ -69,7 +69,7 @@ public class VoteController {
 		}
 		cityToHeroMap.put(city, heroesForCity);
 		modelAndView.addObject("cityToHeroMap", cityToHeroMap);
-		
+
 		return modelAndView;
 	}
 

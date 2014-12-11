@@ -5,12 +5,11 @@ import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatche
 import org.talestats.config.DatabaseConfig;
 
 @Order(1)
-public class Initializer extends
-		AbstractAnnotationConfigDispatcherServletInitializer {
+public class Initializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 
 	@Override
 	protected Class<?>[] getRootConfigClasses() {
-		return new Class[] {DatabaseConfig.class };
+		return new Class[] { DatabaseConfig.class };
 	}
 
 	@Override

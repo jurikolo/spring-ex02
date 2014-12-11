@@ -39,12 +39,12 @@ public class HeroServiceImpl implements HeroService {
 	public List<Hero> getHeroes() {
 		return heroDAO.getHeroes();
 	}
-	
+
 	@Override
 	public List<Hero> getSubscribedHeroes() {
 		return heroDAO.getSubscribedHeroes();
 	}
-	
+
 	@Override
 	public List<Hero> getNotSubscribedHeroes() {
 		return heroDAO.getNotSubscribedHeroes();

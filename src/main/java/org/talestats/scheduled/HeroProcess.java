@@ -18,7 +18,7 @@ import org.talestats.model.Hero;
 public class HeroProcess {
 
 	static final Logger logger = LoggerFactory.getLogger(HeroProcess.class);
-	
+
 	@Autowired
 	private HeroExtract heroExtract;
 	@Autowired
@@ -39,10 +39,16 @@ public class HeroProcess {
 		for (int cnt = 0; cnt < heroCnt; cnt++) {
 			int heroId = heroExtract.getId(doc, councilCnt, cnt);
 			Hero hero = heroDao.getHero(heroId);
-			if ((null != hero) && (null != hero.getKeeper())) {
+			if (null == hero) hero = new Hero();
+			String heroName;
+			if (null != hero.getKeeper()) {
 				logger.debug("Existing hero");
 			} else {
-				String heroName = heroExtract.getNameByDoc(doc, councilCnt, cnt);
+				if (null != hero.getName()) {
+					heroName = hero.getName();
+				} else {
+					heroName = heroExtract.getNameByDoc(doc, councilCnt, cnt);
+				}
 				String heroKeeper = heroExtract.getKeeper(doc, councilCnt, cnt);
 
 				// Might need to add guild first

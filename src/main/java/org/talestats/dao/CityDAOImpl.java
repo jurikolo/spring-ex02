@@ -39,13 +39,13 @@ public class CityDAOImpl implements CityDAO {
 		openSession.close();
 		return city;
 	}
-	
+
 	public City getCityByName(String name) {
 		Session openSession = sessionFactory.openSession();
 		Query query = openSession.createQuery("from City where name = :name");
 		query.setString("name", name);
 		City city = (City) query.uniqueResult();
-		
+
 		openSession.flush();
 		openSession.close();
 		return city;

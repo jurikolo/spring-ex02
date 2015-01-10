@@ -2,6 +2,7 @@ package org.talestats.utils;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -16,7 +17,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.talestats.config.Constants;
 import org.talestats.dao.HeroDAO;
+import org.talestats.dao.HeroHistoryDAO;
 import org.talestats.model.Hero;
+import org.talestats.model.HeroExtra;
+import org.talestats.model.HeroHistory;
 import org.talestats.scheduled.Scheduler;
 
 //TODO this class requires huge refactoring
@@ -27,6 +31,8 @@ public class HeroExtract {
 
 	@Autowired
 	private HeroDAO heroDao;
+	@Autowired
+	private HeroHistoryDAO heroHistoryDao;
 
 	private Document doc;
 	private int pageCount;
@@ -124,12 +130,32 @@ public class HeroExtract {
 				hero.setLevel(getLevel(json));
 				hero.setLastVisitTimeStamp(getLastVisitTimeStamp(json));
 				heroDao.addOrUpdateHero(hero);
+				
+				// Check if hero name is changed
+				if (nameChanged(hero.getId(), hero.getName())) {
+					HeroHistory heroHistory = new HeroHistory();
+					heroHistory.setId(hero.getId());
+					heroHistory.setName(hero.getName());
+					heroHistoryDao.addHeroHistory(heroHistory);
+				}
 			}
 		}
 		logger.info("Heroes are set");
 		logger.info("Total number of heroes: " + cnt);
 	}
 
+	private boolean nameChanged(int id, String name) {
+		List<HeroHistory> heroHistoryList = heroHistoryDao.getHeroHistory(id);
+		if (heroHistoryList.size() < 1)
+			return true;
+		for (HeroHistory heroHistory : heroHistoryList) {
+			if (heroHistory.getName().equals(name))
+				return false;
+		}
+		return true;
+		
+	}
+	
 	public String getJson(int heroId) throws Exception {
 		final String jsonAnswer = Request.Get(Constants.heroInfoPath + heroId).execute().returnContent().asString();
 		if (!jsonAnswer.matches(Constants.statusPattern)) {
